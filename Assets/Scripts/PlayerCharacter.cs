@@ -86,6 +86,7 @@ namespace EndlessDescent
         {
             hit_timer += Time.deltaTime;
             move_input = Vector2.zero;
+            attackDown = false;
 
             //Controls
             if (!disable_controls)

@@ -23,7 +23,7 @@ namespace EndlessDescent
         private Vector2 move = Vector2.zero;
         private bool action_press = false;
         private bool action_hold = false;
-        private bool attackPress = true;
+        private bool attackPress = false;
 
         private static Dictionary<int, PlayerControls> controls = new Dictionary<int, PlayerControls>();
 

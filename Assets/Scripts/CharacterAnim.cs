@@ -33,9 +33,14 @@ namespace EndlessDescent
             animator.SetInteger("Side", side);
             if (flipSpriteOnTurn == true)
                 spriteRenderer.flipX = (side == 3)? true : false;
-            if(character_item != null)
-                animator.SetBool("Hold", character_item.GetHeldItem() != null);
+            //if(character_item != null)
+            //    animator.SetBool("Hold", character_item.GetHeldItem() != null);
         }
+
+        //public void AnimateAttack()
+        //{
+        //    animator.SetBool("Attack", true);
+        //}
         
     }
 
