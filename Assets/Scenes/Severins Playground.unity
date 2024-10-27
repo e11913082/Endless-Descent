@@ -1971,6 +1971,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1585300156}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &472648537 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1173577608035208917, guid: 630f3082ac899034d91c2bb3059974f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 767070431}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &473692517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3528,23 +3534,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1378692596590864, guid: 630f3082ac899034d91c2bb3059974f5,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1192692912}
-    - targetCorrespondingSourceObject: {fileID: 1378692596590864, guid: 630f3082ac899034d91c2bb3059974f5,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1192692913}
-    - targetCorrespondingSourceObject: {fileID: 1378692596590864, guid: 630f3082ac899034d91c2bb3059974f5,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1192692915}
-    - targetCorrespondingSourceObject: {fileID: 1378692596590864, guid: 630f3082ac899034d91c2bb3059974f5,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1192692914}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 630f3082ac899034d91c2bb3059974f5, type: 3}
 --- !u!1001 &774181067
 PrefabInstance:
@@ -5119,12 +5109,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 671337793}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1142602580 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4124074945642986, guid: 630f3082ac899034d91c2bb3059974f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 767070431}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1175084550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5299,73 +5283,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a658f3bf1c39eb4391763244efb237f, type: 3}
---- !u!1 &1192692898 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1378692596590864, guid: 630f3082ac899034d91c2bb3059974f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 767070431}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1192692912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1192692898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43f9ef5355aa455408d1400992b27139, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flipSpriteOnTurn: 1
---- !u!114 &1192692913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1192692898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7838e6d53ced4440a63fca0a0ae8b05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player_id: 0
-  max_hp: 100
-  invulnerable: 0
-  move_accel: 10
-  move_deccel: 20
-  move_max: 3
---- !u!114 &1192692914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1192692898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f03864b0526bf60449ab5cd54e01e8aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hand: {fileID: 1142602580}
---- !u!114 &1192692915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1192692898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43478abf9b5ed9d4a834065471fc4607, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  auto_sort: 1
-  offset: 0
-  sort_refresh_rate: 0
-  auto_rotate: 1
-  rotate_offset: 0.2
 --- !u!1001 &1197168946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7498,7 +7415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b92f3fb580bcfa04caaebcd08979308b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1192692898}
+  target: {fileID: 472648537}
   target_offset: {x: 0, y: -7, z: -10}
   camera_speed: 5
 --- !u!1001 &1635077362
