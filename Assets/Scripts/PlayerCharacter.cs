@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -37,6 +38,7 @@ namespace EndlessDescent
         private bool is_dead = false;
         private Vector2 move;
         private Vector2 move_input;
+        private bool attackDown;
         private Vector2 lookat = Vector2.zero;
         private float side = 1f;
         private bool disable_controls = false;
@@ -91,6 +93,7 @@ namespace EndlessDescent
                 //Controls
                 PlayerControls controls = PlayerControls.Get(player_id);
                 move_input = controls.GetMove();
+                attackDown = controls.GetAttackDown();
                 
             }
 
@@ -153,6 +156,10 @@ namespace EndlessDescent
         public Vector2 GetMove()
         {
             return move;
+        }
+        public bool GetAttackDown()
+        {
+            return attackDown;
         }
 
         public Vector2 GetFacing()

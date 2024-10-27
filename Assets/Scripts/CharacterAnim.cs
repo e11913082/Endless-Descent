@@ -28,6 +28,7 @@ namespace EndlessDescent
         {
             //Anims
             animator.SetFloat("Speed", character.GetMove().magnitude);
+            animator.SetBool("Attack", character.GetAttackDown());
             side = character.GetSideAnim();
             animator.SetInteger("Side", side);
             if (flipSpriteOnTurn == true)
