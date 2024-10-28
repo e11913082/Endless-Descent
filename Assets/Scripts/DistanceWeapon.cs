@@ -10,15 +10,17 @@ namespace EndlessDescent
         public bool Selected;
         private PlayerCharacter Character;
         private Projectile Projectile;
+        public float ProjectileOffsetX;
+        public float ProjectileOffsetY;
         public float Delay;
         public float ReUseTime;
         private float LastUse;
-        private Animator PlayerAnimator;
+        private CharacterAnim PlayerAnim;
         // Start is called before the first frame update
         void Start()
         {
             Character = GetComponent<PlayerCharacter>();
-            PlayerAnimator = GetComponent<Animator>();
+            PlayerAnim = GetComponent<CharacterAnim>();
         }
 
         // Update is called once per frame
@@ -26,18 +28,19 @@ namespace EndlessDescent
         {
             if (Selected == true && Character.GetAttackDown() == true)
             {
-                //Instantiate(ProjectilePrefab, transform);
-                //if (Time.time - LastUse < ReUseTime)
-                //{
-                LastUse = Time.time;
-                Invoke("Use", Delay);
-                //}
+                if (Time.time - LastUse > ReUseTime)
+                {
+                    PlayerAnim.AnimateAttack();
+                    LastUse = Time.time;
+                    Invoke("Use", Delay);
+                }
             }
         }
 
         private void Use()
         {
-            Projectile = Instantiate(ProjectilePrefab, transform.position, transform.rotation).GetComponent<Projectile> ();
+            Vector2 spawnPosition = transform.position + new Vector3(ProjectileOffsetX, ProjectileOffsetY, 0);
+            Projectile = Instantiate(ProjectilePrefab, spawnPosition, transform.rotation).GetComponent<Projectile> ();
             Projectile.SetShooter(gameObject);
             Projectile.Shoot(Character.GetFacing());
         }

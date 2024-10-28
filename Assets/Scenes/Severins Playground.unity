@@ -3558,6 +3558,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.97
       objectReference: {fileID: 0}
+    - target: {fileID: 3702767706727041646, guid: 630f3082ac899034d91c2bb3059974f5,
+        type: 3}
+      propertyPath: auto_rotate
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

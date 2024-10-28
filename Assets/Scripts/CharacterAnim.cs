@@ -24,11 +24,11 @@ namespace EndlessDescent
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
-        void Update()
+        void LateUpdate()
         {
             //Anims
             animator.SetFloat("Speed", character.GetMove().magnitude);
-            animator.SetBool("Attack", character.GetAttackDown());
+            animator.SetBool("Attack", false);
             side = character.GetSideAnim();
             animator.SetInteger("Side", side);
             if (flipSpriteOnTurn == true)
@@ -37,10 +37,10 @@ namespace EndlessDescent
             //    animator.SetBool("Hold", character_item.GetHeldItem() != null);
         }
 
-        //public void AnimateAttack()
-        //{
-        //    animator.SetBool("Attack", true);
-        //}
+        public void AnimateAttack()
+        {
+            animator.SetBool("Attack", true);
+        }
         
     }
 

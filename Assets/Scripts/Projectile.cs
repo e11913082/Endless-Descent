@@ -15,6 +15,9 @@ namespace EndlessDescent
         private Animator Animator;
         public float DestructionDelay;
         private GameObject Shooter;
+        private AudioSource audioSource;
+        public AudioClip CreationSound;
+        public AudioClip DestructionSound;
         // Start is called before the first frame update
         void Start()
         {
@@ -25,6 +28,8 @@ namespace EndlessDescent
         {
             Rigid = GetComponent<Rigidbody2D> ();
             Animator = GetComponent<Animator>();
+            audioSource = GetComponent<AudioSource>();
+            audioSource.PlayOneShot(CreationSound);
         }
 
         // Update is called once per frame
@@ -45,6 +50,8 @@ namespace EndlessDescent
             {
                 Rigid.velocity = Vector2.zero;
                 Animator.SetBool("Hit", true);
+                audioSource.Stop();
+                AudioSource.PlayClipAtPoint(DestructionSound, transform.position, 1000);
                 Invoke("DestroyProjectile", DestructionDelay); 
             }
            

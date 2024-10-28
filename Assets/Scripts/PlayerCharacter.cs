@@ -82,7 +82,7 @@ namespace EndlessDescent
         }
 
         //Handle render and controls
-        void Update()
+        void LateUpdate()
         {
             hit_timer += Time.deltaTime;
             move_input = Vector2.zero;
