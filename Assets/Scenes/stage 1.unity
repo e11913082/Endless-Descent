@@ -895,7 +895,7 @@ PrefabInstance:
     - target: {fileID: 7947911505737750450, guid: c5bdca1933fde624698bb8c6d6daa44b,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7947911505737750450, guid: c5bdca1933fde624698bb8c6d6daa44b,
         type: 3}
@@ -1364,12 +1364,12 @@ PrefabInstance:
     - target: {fileID: 2902257392719249671, guid: 630f3082ac899034d91c2bb3059974f5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.68
+      value: 0.58
       objectReference: {fileID: 0}
     - target: {fileID: 2902257392719249671, guid: 630f3082ac899034d91c2bb3059974f5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.68
+      value: 1.21
       objectReference: {fileID: 0}
     - target: {fileID: 3702767706727041646, guid: 630f3082ac899034d91c2bb3059974f5,
         type: 3}
@@ -1456,8 +1456,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.015100002, y: 0.5986, z: 0}
-    m_Extent: {x: 0.6592, y: 0.9766, z: 0}
+    m_Center: {x: 0.0146999955, y: 0.59860003, z: 0}
+    m_Extent: {x: 0.6599, y: 0.9764, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -1561,6 +1561,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PF Props Stone T4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7947911505737750455, guid: 4c4e80b50a323dc478f7c84e0b8fdad2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7947911505844789838, guid: 4c4e80b50a323dc478f7c84e0b8fdad2,
         type: 3}
