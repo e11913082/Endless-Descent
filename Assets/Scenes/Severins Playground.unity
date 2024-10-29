@@ -1992,6 +1992,8 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 5844561221490569420, guid: 6ac1a591f45ac7e43b94a0e8c4019f5b,
     type: 3}
   Selected: 1
+  ProjectileOffsetX: 0
+  ProjectileOffsetY: 0
   Delay: 0.6
   ReUseTime: 1
 --- !u!1001 &473692517
@@ -3546,6 +3548,16 @@ PrefabInstance:
     - target: {fileID: 212629989435749566, guid: 630f3082ac899034d91c2bb3059974f5,
         type: 3}
       propertyPath: m_DrawMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1211063031471900547, guid: 630f3082ac899034d91c2bb3059974f5,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1211063031471900547, guid: 630f3082ac899034d91c2bb3059974f5,
+        type: 3}
+      propertyPath: m_SortingLayerID
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2902257392719249671, guid: 630f3082ac899034d91c2bb3059974f5,

@@ -13,7 +13,6 @@ TagManager:
   - UI
   - 
   - 
-  - Platforms
   - 
   - 
   - 
@@ -26,8 +25,9 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Ground
+  - Props
+  - Player
   - 
   - 
   - 
@@ -41,9 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 2425651459
+    locked: 0
+  - name: Props
+    uniqueID: 4250941897
+    locked: 0
+  - name: Player
+    uniqueID: 4189426099
+    locked: 0
   - name: Perspective
-    uniqueID: 3420322187
+    uniqueID: 1283273188
     locked: 0
   - name: Top
-    uniqueID: 282671577
+    uniqueID: 1502599955
     locked: 0
