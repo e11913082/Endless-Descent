@@ -5,9 +5,12 @@ using UnityEngine;
 namespace EndlessDescent
 {
         public class DistanceWeapon : MonoBehaviour
-    {
+    {   
         public GameObject ProjectilePrefab;
-        public bool Selected;
+
+        private Weapon equippedWeapon;
+        public bool isAvailable;
+        public bool Selected = false;
         private PlayerCharacter Character;
         private Projectile Projectile;
         public float ProjectileOffsetX;
@@ -36,13 +39,65 @@ namespace EndlessDescent
                 }
             }
         }
-
+        
         private void Use()
-        {
+        {   
             Vector2 spawnPosition = transform.position + new Vector3(ProjectileOffsetX, ProjectileOffsetY, 0);
             Projectile = Instantiate(ProjectilePrefab, spawnPosition, transform.rotation).GetComponent<Projectile> ();
             Projectile.SetShooter(gameObject);
-            Projectile.Shoot(Character.GetFacing());
+            
+            Vector2 direction = (Vector2) (Character.GetMousePos() - transform.position).normalized;
+            Projectile.Shoot(direction);
+            
+            Debug.Log("Attacked with "+equippedWeapon.name +" in direction: " + direction + " with damage: " + PlayerStats.GetPlayerStats(Character.player_id).damage);
+        
+        }
+
+        public Weapon GetEquippedWeapon()
+        {
+            return equippedWeapon;
+        }
+        
+        public void equipWeapon(Weapon weapon)
+        {
+            isAvailable = true;
+            equippedWeapon = weapon;
+        }
+
+        public void unequipWeapon()
+        {
+            isAvailable = false;
+            equippedWeapon = null;
+        }
+        
+        public void Select()
+        {
+            Selected = true;
+        }
+
+        public void Deselect()
+        {
+            Selected = false;
+        }
+
+        public bool IsSelected()
+        {
+            return Selected;
+        }
+        
+        public void SetAvailable()
+        {
+            isAvailable = true;
+        }
+
+        public void SetUnavailable()
+        {
+            isAvailable = false;
+        }
+
+        public bool IsAvailable()
+        {
+            return isAvailable;
         }
     }
 }

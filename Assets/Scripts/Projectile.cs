@@ -47,7 +47,16 @@ namespace EndlessDescent
         void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.collider.gameObject != Shooter) 
-            {
+            {   
+                // enemy hit logic
+                PlayerCharacter player = Shooter.GetComponent<PlayerCharacter>();
+                float damage = PlayerStats.GetPlayerStats(player.player_id).damage;
+
+                if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+                {
+                    collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+                }
+                
                 Rigid.velocity = Vector2.zero;
                 Animator.SetBool("Hit", true);
                 audioSource.Stop();

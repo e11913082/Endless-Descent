@@ -19,17 +19,24 @@ namespace EndlessDescent
         public KeyCode down_key;
         public KeyCode action_key;
         public KeyCode attackKey;
+        public KeyCode switchKey;
 
         private Vector2 move = Vector2.zero;
         private bool action_press = false;
         private bool action_hold = false;
         private bool attackPress = false;
+        private bool weaponSwitch = false;
+        
+        // mouse logic
+        private Vector3 mouse_pos = Vector3.zero;
+        private Camera mainCamera;
 
         private static Dictionary<int, PlayerControls> controls = new Dictionary<int, PlayerControls>();
 
         void Awake()
         {
             controls[player_id] = this;
+            mainCamera = Camera.main;
         }
 
         void OnDestroy()
@@ -39,12 +46,16 @@ namespace EndlessDescent
 
         void Update()
         {
-
+            mouse_pos = Input.mousePosition;
+            mouse_pos.z = Mathf.Abs(mainCamera.transform.position.z);
+            mouse_pos = mainCamera.ScreenToWorldPoint(mouse_pos);
+            
             move = Vector2.zero;
             action_hold = false;
             action_press = false;
             attackPress = false;
-
+            weaponSwitch = false;
+            
             if (Input.GetKey(left_key))
                 move += -Vector2.right;
             if (Input.GetKey(right_key))
@@ -59,7 +70,8 @@ namespace EndlessDescent
                 action_press = true;
             if (Input.GetKeyDown(attackKey))
                 attackPress = true;
-
+            if (Input.GetKeyDown(switchKey))
+                weaponSwitch = true;
             float move_length = Mathf.Min(move.magnitude, 1f);
             move = move.normalized * move_length;
         }
@@ -84,6 +96,16 @@ namespace EndlessDescent
         public bool GetActionHold()
         {
             return action_hold;
+        }
+
+        public bool GetWeaponSwitch()
+        {
+            return weaponSwitch;
+        }
+
+        public Vector2 GetMousePos()
+        {
+            return mouse_pos;
         }
 
         //-----------
