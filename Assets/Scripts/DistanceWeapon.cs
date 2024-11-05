@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 namespace EndlessDescent
@@ -19,11 +20,14 @@ namespace EndlessDescent
         public float ReUseTime;
         private float LastUse;
         private CharacterAnim PlayerAnim;
+
+        private PlayerStats stats;
         // Start is called before the first frame update
         void Start()
         {
             Character = GetComponent<PlayerCharacter>();
             PlayerAnim = GetComponent<CharacterAnim>();
+            stats = PlayerStats.GetPlayerStats(Character.player_id);
         }
 
         // Update is called once per frame
@@ -31,7 +35,7 @@ namespace EndlessDescent
         {
             if (Selected == true && Character.GetAttackDown() == true)
             {
-                if (Time.time - LastUse > ReUseTime)
+                if (Time.time - LastUse > stats.attackSpeed)
                 {
                     PlayerAnim.AnimateAttack();
                     LastUse = Time.time;

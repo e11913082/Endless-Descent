@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
@@ -8,22 +9,43 @@ using UnityEngine;
 public class WeaponSwitch : MonoBehaviour
 {   
     private PlayerCharacter character;
+    private CharacterWeaponInventory inventory;
+    
     private DistanceWeapon distanceWeapon;
     private MeleeWeapon meleeWeapon;
     private PlayerStats stats;
+    private CharacterHoldItem holdItem;
     
     
     // Start is called before the first frame update
     void Start()
     {
         character = GetComponent<PlayerCharacter>();
+        inventory = GetComponent<CharacterWeaponInventory>();
+        
         distanceWeapon = GetComponent<DistanceWeapon>();
         meleeWeapon = GetComponent<MeleeWeapon>();
+        holdItem = GetComponent<CharacterHoldItem>();
         stats = PlayerStats.GetPlayerStats(character.player_id);
     }
 
+    private void Update()
+    {
+        if (character.GetWeaponSwitch())
+        {
+            if (inventory.weapons.Count > 1 && inventory.equippedWeapon != null)
+            {
+                inventory.SwitchWeapon();
+            }
+            else
+            {
+                Debug.Log("NO other weapon available or nothing at all");
+            }
+        }
+    }
+
     // Update is called once per frame
-    void Update()
+  /*  void Update()
     {
         if (character.GetWeaponSwitch())
         {
@@ -56,8 +78,11 @@ public class WeaponSwitch : MonoBehaviour
             {
                 Debug.LogError("Selected Mismatch at Weapons: Distance: " + distanceWeapon.IsSelected() + " Melee: " + meleeWeapon.IsSelected());
             }
+        } else if (character.GetActionDown())
+        {
+            //holdItem.DropItem();
         }
-    }
+    }*/
     
     
 }

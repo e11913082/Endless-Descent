@@ -16,17 +16,15 @@ namespace EndlessDescent
     public class PlayerCharacter : MonoBehaviour
     {
         public int player_id;
-
-        [Header("Stats")]
-        public float max_hp = 100f;
-
+        
+        // can be private or removed
+        
+        private float max_hp;
+        
+        
+        // can be moved to playerstats
         [Header("Status")]
         public bool invulnerable = false;
-
-        [Header("Movement")]
-        public float move_accel = 1f;
-        public float move_deccel = 1f;
-        public float move_max = 1f;
 
         public UnityAction onDeath;
         public UnityAction onHit;
@@ -38,6 +36,7 @@ namespace EndlessDescent
             
         //Weapons
         private bool weaponSwitch;
+        private bool action_down;
         private DistanceWeapon distanceWeapon;
         private MeleeWeapon meleeWeapon;
         
@@ -66,6 +65,7 @@ namespace EndlessDescent
             auto_order = GetComponent<AutoOrderLayer>();
             distanceWeapon = GetComponent<DistanceWeapon>();
             meleeWeapon = GetComponent<MeleeWeapon>();
+            
         }
 
         void OnDestroy()
@@ -77,13 +77,8 @@ namespace EndlessDescent
         {
             stats = PlayerStats.GetPlayerStats(player_id);
             stats.resetStats();
-            if (meleeWeapon.IsSelected() && meleeWeapon.IsAvailable())
-            {
-                stats.damage += meleeWeapon.GetEquippedWeapon().damageBonus;
-            } else if (distanceWeapon.IsSelected() && distanceWeapon.IsAvailable())
-            {
-                stats.damage += distanceWeapon.GetEquippedWeapon().damageBonus;
-            }
+            max_hp = stats.MaxHealth;
+            hp = stats.currentHealth;
         }
 
         private void Update()
@@ -95,9 +90,10 @@ namespace EndlessDescent
         void FixedUpdate()
         {   
             // Set MoveSpeed and change accel and deccel accordingly
-            move_max = stats.MoveSpeed;
-            move_accel = stats.MoveSpeed * 2;
-            move_deccel = stats.MoveSpeed * 2;
+            float move_max = stats.MoveSpeed;
+            float move_accel = stats.MoveSpeed * 2;
+            float move_deccel = stats.MoveSpeed * 2;
+            //update hp and max_hp
             hp = stats.CurrentHealth;
             max_hp = stats.MaxHealth;
             //Movement velocity
@@ -127,7 +123,7 @@ namespace EndlessDescent
                 move_input = controls.GetMove();
                 attackDown = controls.GetAttackDown();
                 mouse_pos = controls.GetMousePos();
-
+                action_down = controls.GetActionDown();
                 weaponSwitch = controls.GetWeaponSwitch();
             }
 
@@ -145,9 +141,12 @@ namespace EndlessDescent
             {
                 hp += heal;
                 hp = Mathf.Min(hp, max_hp);
+                stats.CurrentHealth = hp;
             }
         }
-
+        
+        
+        
         public void TakeDamage(float damage)
         {
             if (!is_dead && !invulnerable && hit_timer > 0f)
@@ -201,6 +200,11 @@ namespace EndlessDescent
             return attackDown;
         }
 
+        public bool GetActionDown()
+        {
+            return action_down;
+        }
+
         public bool GetWeaponSwitch()
         {
             return weaponSwitch;
@@ -232,39 +236,7 @@ namespace EndlessDescent
             return is_dead;
         }
         
-        // Item / Weapon pickup logic
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.gameObject.layer == LayerMask.NameToLayer("Item"))
-            {
-                stats.PickupItem(other.gameObject.GetComponent<ItemPickup>().getItemData());
-                
-                Destroy(other.gameObject);
-            } else if (other.gameObject.layer == LayerMask.NameToLayer("Weapon"))
-            {
-                Weapon weapon = other.gameObject.GetComponent<WeaponPickup>().GetWeapon();
-
-                if (weapon.type == 0)
-                {   
-                    distanceWeapon.equipWeapon(weapon);
-                    if (!meleeWeapon.IsAvailable())
-                    {
-                        stats.damage += weapon.damageBonus; 
-                    }
-                } else if(weapon.type == 1)
-                {
-                    meleeWeapon.equipWeapon(weapon);
-                    if (!distanceWeapon.IsAvailable())
-                    {
-                        stats.damage += weapon.damageBonus; 
-                    }
-                }
-                
-                Destroy(other.gameObject);
-            }
-        }
         
-
         public void DisableControls() { disable_controls = true; }
         public void EnableControls() { disable_controls = false; }
         

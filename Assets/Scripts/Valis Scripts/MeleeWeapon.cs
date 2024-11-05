@@ -40,11 +40,6 @@ public class MeleeWeapon : MonoBehaviour
                 lastUse = Time.time;
                 Invoke("Use", delay);
             }
-            
-            // Debug purpose
-            Vector2 direction = (Vector2) (character.GetMousePos() - transform.position).normalized;
-            Vector3 attackPos = new Vector3(direction.x,direction.y, 0) * stats.attackRange;
-            Debug.DrawLine(transform.position, attackPos);
         }
     }
 

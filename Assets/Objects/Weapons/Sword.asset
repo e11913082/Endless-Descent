@@ -16,3 +16,7 @@ MonoBehaviour:
   description: Epic Sword
   damageBonus: 10
   type: 1
+  projectilePrefab: {fileID: 5873806722197866145, guid: ce6b3376b68bf9a5f8bf760a543ac183,
+    type: 3}
+  projectileOffsetX: 0
+  projectileOffsetY: 0

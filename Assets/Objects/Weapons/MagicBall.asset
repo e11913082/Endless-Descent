@@ -16,3 +16,7 @@ MonoBehaviour:
   description: Fires a magical ball
   damageBonus: 20
   type: 0
+  projectilePrefab: {fileID: 5844561221490569420, guid: 6ac1a591f45ac7e43b94a0e8c4019f5b,
+    type: 3}
+  projectileOffsetX: 0
+  projectileOffsetY: 0
