@@ -48,13 +48,14 @@ namespace EndlessDescent
         {
             if (collision.collider.gameObject != Shooter) 
             {   
+                print("yeah");
                 // enemy hit logic
                 PlayerCharacter player = Shooter.GetComponent<PlayerCharacter>();
                 float damage = PlayerStats.GetPlayerStats(player.player_id).damage;
 
                 if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
                 {
-                    collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+                    //collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);
                 }
                 
                 Rigid.velocity = Vector2.zero;

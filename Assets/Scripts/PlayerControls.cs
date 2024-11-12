@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+//using System.Numerics;
 using UnityEngine;
 
 /// <summary>
@@ -46,6 +47,11 @@ namespace EndlessDescent
 
         void Update()
         {
+            if (gameObject.layer != LayerMask.NameToLayer("Player"))
+            {
+                return;
+            }
+
             mouse_pos = Input.mousePosition;
             mouse_pos.z = Mathf.Abs(mainCamera.transform.position.z);
             mouse_pos = mainCamera.ScreenToWorldPoint(mouse_pos);
@@ -55,7 +61,7 @@ namespace EndlessDescent
             action_press = false;
             attackPress = false;
             weaponSwitch = false;
-            
+
             if (Input.GetKey(left_key))
                 move += -Vector2.right;
             if (Input.GetKey(right_key))
@@ -83,6 +89,11 @@ namespace EndlessDescent
             return move;
         }
 
+        public void SetMove(Vector2 newMove)
+        {
+            move = newMove;
+        }
+
         public bool GetActionDown()
         {
             return action_press;
@@ -91,6 +102,11 @@ namespace EndlessDescent
         public bool GetAttackDown()
         {
             return attackPress;
+        }
+
+        public void SetAttack(bool attack)
+        {
+            attackPress = attack;
         }
 
         public bool GetActionHold()
@@ -106,6 +122,11 @@ namespace EndlessDescent
         public Vector2 GetMousePos()
         {
             return mouse_pos;
+        }
+
+        public void SetMousePos(Vector2 newMousePos)
+        {
+            mouse_pos = newMousePos;
         }
 
         //-----------

@@ -27,6 +27,7 @@ namespace EndlessDescent
         public float move_accel = 1f;
         public float move_deccel = 1f;
         public float move_max = 1f;
+        public bool disable_controls = false;
 
         public UnityAction onDeath;
         public UnityAction onHit;
@@ -49,7 +50,6 @@ namespace EndlessDescent
         
         private Vector2 lookat = Vector2.zero;
         private float side = 1f;
-        private bool disable_controls = false;
         private float hit_timer = 0f;
 
         private static Dictionary<int, PlayerCharacter> character_list = new Dictionary<int, PlayerCharacter>();
@@ -107,6 +107,7 @@ namespace EndlessDescent
             float desiredSpeedY = Mathf.Abs(move_input.y) > 0.1f ? move_input.y * move_max : 0f;
             float accelerationY = Mathf.Abs(move_input.y) > 0.1f ? move_accel : move_deccel;
             move.y = Mathf.MoveTowards(move.y, desiredSpeedY, accelerationY * Time.fixedDeltaTime);
+            //move_input = Vector2.zero;
 
             //Move
             rigid.velocity = move;
@@ -116,7 +117,7 @@ namespace EndlessDescent
         void LateUpdate()
         {
             hit_timer += Time.deltaTime;
-            move_input = Vector2.zero;
+            //move_input = Vector2.zero;
             attackDown = false;
 
             //Controls
