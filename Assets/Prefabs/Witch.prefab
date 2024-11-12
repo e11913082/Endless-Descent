@@ -17,6 +17,14 @@ GameObject:
   - component: {fileID: 9059422318549555085}
   - component: {fileID: 3702767706727041646}
   - component: {fileID: 4903427270120146476}
+  - component: {fileID: 4421059027851307238}
+  - component: {fileID: 4694262215316790272}
+  - component: {fileID: 8773385173840383955}
+  - component: {fileID: 7445903141468337987}
+  - component: {fileID: 8108686635482222492}
+  - component: {fileID: 5237827880173265806}
+  - component: {fileID: 9126783904486958396}
+  - component: {fileID: 3768158010330934186}
   m_Layer: 0
   m_Name: Witch
   m_TagString: Player
@@ -34,11 +42,12 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.26, y: 1.91, z: 0}
-  m_LocalScale: {x: 4.000001, y: 4.0000014, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1747898611429827908}
   - {fileID: 6713504646481309772}
+  - {fileID: 6278054667809725440}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1211063031471900547
@@ -202,11 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_id: 0
-  max_hp: 100
   invulnerable: 0
-  move_accel: 10
-  move_deccel: 20
-  move_max: 3
 --- !u!114 &3702767706727041646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,7 +227,7 @@ MonoBehaviour:
   auto_sort: 1
   offset: 0
   sort_refresh_rate: 0
-  auto_rotate: 1
+  auto_rotate: 0
   rotate_offset: 0.2
 --- !u!114 &4903427270120146476
 MonoBehaviour:
@@ -237,6 +242,130 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 1747898611429827908}
+--- !u!114 &4421059027851307238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173577608035208917}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38853200f59f9b8469bd08587a8ad520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProjectilePrefab: {fileID: 5844561221490569420, guid: 6ac1a591f45ac7e43b94a0e8c4019f5b,
+    type: 3}
+  isAvailable: 0
+  Selected: 0
+  ProjectileOffsetX: 0
+  ProjectileOffsetY: 0
+  Delay: 0.6
+  ReUseTime: 1
+--- !u!114 &4694262215316790272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173577608035208917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9102c88022309b79d8384e0d2c3b25d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inLight: 0
+--- !u!114 &8773385173840383955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173577608035208917}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b778273e4f15a5a89b4e0781a6c2e0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleePrefab: {fileID: 5873806722197866145, guid: ce6b3376b68bf9a5f8bf760a543ac183,
+    type: 3}
+  isAvailable: 1
+  Selected: 1
+  equippedWeapon: {fileID: 11400000, guid: 57583a8ed9bd23aa095e2a6ca50721f1, type: 2}
+  delay: 0
+  enemies:
+    serializedVersion: 2
+    m_Bits: 33554432
+--- !u!114 &7445903141468337987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173577608035208917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7adbd2a6a2320cb3cbb5c24f8409896c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8108686635482222492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173577608035208917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42152d01e7e0ec448b1f1fcf1a580bfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapons: []
+  equippedWeapon: {fileID: 0}
+  maxInventorySize: 2
+  droppedWeaponPrefab: {fileID: 7442463993698038990, guid: 0d384326a7ad6d54d8659517b059f326,
+    type: 3}
+  text: {fileID: 0}
+--- !u!114 &5237827880173265806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173577608035208917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4210dc3e068b1ff4a8eacf2ade9177e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inPickupRange: 0
+--- !u!114 &9126783904486958396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173577608035208917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73d8a40686cc90143bba3edf7a4fcbe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies:
+    serializedVersion: 2
+    m_Bits: 33554432
+--- !u!114 &3768158010330934186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173577608035208917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71f8a8db34ced146a06b84f2a78bb4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5495001365235276540
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,6 +397,99 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2902257392719249671}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -27.796001}
+--- !u!1 &6272700452186087243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6278054667809725440}
+  - component: {fileID: 874905840186940785}
+  - component: {fileID: 4484567655778861406}
+  - component: {fileID: 7150642369894865946}
+  m_Layer: 0
+  m_Name: Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6278054667809725440
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6272700452186087243}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.29, y: -0.605, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2902257392719249671}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &874905840186940785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6272700452186087243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3612abc5b64eb834587a4eb6d4d40450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player_id: 0
+  left_key: 97
+  right_key: 100
+  up_key: 119
+  down_key: 115
+  action_key: 101
+  attackKey: 32
+  switchKey: 9
+  dropKey: 113
+--- !u!114 &4484567655778861406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6272700452186087243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f65774da85e1733a0b885d84735f8b86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player_id: 0
+--- !u!114 &7150642369894865946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6272700452186087243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7f082994feeb52799e7e2a0140f8423, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player_id: 0
+  maxHealth: 100
+  healthRegen: 0.5
+  currentHealth: 50
+  moveSpeed: 1
+  damage: 20
+  attackRange: 1.5
+  attackSpeed: 1
+  fearIncrease: 1
+  fearDecrease: 1
+  currentFear: 0
+  maxFear: 100
+  equippedItems: []
 --- !u!1 &6946326868374637809
 GameObject:
   m_ObjectHideFlags: 0
