@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22b8afaba3aa3d9748dc020e60ccf263, type: 3}
   m_Name: MagicBall
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Magic Ball
   description: Fires a magical ball
   damageBonus: 20
   type: 0

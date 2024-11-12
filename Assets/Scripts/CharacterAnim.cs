@@ -24,13 +24,21 @@ namespace EndlessDescent
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
+        void Start()
+        {
+            character.onDeath += AnimateDeath;
+        }
+
         void LateUpdate()
         {
             //Anims
-            animator.SetFloat("Speed", character.GetMove().magnitude);
-            animator.SetBool("Attack", false);
-            side = character.GetSideAnim();
-            animator.SetInteger("Side", side);
+            if (!character.IsDead())
+            {
+                animator.SetFloat("Speed", character.GetMove().magnitude);
+                side = character.GetSideAnim();
+                animator.SetInteger("Side", side);
+            }
+
             if (flipSpriteOnTurn == true)
                 spriteRenderer.flipX = (side == 3)? true : false;
             //if(character_item != null)
@@ -39,7 +47,16 @@ namespace EndlessDescent
 
         public void AnimateAttack()
         {
-            animator.SetBool("Attack", true);
+            if (!character.IsDead())
+            {
+                print("attacking");
+                animator.SetTrigger("Attack");
+            }
+        }
+
+        public void AnimateDeath()
+        {
+            animator.SetTrigger("Die");
         }
         
     }

@@ -8,7 +8,7 @@ public class PlayerStats : MonoBehaviour
     public int player_id;
     
     // Health optional
-    public float maxHealth = 100f;
+    public float maxHealth = 1.0f;
     public float healthRegen = 0.5f;
     public float currentHealth = 50f;
     
@@ -27,7 +27,13 @@ public class PlayerStats : MonoBehaviour
 
     void Awake()
     {
+        player_id = CharacterIdGenerator.GetCharacterId(gameObject, 1);
         stats[player_id] = this;
+    }
+
+    void Start()
+    {
+        currentHealth = maxHealth;
     }
 
     private void OnDestroy()
@@ -105,16 +111,16 @@ public class PlayerStats : MonoBehaviour
     
     public void resetStats()
     {
-        maxHealth = 100f;
+        maxHealth = 1f;
         healthRegen = 0.5f;
         currentHealth = maxHealth;
         moveSpeed = 2f;
-        damage = 1f;
+        damage = 2f;
         attackRange = 1.5f;
         fearIncrease = 1f;
         fearDecrease = 0.5f;
         currentFear = 0f;
-        maxFear = 100f;
+        maxFear = 6f;
     }
     
     public static PlayerStats GetPlayerStats(int player_id)

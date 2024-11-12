@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22b8afaba3aa3d9748dc020e60ccf263, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Sword
   description: Epic Sword
   damageBonus: 10
   type: 1

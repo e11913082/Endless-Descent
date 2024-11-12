@@ -38,10 +38,8 @@ namespace EndlessDescent
         private bool weaponSwitch;
         private bool action_down;
         private bool weaponDrop;
-        private DistanceWeapon distanceWeapon;
         private MeleeWeapon meleeWeapon;
         
-        private float hp;
         private bool is_dead = false;
         private Vector2 move;
         private Vector2 move_input;
@@ -49,6 +47,7 @@ namespace EndlessDescent
         
         private Vector2 lookat = Vector2.zero;
         private float side = 1f;
+
         private bool disable_controls = false;
         private float hit_timer = 0f;
 
@@ -60,13 +59,14 @@ namespace EndlessDescent
         private PlayerStats stats;
         void Awake()
         {
-            character_list[player_id] = this;
             rigid = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
             auto_order = GetComponent<AutoOrderLayer>();
-            distanceWeapon = GetComponent<DistanceWeapon>();
             meleeWeapon = GetComponent<MeleeWeapon>();
             
+            player_id = CharacterIdGenerator.GetCharacterId(gameObject, 0);
+            character_list[player_id] = this;
+            stats = PlayerStats.GetPlayerStats(player_id);
         }
 
         void OnDestroy()
@@ -76,10 +76,8 @@ namespace EndlessDescent
 
         void Start()
         {
-            stats = PlayerStats.GetPlayerStats(player_id);
             stats.resetStats();
             max_hp = stats.MaxHealth;
-            hp = stats.currentHealth;
         }
 
         private void Update()
@@ -91,29 +89,33 @@ namespace EndlessDescent
         void FixedUpdate()
         {   
             // Set MoveSpeed and change accel and deccel accordingly
-            float move_max = stats.MoveSpeed;
-            float move_accel = stats.MoveSpeed * 2;
-            float move_deccel = stats.MoveSpeed * 2;
-            //update hp and max_hp
-            hp = stats.CurrentHealth;
-            max_hp = stats.MaxHealth;
-            //Movement velocity
-            float desiredSpeedX = Mathf.Abs(move_input.x) > 0.1f ? move_input.x * move_max : 0f;
-            float accelerationX = Mathf.Abs(move_input.x) > 0.1f ? move_accel : move_deccel;
-            move.x = Mathf.MoveTowards(move.x, desiredSpeedX, accelerationX * Time.fixedDeltaTime);
-            float desiredSpeedY = Mathf.Abs(move_input.y) > 0.1f ? move_input.y * move_max : 0f;
-            float accelerationY = Mathf.Abs(move_input.y) > 0.1f ? move_accel : move_deccel;
-            move.y = Mathf.MoveTowards(move.y, desiredSpeedY, accelerationY * Time.fixedDeltaTime);
+            if (!is_dead)
+            {
+                float move_max = stats.MoveSpeed;
+                float move_accel = stats.MoveSpeed * 2;
+                float move_deccel = stats.MoveSpeed * 2;
+                //update hp and max_hp
+                max_hp = stats.MaxHealth;
+                //Movement velocity
+                float desiredSpeedX = Mathf.Abs(move_input.x) > 0.1f ? move_input.x * move_max : 0f;
+                float accelerationX = Mathf.Abs(move_input.x) > 0.1f ? move_accel : move_deccel;
+                move.x = Mathf.MoveTowards(move.x, desiredSpeedX, accelerationX * Time.fixedDeltaTime);
+                float desiredSpeedY = Mathf.Abs(move_input.y) > 0.1f ? move_input.y * move_max : 0f;
+                float accelerationY = Mathf.Abs(move_input.y) > 0.1f ? move_accel : move_deccel;
+                move.y = Mathf.MoveTowards(move.y, desiredSpeedY, accelerationY * Time.fixedDeltaTime);
+                //move_input = Vector2.zero;
 
-            //Move
-            rigid.velocity = move;
+                //Move
+                rigid.velocity = move;
+                            
+            }
         }
 
         //Handle render and controls
         void LateUpdate()
         {
             hit_timer += Time.deltaTime;
-            move_input = Vector2.zero;
+            //move_input = Vector2.zero;
             attackDown = false;
 
             //Controls
@@ -141,9 +143,8 @@ namespace EndlessDescent
         {
             if (!is_dead)
             {
-                hp += heal;
-                hp = Mathf.Min(hp, max_hp);
-                stats.CurrentHealth = hp;
+                stats.CurrentHealth += heal;
+                stats.CurrentHealth = Mathf.Min(stats.CurrentHealth, max_hp);
             }
         }
         
@@ -151,20 +152,41 @@ namespace EndlessDescent
         
         public void TakeDamage(float damage)
         {
+            print("taking damage");
             if (!is_dead && !invulnerable && hit_timer > 0f)
             {
-                hp -= damage;
                 hit_timer = -1f;
+                if (gameObject.layer == LayerMask.NameToLayer("Enemy"))
+                {
+                    stats.CurrentHealth -= damage;
 
-                if (hp <= 0f)
-                {
-                    Kill();
+                    if (stats.CurrentHealth <= 0f)
+                    {
+                        print("kill");
+                        Kill();
+                    }
+                    else
+                    {
+                        if (onHit != null)
+                            onHit.Invoke();
+                    }
                 }
-                else
+                else if (gameObject.layer == LayerMask.NameToLayer("Player"))
                 {
-                    if (onHit != null)
-                        onHit.Invoke();
+                    stats.CurrentFear += damage;
+
+                    if (stats.currentFear >= stats.MaxFear)
+                    {
+                        print("kill");
+                        Kill();
+                    }
+                    else
+                    {
+                        if (onHit != null)
+                            onHit.Invoke();
+                    }
                 }
+
             }
         }
 

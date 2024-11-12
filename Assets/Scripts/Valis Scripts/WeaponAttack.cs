@@ -13,7 +13,7 @@ public class WeaponAttack : MonoBehaviour
     private float lastUse;
 
 
-    public LayerMask enemies;
+    private LayerMask enemies;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +22,14 @@ public class WeaponAttack : MonoBehaviour
         character = GetComponent<PlayerCharacter>();
         stats = PlayerStats.GetPlayerStats(character.player_id);
         characterAnim = GetComponent<CharacterAnim>();
+        if (gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            enemies = LayerMask.NameToLayer("Player");
+        }
+        else if (gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            enemies = LayerMask.NameToLayer("Enemy");
+        }
     }
 
     // Update is called once per frame
@@ -68,7 +76,7 @@ public class WeaponAttack : MonoBehaviour
         Projectile.SetShooter(gameObject);
 
         Vector2 direction = (Vector2)(character.GetMousePos() - transform.position).normalized;
-        Projectile.Shoot(direction);
+        Projectile.Shoot(direction, enemies);
 
         Debug.Log("Attacked with " + inventory.equippedWeapon.weaponName + " in direction: " + direction + " with damage: " +
                   PlayerStats.GetPlayerStats(character.player_id).damage);
@@ -80,7 +88,9 @@ public class WeaponAttack : MonoBehaviour
         Vector3 attackPos = transform.position + new Vector3(direction.x, direction.y, 0) * stats.attackRange;
 
        // LayerMask enemies = LayerMask.NameToLayer("Enemy");
-        Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos, 1f, enemies);
+        Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos, 0.5f); // , enemies); // the layer filtering here does not work for some reason
+        print(enemiesToDamage.Length);
+        print(LayerMask.LayerToName(enemies));
 
         MeleePrefab melee = Instantiate(inventory.equippedWeapon.projectilePrefab, attackPos, transform.rotation)
             .GetComponent<MeleePrefab>();
@@ -89,8 +99,8 @@ public class WeaponAttack : MonoBehaviour
         for (int i = 0; i < enemiesToDamage.Length; i++)
         {
             float damage = PlayerStats.GetPlayerStats(character.player_id).damage;
-            Enemy e = enemiesToDamage[i].GetComponent<Enemy>();
-            if (e != null)
+            PlayerCharacter e = enemiesToDamage[i].GetComponent<PlayerCharacter>();
+            if (e != null && e.gameObject.layer == enemies)
             {
                 e.TakeDamage(damage);
             }

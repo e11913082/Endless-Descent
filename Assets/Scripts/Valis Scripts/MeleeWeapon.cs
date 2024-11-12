@@ -56,7 +56,7 @@ public class MeleeWeapon : MonoBehaviour
         
         for (int i = 0; i < enemiesToDamage.Length; i++)
         {   
-            enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(stats.damage);
+            enemiesToDamage[i].GetComponent<PlayerCharacter>().TakeDamage(stats.damage);
         }
         Debug.Log("Attacked with melee on position: " + attackPos + " with damage: " + stats.damage);
     }

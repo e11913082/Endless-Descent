@@ -11,7 +11,6 @@ public class WeaponControls : MonoBehaviour
     private PlayerCharacter character;
     private CharacterWeaponInventory inventory;
     
-    private DistanceWeapon distanceWeapon;
     private MeleeWeapon meleeWeapon;
     private PlayerStats stats;
     private CharacterHoldItem holdItem;
@@ -23,7 +22,6 @@ public class WeaponControls : MonoBehaviour
         character = GetComponent<PlayerCharacter>();
         inventory = GetComponent<CharacterWeaponInventory>();
         
-        distanceWeapon = GetComponent<DistanceWeapon>();
         meleeWeapon = GetComponent<MeleeWeapon>();
         holdItem = GetComponent<CharacterHoldItem>();
         stats = PlayerStats.GetPlayerStats(character.player_id);
