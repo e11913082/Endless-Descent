@@ -8,7 +8,7 @@ public class PlayerStats : MonoBehaviour
     public int player_id;
     
     // Health optional
-    public float maxHealth = 100f;
+    public float maxHealth = 1.0f;
     public float healthRegen = 0.5f;
     public float currentHealth = 50f;
     
@@ -28,6 +28,7 @@ public class PlayerStats : MonoBehaviour
     void Awake()
     {
         stats[player_id] = this;
+        currentHealth = maxHealth;
     }
 
     private void OnDestroy()

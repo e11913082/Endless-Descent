@@ -53,7 +53,6 @@ public class PathFinder : MonoBehaviour
         {
             mileStones.Add(originPosition);
         }
-        print(mileStones[0]);
 
         Vector2 targetDirection = targetPosition - originPosition;
         bool targetVisible = TargetVisible(originPosition, targetDirection);

@@ -42,7 +42,7 @@ namespace EndlessDescent
         private DistanceWeapon distanceWeapon;
         private MeleeWeapon meleeWeapon;
         
-        private float hp;
+        //private float hp;
         private bool is_dead = false;
         private Vector2 move;
         private Vector2 move_input;
@@ -98,7 +98,7 @@ namespace EndlessDescent
             move_max = stats.MoveSpeed;
             move_accel = stats.MoveSpeed * 2;
             move_deccel = stats.MoveSpeed * 2;
-            hp = stats.CurrentHealth;
+            //hp = stats.CurrentHealth;
             max_hp = stats.MaxHealth;
             //Movement velocity
             float desiredSpeedX = Mathf.Abs(move_input.x) > 0.1f ? move_input.x * move_max : 0f;
@@ -144,20 +144,22 @@ namespace EndlessDescent
         {
             if (!is_dead)
             {
-                hp += heal;
-                hp = Mathf.Min(hp, max_hp);
+                stats.CurrentHealth += heal;
+                stats.CurrentHealth = Mathf.Min(stats.CurrentHealth, max_hp);
             }
         }
 
         public void TakeDamage(float damage)
         {
+            print("taking damage");
             if (!is_dead && !invulnerable && hit_timer > 0f)
             {
-                hp -= damage;
+                stats.CurrentHealth -= damage;
                 hit_timer = -1f;
-
-                if (hp <= 0f)
+                print(stats.CurrentHealth);
+                if (stats.CurrentHealth <= 0f)
                 {
+                    print("kill");
                     Kill();
                 }
                 else

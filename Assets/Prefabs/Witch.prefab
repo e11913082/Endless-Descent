@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_id: 0
-  max_hp: 100
+  max_hp: 1
   invulnerable: 0
   move_accel: 10
   move_deccel: 20
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerId: 0
   idleRadius: 2
-  combatDistance: 1
+  combatDistance: 1.3
   pathFindTarget: {x: 0.5, y: 5.5}
   returnIdleTime: 2
 --- !u!114 &3702767706727041646
@@ -474,7 +474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_id: 0
-  maxHealth: 100
+  maxHealth: 1
   healthRegen: 0.5
   currentHealth: 50
   moveSpeed: 1

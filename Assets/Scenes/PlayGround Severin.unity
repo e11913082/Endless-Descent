@@ -1482,15 +1482,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5873394128428277596, guid: 630f3082ac899034d91c2bb3059974f5,
+    - target: {fileID: 4503344267990204384, guid: 630f3082ac899034d91c2bb3059974f5,
         type: 3}
-      propertyPath: m_IncludeLayers.m_Bits
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7564183154885829875, guid: 630f3082ac899034d91c2bb3059974f5,
-        type: 3}
-      propertyPath: combatDistance
-      value: 1.3
+      propertyPath: maxHealth
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1563,8 +1558,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0150000155, y: 0.59835, z: 0}
-    m_Extent: {x: 0.66040003, y: 0.97635, z: 0}
+    m_Center: {x: 0.015049994, y: 0.5996, z: 0}
+    m_Extent: {x: 0.65925, y: 0.9758, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -1783,12 +1778,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1dc4948f20ddc324f84c815af63aa6a9, type: 3}
---- !u!1 &987186072 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1173577608035208917, guid: 630f3082ac899034d91c2bb3059974f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 915335555}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1023117925 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4526411729153331029, guid: 8c66149e58003104daf96668db118b4f,
@@ -2269,7 +2258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b92f3fb580bcfa04caaebcd08979308b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 987186072}
+  target: {fileID: 1453681440}
   target_offset: {x: 0, y: 0, z: -10}
   camera_speed: 5
 --- !u!114 &1141447205
@@ -3875,6 +3864,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3112375125460322631, guid: 424ccba55881d2743a04e1f1a4947e4c,
     type: 3}
   m_PrefabInstance: {fileID: 1346056304}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1453681440 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1173577608035208917, guid: 630f3082ac899034d91c2bb3059974f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1624742767}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1477449770
 PrefabInstance:
