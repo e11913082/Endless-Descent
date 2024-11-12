@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22b8afaba3aa3d9748dc020e60ccf263, type: 3}
   m_Name: MagicBall
   m_EditorClassIdentifier: 
-  name: Magic Ball
+  weaponName: 
   description: Fires a magical ball
   damageBonus: 20
   type: 0
+  delay: 0.6
+  projectilePrefab: {fileID: 5844561221490569420, guid: 6ac1a591f45ac7e43b94a0e8c4019f5b,
+    type: 3}
+  sprite: {fileID: 21300000, guid: d1f606a3ff932c63ab44726f871a7962, type: 3}
+  projectileOffsetX: 0
+  projectileOffsetY: 0

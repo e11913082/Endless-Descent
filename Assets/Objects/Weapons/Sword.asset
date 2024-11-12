@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22b8afaba3aa3d9748dc020e60ccf263, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  name: Sword
+  weaponName: 
   description: Epic Sword
   damageBonus: 10
   type: 1
+  delay: 0
+  projectilePrefab: {fileID: 5873806722197866145, guid: ce6b3376b68bf9a5f8bf760a543ac183,
+    type: 3}
+  sprite: {fileID: 21300000, guid: 1b029a760d1b46144b879abdeca4bf05, type: 3}
+  projectileOffsetX: 0
+  projectileOffsetY: 0
