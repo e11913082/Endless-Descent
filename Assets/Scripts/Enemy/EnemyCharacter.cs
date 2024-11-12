@@ -16,6 +16,7 @@ public class EnemyCharacter : MonoBehaviour
     public float combatDistance = 0.2f;
     public Vector2 pathFindTarget;
     public float returnIdleTime = 10.0f;
+    public Weapon weapon;
     private enum State{
         Idle,
         Attack,
@@ -38,10 +39,11 @@ public class EnemyCharacter : MonoBehaviour
     private bool targetContactBefore = true;
     private bool withinDetectionTrigger;
     private PlayerControls controls;
-    
+    private CharacterWeaponInventory weaponInventory;
 
     void Awake()
     {
+        playerId = CharacterIdGenerator.GetCharacterId(gameObject, 0);
         if (gameObject.layer != LayerMask.NameToLayer("Enemy"))
         {
             enemyEnabled = false;
@@ -53,7 +55,8 @@ public class EnemyCharacter : MonoBehaviour
         playerCharacter = GetComponent<PlayerCharacter> ();
         gameObject.AddComponent<PathFinder> ();
         pathFinder = gameObject.GetComponent<PathFinder> ();
-        controls = PlayerControls.Get(playerId);
+        weaponInventory = GetComponent<CharacterWeaponInventory> ();
+
     }
     // Start is called before the first frame update
     void Start()
@@ -61,6 +64,7 @@ public class EnemyCharacter : MonoBehaviour
         if (!enemyEnabled)
             return;
 
+        controls = PlayerControls.Get(playerId);
         //playerCharacter.DisableControls(); 
         ResetMovementDirection();
         stats = PlayerStats.GetPlayerStats(playerId);
@@ -73,6 +77,8 @@ public class EnemyCharacter : MonoBehaviour
         originalMoveSpeed = stats.MoveSpeed;
         idleMoveSpeed = 0.3f * originalMoveSpeed;
         pathFinder.SetReturnPoint(transform.position);
+        weaponInventory.pickupWeapon(weapon);
+        weaponInventory.EquipWeapon(0);
     }
 
     // Update is called once per frame
@@ -113,8 +119,16 @@ public class EnemyCharacter : MonoBehaviour
 
     private void AttackBehaviour()
     {
+        if (targetCharacter.IsDestroyed())
+        {
+            controls.SetAttack(false);
+            state = State.Idle;
+            return;
+        }
+
         stats.MoveSpeed = originalMoveSpeed;
         Vector3 playerDirection = targetCharacter.transform.position - gameObject.transform.position;
+
         if (playerDirection.magnitude < combatDistance)
         {
             controls.SetMove(Vector2.zero);
@@ -127,6 +141,7 @@ public class EnemyCharacter : MonoBehaviour
             controls.SetAttack(false);
         }
         (bool targetContact, Vector2 newMoveDirection) = pathFinder.GetNextMoveDirection(transform.position, targetCharacter.transform.position);
+
         if (targetContact is true)
         {
             controls.SetMove(newMoveDirection);

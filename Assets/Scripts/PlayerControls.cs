@@ -38,8 +38,14 @@ namespace EndlessDescent
 
         void Awake()
         {
+            player_id = CharacterIdGenerator.GetCharacterId(gameObject, 1);
             controls[player_id] = this;
             mainCamera = Camera.main;
+        }
+
+        void Start()
+        {
+
         }
 
         void OnDestroy()
@@ -107,6 +113,11 @@ namespace EndlessDescent
         public bool GetAttackDown()
         {
             return attackPress;
+        }
+
+        public void SetAttack(bool attack)
+        {
+            attackPress = attack;
         }
 
         public bool GetWeaponDrop()
