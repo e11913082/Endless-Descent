@@ -13,7 +13,7 @@ public class CharacterItemPickup : MonoBehaviour
         stats = PlayerStats.GetPlayerStats(GetComponent<PlayerCharacter>().player_id);
     }
     
-    // Item / Weapon pickup logic
+    // Item pickup logic
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Item"))
