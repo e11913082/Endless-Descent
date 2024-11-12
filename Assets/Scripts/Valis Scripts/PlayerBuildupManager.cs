@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerBuildupManager : MonoBehaviour
@@ -16,6 +17,10 @@ public class PlayerBuildupManager : MonoBehaviour
     
     void Awake()
     {
+        if (gameObject.layer != LayerMask.NameToLayer("Player"))
+        {
+            this.enabled = false;
+        }
         buildupManagers[player_id] = this;
         stats = PlayerStats.GetPlayerStats(player_id);
     }
@@ -28,6 +33,7 @@ public class PlayerBuildupManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
+        
         StartBuildup();
     }
 
