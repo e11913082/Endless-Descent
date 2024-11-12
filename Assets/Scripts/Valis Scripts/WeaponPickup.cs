@@ -13,27 +13,39 @@ public class WeaponPickup : MonoBehaviour
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = weapon.sprite;
-        textGUI.gameObject.transform.parent.parent.gameObject.SetActive(false);
-        textGUI.text = weapon.description;
-
+        
         if (textGUI == null)
         {
             Debug.LogWarning("No text renderer");
         }
-
         
+        if (weapon == null)
+        {
+            Debug.LogWarning("no weapon assigned");
+        }
+        else
+        {
+            spriteRenderer.sprite = weapon.sprite;
+            spriteRenderer.sortingLayerName = "Props";
+            textGUI.gameObject.transform.parent.parent.gameObject.SetActive(false);
+            textGUI.text = weapon.description;
+        }
     }
     
     
 
     
-    
-    public void Initialize(Weapon weapon, TextMeshProUGUI textGUI)
+    // called when the weapon is dropped for initialization of text and sprite
+    public void InitializeDropped(Weapon weapon, TextMeshProUGUI textGUI)
     {
         this.weapon = weapon;
         this.textGUI = textGUI;
-
+        gameObject.layer = LayerMask.NameToLayer("Weapon");
+        
+        
+        // initialize sprite renderer
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sortingLayerName = "Props";
         // Set up visuals based on the weapon details
         spriteRenderer.sprite = weapon.sprite;
         textGUI.text = weapon.description;
@@ -48,18 +60,29 @@ public class WeaponPickup : MonoBehaviour
     
     private void OnMouseEnter()
     {
-        textGUI.gameObject.transform.parent.parent.position = new Vector3(transform.position.x, transform.position.y+1, 0);
-        textGUI.gameObject.transform.parent.parent.gameObject.SetActive(true);
-        textGUI.text = "Weapon:\n" + weapon.description;
+        if (textGUI != null)
+        {
+            textGUI.gameObject.transform.parent.parent.position = new Vector3(transform.position.x, transform.position.y+1, 0);
+            textGUI.gameObject.transform.parent.parent.gameObject.SetActive(true);
+            textGUI.text = "Weapon:\n" + weapon.description;
+        }
+        
     }
 
     private void OnMouseExit()
     {
-        textGUI.gameObject.transform.parent.parent.gameObject.SetActive(false);
+        if (textGUI != null)
+        {
+            textGUI.gameObject.transform.parent.parent.gameObject.SetActive(false);
+        }
+        
     }
 
     private void OnDestroy()
     {
-        textGUI.gameObject.transform.parent.parent.gameObject.SetActive(false);
+        if (textGUI != null)
+        {
+            textGUI.gameObject.transform.parent.parent.gameObject.SetActive(false);
+        }
     }
 }

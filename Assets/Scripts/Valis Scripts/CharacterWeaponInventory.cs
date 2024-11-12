@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using EndlessDescent;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -12,6 +13,9 @@ public class CharacterWeaponInventory : MonoBehaviour
     private int currentIndex;
     private PlayerStats stats;
     public int maxInventorySize;
+
+    public GameObject droppedWeaponPrefab;
+    public TextMeshProUGUI text;
     
 
     private void Awake()
@@ -65,7 +69,8 @@ public class CharacterWeaponInventory : MonoBehaviour
     {
         weapons.Remove(equippedWeapon);
         
-        
+        WeaponPickup wp = Instantiate(droppedWeaponPrefab, transform.position, Quaternion.identity).GetComponent<WeaponPickup>();
+        wp.InitializeDropped(equippedWeapon, text);
         
         if (weapons.Count > 0)
         {
