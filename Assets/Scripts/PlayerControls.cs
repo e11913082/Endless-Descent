@@ -20,12 +20,14 @@ namespace EndlessDescent
         public KeyCode action_key;
         public KeyCode attackKey;
         public KeyCode switchKey;
+        public KeyCode dropKey;
 
         private Vector2 move = Vector2.zero;
         private bool action_press = false;
         private bool action_hold = false;
         private bool attackPress = false;
         private bool weaponSwitch = false;
+        private bool weaponDrop = false;
         
         // mouse logic
         private Vector3 mouse_pos = Vector3.zero;
@@ -55,6 +57,7 @@ namespace EndlessDescent
             action_press = false;
             attackPress = false;
             weaponSwitch = false;
+            weaponDrop = false;
             
             if (Input.GetKey(left_key))
                 move += -Vector2.right;
@@ -72,6 +75,8 @@ namespace EndlessDescent
                 attackPress = true;
             if (Input.GetKeyDown(switchKey))
                 weaponSwitch = true;
+            if (Input.GetKeyDown(dropKey))
+                weaponDrop = true;
             float move_length = Mathf.Min(move.magnitude, 1f);
             move = move.normalized * move_length;
         }
@@ -93,6 +98,11 @@ namespace EndlessDescent
             return attackPress;
         }
 
+        public bool GetWeaponDrop()
+        {
+            return weaponDrop;
+        }
+        
         public bool GetActionHold()
         {
             return action_hold;

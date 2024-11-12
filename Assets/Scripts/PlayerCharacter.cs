@@ -37,6 +37,7 @@ namespace EndlessDescent
         //Weapons
         private bool weaponSwitch;
         private bool action_down;
+        private bool weaponDrop;
         private DistanceWeapon distanceWeapon;
         private MeleeWeapon meleeWeapon;
         
@@ -125,6 +126,7 @@ namespace EndlessDescent
                 mouse_pos = controls.GetMousePos();
                 action_down = controls.GetActionDown();
                 weaponSwitch = controls.GetWeaponSwitch();
+                weaponDrop = controls.GetWeaponDrop();
             }
 
             //Update lookat side
@@ -198,6 +200,11 @@ namespace EndlessDescent
         public bool GetAttackDown()
         {
             return attackDown;
+        }
+
+        public bool GetWeaponDrop()
+        {
+            return weaponDrop;
         }
 
         public bool GetActionDown()

@@ -70,7 +70,7 @@ public class WeaponAttack : MonoBehaviour
         Vector2 direction = (Vector2)(character.GetMousePos() - transform.position).normalized;
         Projectile.Shoot(direction);
 
-        Debug.Log("Attacked with " + inventory.equippedWeapon.name + " in direction: " + direction + " with damage: " +
+        Debug.Log("Attacked with " + inventory.equippedWeapon.weaponName + " in direction: " + direction + " with damage: " +
                   PlayerStats.GetPlayerStats(character.player_id).damage);
     }
 
@@ -97,6 +97,6 @@ public class WeaponAttack : MonoBehaviour
             
         }
 
-        Debug.Log("Attacked with melee on position: " + attackPos + " with damage: " + stats.damage);
+        Debug.Log("Attacked with "+ inventory.equippedWeapon.weaponName +" on position: " + attackPos + " with damage: " + stats.damage);
     }
 }

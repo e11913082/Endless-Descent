@@ -12,6 +12,7 @@ public class CharacterWeaponInventory : MonoBehaviour
     private int currentIndex;
     private PlayerStats stats;
     public int maxInventorySize;
+    
 
     private void Awake()
     {
@@ -58,6 +59,22 @@ public class CharacterWeaponInventory : MonoBehaviour
         }
         EquipWeapon(currentIndex);
         stats.damage = stats.damage - previousDamage + weapons[currentIndex].damageBonus;
+    }
+
+    public void DropWeapon()
+    {
+        weapons.Remove(equippedWeapon);
+        
+        
+        
+        if (weapons.Count > 0)
+        {
+            equippedWeapon = weapons[0];
+        }
+        else
+        {
+            equippedWeapon = null;
+        }
     }
     
 }
