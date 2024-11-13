@@ -3,8 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Hover UI
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -12,7 +11,6 @@ TagManager:
   - 
   - Water
   - UI
-  - Hover UI
   - 
   - 
   - 
@@ -25,6 +23,7 @@ TagManager:
   - 
   - 
   - 
+  - Walls
   - Light
   - Ground
   - Props
@@ -45,14 +44,14 @@ TagManager:
   - name: Ground
     uniqueID: 2425651459
     locked: 0
-  - name: Props
-    uniqueID: 4250941897
-    locked: 0
   - name: Player
     uniqueID: 4189426099
     locked: 0
   - name: Perspective
     uniqueID: 1283273188
+    locked: 0
+  - name: Props
+    uniqueID: 1502599955
     locked: 0
   - name: Top
     uniqueID: 1502599955

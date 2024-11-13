@@ -26,7 +26,6 @@ public class WeaponPickup : MonoBehaviour
         else
         {
             spriteRenderer.sprite = weapon.sprite;
-            spriteRenderer.sortingLayerName = "Props";
             textGUI.gameObject.transform.parent.parent.gameObject.SetActive(false);
             textGUI.text = weapon.description;
         }
@@ -45,7 +44,8 @@ public class WeaponPickup : MonoBehaviour
         
         // initialize sprite renderer
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sortingLayerName = "Props";
+        spriteRenderer.sortingLayerName = "Ground";
+        spriteRenderer.sortingOrder = 5;
         // Set up visuals based on the weapon details
         spriteRenderer.sprite = weapon.sprite;
         textGUI.text = weapon.description;
