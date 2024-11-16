@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System;
 using TMPro;
 
-public class fearBarlistener : MonoBehaviour
+public class FearBarlistener : MonoBehaviour
 {
     public int maximumDecimalPlaces = 1;
     private string stringMask; //used for limiting the decimal places without rounding
@@ -22,30 +22,18 @@ public class fearBarlistener : MonoBehaviour
         maxFearTmp = GameObject.Find("Hud/FearBar/Text/MaxText").GetComponent<TextMeshProUGUI>();
         curFearTmp = GameObject.Find("Hud/FearBar/Text/CurText").GetComponent<TextMeshProUGUI>();
 
-        hudRefresher hud = transform.parent.GetComponent<hudRefresher>();
-        if(hud == null)
-        {
-            Debug.Log("hud null");
-        }
-        stats = hud.getStats();
-        if(stats == null)
-        {
-            Debug.Log("stats null");
-        }
-        stringMask = hudRefresher.createStringMask(maximumDecimalPlaces);
+        stats = PlayerStats.GetPlayerStats(Hud.GetPlayerId());
+        stringMask = Hud.CreateStringMask(maximumDecimalPlaces);
 
         RefreshMaxFear();
         RefreshCurFear();
-
-        PlayerBuildupManager buildupManager = FindObjectOfType<PlayerBuildupManager>(); //listener for refreshing current fear
-        buildupManager.onFearChanged.AddListener(RefreshCurFear);
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        RefreshCurFear();
+        RefreshMaxFear();
     }
 
     public void RefreshCurFear()
