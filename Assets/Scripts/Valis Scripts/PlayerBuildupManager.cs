@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerBuildupManager : MonoBehaviour
 {
@@ -13,6 +13,8 @@ public class PlayerBuildupManager : MonoBehaviour
     private Coroutine buildupCoroutine;
 
     private static Dictionary<int, PlayerBuildupManager> buildupManagers = new Dictionary<int, PlayerBuildupManager>();
+
+    public UnityEvent onFearChanged;
     
     
     void Awake()
@@ -52,7 +54,6 @@ public class PlayerBuildupManager : MonoBehaviour
         {
             StopCoroutine(buildupCoroutine);
         }
-
         buildupCoroutine = StartCoroutine(BuildupCoroutine());
     }
 
@@ -70,6 +71,7 @@ public class PlayerBuildupManager : MonoBehaviour
         while (stats.CurrentFear < stats.MaxFear)
         {
             stats.CurrentFear = Mathf.Min(stats.CurrentFear + stats.fearIncrease, stats.MaxFear);
+            onFearChanged.Invoke();
             yield return new WaitForSeconds(1);
         }    
     }
@@ -79,6 +81,7 @@ public class PlayerBuildupManager : MonoBehaviour
         while (stats.CurrentFear > 0)
         {
             stats.CurrentFear = Mathf.Max(stats.CurrentFear - (stats.fearDecrease), 0);
+            onFearChanged.Invoke();
             yield return new WaitForSeconds(1);
         }
     }

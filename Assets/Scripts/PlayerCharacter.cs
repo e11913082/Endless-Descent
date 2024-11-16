@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -263,6 +264,11 @@ namespace EndlessDescent
         public bool IsDead()
         {
             return is_dead;
+        }
+
+        public PlayerStats GetStats()
+        {
+            return stats;
         }
         
         
