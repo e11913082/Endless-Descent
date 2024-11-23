@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -24,6 +25,10 @@ public class PlayerStats : MonoBehaviour
     
     private static Dictionary<int, PlayerStats> stats = new Dictionary<int, PlayerStats>();
     public List<ItemData> equippedItems = new List<ItemData>();
+
+    // Recently picked up item for displaying statchanges
+    [HideInInspector]
+    public ItemData lastItem;
 
     void Awake()
     {
@@ -65,6 +70,8 @@ public class PlayerStats : MonoBehaviour
     {
         equippedItems.Add(newItem);
         UpdateStats(newItem);
+        lastItem = newItem;
+        EventManager.TriggerEvent("ItemPickup");
     }
     
     public void UpdateStats(ItemData newItem)
@@ -205,7 +212,7 @@ public class PlayerStats : MonoBehaviour
     public float CurrentFear
     {
         get => currentFear;
-        set => currentFear = Mathf.Clamp(value, 0, maxFear); // Ensure currentFear is between 0 and maxFear
+        set => currentFear = Mathf.Clamp(value, 0, maxFear); // Ensure currentFear is between 0 and maxFear }
     }
 
     // Getter and Setter for MaxFear

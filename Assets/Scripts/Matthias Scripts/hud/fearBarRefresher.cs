@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System;
 using TMPro;
 
-public class FearBarlistener : MonoBehaviour
+public class FearbarRefresher : MonoBehaviour
 {
     public int maximumDecimalPlaces = 1;
     private string stringMask; //used for limiting the decimal places without rounding
@@ -15,7 +15,6 @@ public class FearBarlistener : MonoBehaviour
     private float maxFear;//extra field to avoid trivial object-fieldacceses
     
 
-    // Start is called before the first frame update
     void Start()
     {
         slider = GetComponent<Slider>();
@@ -29,7 +28,6 @@ public class FearBarlistener : MonoBehaviour
         RefreshCurFear();
     }
 
-    // Update is called once per frame
     void Update()
     {
         RefreshCurFear();

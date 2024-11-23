@@ -44,6 +44,7 @@ public class CharacterWeaponInventory : MonoBehaviour
             EquipWeapon(0);
         }
 
+        EventManager.TriggerEvent("InventoryChange");
         return true;
     }
 
@@ -80,6 +81,7 @@ public class CharacterWeaponInventory : MonoBehaviour
         {
             equippedWeapon = null;
         }
+        EventManager.TriggerEvent("InventoryChange");
     }
     
 }
