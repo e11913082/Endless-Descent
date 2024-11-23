@@ -6144,8 +6144,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.015650004, y: 0.5995, z: 0}
-    m_Extent: {x: 0.65925, y: 0.9759, z: 0}
+    m_Center: {x: 0.014400005, y: 0.59955, z: 0}
+    m_Extent: {x: 0.6596, y: 0.97595, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -6649,7 +6649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60495313677d99c44b6aed07430b6891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player_id: 0
+  player_id: 1
 --- !u!1001 &1065556055
 PrefabInstance:
   m_ObjectHideFlags: 0

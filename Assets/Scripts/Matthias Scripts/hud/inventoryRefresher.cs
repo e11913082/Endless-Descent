@@ -49,11 +49,13 @@ public class inventoryRefresher : MonoBehaviour
     private void OnEnable()
     {
         EventManager.StartListening("InventoryChange", Refresh);
+        EventManager.StartListening("WeaponSwitch", RefreshOverlay);
     }
 
     private void OnDisable()
     {
         EventManager.StopListening("InventoryChange", Refresh);
+        EventManager.StopListening("WeaponSwitch", RefreshOverlay);
     }
 
     void Refresh()
@@ -69,17 +71,27 @@ public class inventoryRefresher : MonoBehaviour
             {
                 slotIcon.sprite = playerInv.weapons[weaponIndex].sprite;
                 slotIcon.color = new Color(slotIcon.color.r, slotIcon.color.g, slotIcon.color.b, 1);
-                if(playerInv.equippedWeapon == playerInv.weapons[weaponIndex]) //case: weapon current equiped weapon
-                {
-                    curWeaponOverlay.transform.position = slot.transform.position;
-                    curWeaponOverlay.color = new Color(curWeaponOverlay.color.r, curWeaponOverlay.color.g, curWeaponOverlay.color.b, 1);
-                }
             }
             else
             {
                 slotIcon.color = new Color(slotIcon.color.r, slotIcon.color.g, slotIcon.color.b, 0);
             }
             weaponIndex++;
+        }
+        RefreshOverlay();
+    }
+
+    void RefreshOverlay()
+    {
+        
+        for(int i = 0; i < playerInv.weapons.Count; i++)
+        {
+            if (playerInv.weapons[i] == playerInv.equippedWeapon)
+            {
+                curWeaponOverlay.transform.position = slots[i].transform.position;
+                curWeaponOverlay.color = new Color(curWeaponOverlay.color.r, curWeaponOverlay.color.g, curWeaponOverlay.color.b, 1);
+                return;
+            }
         }
     }
 }
