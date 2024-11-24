@@ -15,8 +15,8 @@ public class inventoryRefresher : MonoBehaviour
     private GameObject baseInvSlot;
     private List<GameObject> slots;
 
-    Image curWeaponOverlay;
-
+    private Image curWeaponOverlay;
+    private bool initDone = false; //needed to avoid refresh on playercreation
 
     void Start()
     {
@@ -40,6 +40,7 @@ public class inventoryRefresher : MonoBehaviour
             slots.Insert(0,nextSlot);
             Refresh();
         }
+        initDone = true;
     }
 
     void Update()
@@ -60,25 +61,28 @@ public class inventoryRefresher : MonoBehaviour
 
     void Refresh()
     {
-        curWeaponOverlay.color = new Color(curWeaponOverlay.color.r, curWeaponOverlay.color.g, curWeaponOverlay.color.b, 0);//in case no weapon is there anymore the currentweapon-icon gets blended out
-        int weaponIndex = 0;
-
-        foreach(GameObject slot in slots)
+        if(initDone)
         {
+            curWeaponOverlay.color = new Color(curWeaponOverlay.color.r, curWeaponOverlay.color.g, curWeaponOverlay.color.b, 0);//in case no weapon is there anymore the currentweapon-icon gets blended out
+            int weaponIndex = 0;
 
-            Image slotIcon = slot.transform.Find("WeaponIcon").GetComponent<Image>();
-            if (playerInv.weapons.Count > weaponIndex) //case weapon in slot
+            foreach (GameObject slot in slots)
             {
-                slotIcon.sprite = playerInv.weapons[weaponIndex].sprite;
-                slotIcon.color = new Color(slotIcon.color.r, slotIcon.color.g, slotIcon.color.b, 1);
+
+                Image slotIcon = slot.transform.Find("WeaponIcon").GetComponent<Image>();
+                if (playerInv.weapons.Count > weaponIndex) //case weapon in slot
+                {
+                    slotIcon.sprite = playerInv.weapons[weaponIndex].sprite;
+                    slotIcon.color = new Color(slotIcon.color.r, slotIcon.color.g, slotIcon.color.b, 1);
+                }
+                else
+                {
+                    slotIcon.color = new Color(slotIcon.color.r, slotIcon.color.g, slotIcon.color.b, 0);
+                }
+                weaponIndex++;
             }
-            else
-            {
-                slotIcon.color = new Color(slotIcon.color.r, slotIcon.color.g, slotIcon.color.b, 0);
-            }
-            weaponIndex++;
+            RefreshOverlay();
         }
-        RefreshOverlay();
     }
 
     void RefreshOverlay()
