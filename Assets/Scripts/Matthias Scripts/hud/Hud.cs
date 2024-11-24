@@ -24,7 +24,6 @@ public class Hud : MonoBehaviour
         }
         else
         {
-            Debug.Log("Player found with id: " + playerStats[0]);
             player_id = playerStats[0].player_id;
             EventManager.TriggerEvent("PlayerIdFetched");
         }
