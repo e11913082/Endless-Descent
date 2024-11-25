@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6767b2cb1a81a43358556e2fedf7161d, type: 3}
-  m_Name: SpeedPotion
+  m_Name: SwordOfVanguard
   m_EditorClassIdentifier: 
-  itemName: SpeedPotion
-  itemDescription: Makes you go fast
+  itemName: Sword of Vanguard
+  itemDescription: his blade hums with a thirst for justice and power
+  itemIcon: {fileID: 21300000, guid: 166b89c253b5c5f42823a753d2db9770, type: 3}
+  rarity: 0
   statModifiers:
-  - statName: moveSpeed
-    value: 2
+  - statName: damage
+    value: 20
