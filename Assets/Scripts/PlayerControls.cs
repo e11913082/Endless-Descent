@@ -41,6 +41,15 @@ namespace EndlessDescent
             player_id = CharacterIdGenerator.GetCharacterId(gameObject, 1);
             controls[player_id] = this;
             mainCamera = Camera.main;
+
+            up_key = KeybindManager.instance.keybinds["up"];
+            down_key = KeybindManager.instance.keybinds["down"];
+            right_key = KeybindManager.instance.keybinds["right"];
+            left_key = KeybindManager.instance.keybinds["left"];
+            attackKey = KeybindManager.instance.keybinds["attack"];
+            action_key = KeybindManager.instance.keybinds["interact"];
+            switchKey = KeybindManager.instance.keybinds["switch"];
+            dropKey = KeybindManager.instance.keybinds["drop"];
         }
 
         void Start()
