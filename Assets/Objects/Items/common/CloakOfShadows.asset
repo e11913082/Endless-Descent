@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6767b2cb1a81a43358556e2fedf7161d, type: 3}
+  m_Name: CloakOfShadows
+  m_EditorClassIdentifier: 
+  itemName: Cloak of Shadows
+  itemDescription: The wearer moves swiftly but casts a shadow of unease around allies
+  itemIcon: {fileID: 21300000, guid: 720ac4fdbef3a144cb48fa9a4e18f746, type: 3}
+  rarity: 0
+  statModifiers:
+  - statName: moveSpeed
+    value: 15
+  - statName: fearDecrease
+    value: -15

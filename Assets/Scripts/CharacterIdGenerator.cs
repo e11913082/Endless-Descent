@@ -39,7 +39,7 @@ public class CharacterIdGenerator : MonoBehaviour
 
         if (existingCharacterIds.ContainsKey(parentInstanceId))
         {
-            print(existingCharacterIds[parentInstanceId]);
+            //print(existingCharacterIds[parentInstanceId]);
             return existingCharacterIds[parentInstanceId];
         }
         else

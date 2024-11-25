@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -16,6 +17,7 @@ public class PlayerStats : MonoBehaviour
     public float damage = 20f;
     public float attackRange = 1.5f;
     public float attackSpeed = 1f;
+    public float defense = 20f;
     
     public float fearIncrease= 1f;
     public float fearDecrease = 0.5f;
@@ -24,6 +26,10 @@ public class PlayerStats : MonoBehaviour
     
     private static Dictionary<int, PlayerStats> stats = new Dictionary<int, PlayerStats>();
     public List<ItemData> equippedItems = new List<ItemData>();
+
+    // Recently picked up item for displaying statchanges
+    [HideInInspector]
+    public ItemData lastItem;
 
     void Awake()
     {
@@ -65,46 +71,53 @@ public class PlayerStats : MonoBehaviour
     {
         equippedItems.Add(newItem);
         UpdateStats(newItem);
+        lastItem = newItem;
+        EventManager.TriggerEvent("ItemPickup");
     }
     
     public void UpdateStats(ItemData newItem)
     {   
         if (equippedItems.Count <= 0) return;
-        
+        // percentage based
         var attributes = newItem.GetAttributesDictionary();
         if (attributes.ContainsKey("damage"))
         {
-            damage += attributes["damage"];
+            damage = Math.Max(damage * (attributes["damage"] / 100 + 1), 1);
         }
 
-        if (attributes.ContainsKey("maxHealth"))
+        if (attributes.ContainsKey("maxFear"))
         {
-            maxHealth += attributes["maxHealth"];
+            maxFear = Math.Max(maxFear * (attributes["maxFear"] / 100 + 1), 1);
         }
 
         if (attributes.ContainsKey("moveSpeed"))
         {
-            moveSpeed += attributes["moveSpeed"];
+            moveSpeed = Math.Max(moveSpeed * (attributes["moveSpeed"] / 100 + 1), 1);
         }
 
         if (attributes.ContainsKey("range"))
         {
-            attackRange += attributes["range"];
-        }
-
-        if (attributes.ContainsKey("healthRegen"))
-        {
-            healthRegen += attributes["healthRegen"];
+            attackRange = Math.Max(attackRange * (attributes["range"] / 100 + 1), 1);
         }
 
         if (attributes.ContainsKey("fearIncrease"))
         {
-            fearIncrease += attributes["fearIncrease"];
+            fearIncrease = Math.Max(fearIncrease * (attributes["fearIncrease"] / 100 + 1), 0);
         }
 
         if (attributes.ContainsKey("fearDecrease"))
         {
-            fearDecrease += attributes["fearDecrease"];
+            fearDecrease = Math.Max(fearDecrease * (attributes["fearDecrease"] / 100 + 1), 0);
+        }
+
+        if (attributes.ContainsKey("attackSpeed"))
+        {
+            attackSpeed = (float) Math.Max(attackSpeed * (attributes["attackSpeed"] / 100 + 1), 0.5);
+        }
+
+        if (attributes.ContainsKey("defense"))
+        {
+            defense = Math.Max(defense * (attributes["defense"] / 100 + 1), 0);
         }
         
     }
@@ -205,7 +218,7 @@ public class PlayerStats : MonoBehaviour
     public float CurrentFear
     {
         get => currentFear;
-        set => currentFear = Mathf.Clamp(value, 0, maxFear); // Ensure currentFear is between 0 and maxFear
+        set => currentFear = Mathf.Clamp(value, 0, maxFear); // Ensure currentFear is between 0 and maxFear }
     }
 
     // Getter and Setter for MaxFear

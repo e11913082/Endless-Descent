@@ -6,11 +6,13 @@ using UnityEngine;
 public class CharacterItemPickup : MonoBehaviour
 {
     private PlayerStats stats;
+    private PlayerCharacter player;
 
 
     void Start()
     {
-        stats = PlayerStats.GetPlayerStats(GetComponent<PlayerCharacter>().player_id);
+        player = GetComponent<PlayerCharacter>();
+        stats = PlayerStats.GetPlayerStats(player.player_id);
     }
     
     // Item pickup logic

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -78,13 +79,17 @@ namespace EndlessDescent
 
         void Start()
         {
-            stats.resetStats();
             max_hp = stats.MaxHealth;
         }
 
         private void Update()
         {
             Debug.DrawLine(transform.position, GetMousePos(), Color.red);
+            if (stats.currentFear >= stats.maxFear)
+            {
+                Debug.Log("Died from to much fear");
+                Kill();
+            }
         }
 
         //Handle physics
@@ -184,7 +189,8 @@ namespace EndlessDescent
                 }
                 else if (gameObject.layer == LayerMask.NameToLayer("Player"))
                 {
-                    stats.CurrentFear += damage;
+                    float damageToPlayer = damage * ((100f - stats.defense) / 100f);
+                    stats.CurrentFear += damageToPlayer;
 
                     if (stats.currentFear >= stats.MaxFear)
                     {
@@ -275,6 +281,11 @@ namespace EndlessDescent
         public bool IsDead()
         {
             return is_dead;
+        }
+
+        public PlayerStats GetStats()
+        {
+            return stats;
         }
         
         

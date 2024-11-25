@@ -1,8 +1,7 @@
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using System.Linq;
 using System;
 
 public class ChangeChildTexturesWizard : ScriptableWizard
@@ -91,3 +90,4 @@ public class ChangeChildTexturesWizard : ScriptableWizard
         }
     }
 }
+#endif

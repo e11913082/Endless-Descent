@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Matthias Playground/stage1.1.unity
+    guid: 83262f86f3e4d724cafb3426ce4988b6
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: bc113b2b862b95d3e99bfcb839539f79
   m_configObjects: {}

@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using EndlessDescent;
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 
 public class CharacterWeaponPickup : MonoBehaviour
