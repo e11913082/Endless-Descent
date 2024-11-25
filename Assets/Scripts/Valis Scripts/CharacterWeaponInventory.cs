@@ -15,7 +15,6 @@ public class CharacterWeaponInventory : MonoBehaviour
     public int maxInventorySize;
 
     public GameObject droppedWeaponPrefab;
-    public TextMeshProUGUI text;
     
 
     private void Awake()
@@ -73,7 +72,7 @@ public class CharacterWeaponInventory : MonoBehaviour
         EventManager.TriggerEvent("InventoryChange"); //currently here bacause bug in InitializeDropped (Row 76)
 
         WeaponPickup wp = Instantiate(droppedWeaponPrefab, transform.position, Quaternion.identity).GetComponent<WeaponPickup>();
-        wp.InitializeDropped(equippedWeapon, text);
+        wp.InitializeDropped(equippedWeapon);
         
         if (weapons.Count > 0)
         {

@@ -77,7 +77,6 @@ namespace EndlessDescent
 
         void Start()
         {
-            stats.resetStats();
             max_hp = stats.MaxHealth;
         }
 
