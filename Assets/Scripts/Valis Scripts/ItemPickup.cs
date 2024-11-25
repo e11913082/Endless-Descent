@@ -30,11 +30,15 @@ public class ItemPickup : MonoBehaviour
         textGUI = canvas.GetComponentInChildren<TextMeshProUGUI>(true);
         gameObject.layer = LayerMask.NameToLayer("Item");
         
+        // setup sprite
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = itemData.itemIcon;
         spriteRenderer.sortingLayerName = "Ground";
         spriteRenderer.sortingOrder = 5;
         
+        // setup circle collider
+        
+        // setup hover text
         this.itemData = itemData;
         textGUI.text = itemData.itemName;
         textGUI.gameObject.transform.parent.gameObject.SetActive(false);
@@ -45,12 +49,17 @@ public class ItemPickup : MonoBehaviour
     }
 
     private void OnMouseEnter()
-    {
+    {   
+        Debug.Log("Mouse Enter");
         if (textGUI != null)
         {
             textGUI.gameObject.transform.parent.parent.position = new Vector3(transform.position.x, transform.position.y+1, 0);
             textGUI.gameObject.transform.parent.gameObject.SetActive(true);
             textGUI.text = "Item:\n" + itemData.itemName;
+        }
+        else
+        {
+            Debug.LogWarning("No TextGUI assigned to ItemPickup");
         }
         
     }

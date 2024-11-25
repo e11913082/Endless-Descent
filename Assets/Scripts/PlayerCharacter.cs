@@ -83,6 +83,11 @@ namespace EndlessDescent
         private void Update()
         {
             Debug.DrawLine(transform.position, GetMousePos(), Color.red);
+            if (stats.currentFear >= stats.maxFear)
+            {
+                Debug.Log("Died from to much fear");
+                Kill();
+            }
         }
 
         //Handle physics
@@ -173,7 +178,8 @@ namespace EndlessDescent
                 }
                 else if (gameObject.layer == LayerMask.NameToLayer("Player"))
                 {
-                    stats.CurrentFear += damage;
+                    float damageToPlayer = damage * ((100f - stats.defense) / 100f);
+                    stats.CurrentFear += damageToPlayer;
 
                     if (stats.currentFear >= stats.MaxFear)
                     {

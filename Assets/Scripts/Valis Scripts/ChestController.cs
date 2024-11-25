@@ -37,7 +37,7 @@ public class ChestController : MonoBehaviour
         if (droppedItem != null)
         {
             Debug.Log($"You received: {droppedItem.itemName}");
-            ItemPickup pickup = Instantiate(itemPrefab, transform.position, Quaternion.identity).GetComponent<ItemPickup>();
+            ItemPickup pickup = Instantiate(itemPrefab, new Vector3(transform.position.x, transform.position.y-0.5f, transform.position.z), Quaternion.identity).GetComponent<ItemPickup>();
             pickup.Initialize(droppedItem);
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.sprite = openChestSprite;
