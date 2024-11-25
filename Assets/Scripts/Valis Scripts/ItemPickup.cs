@@ -8,14 +8,16 @@ using UnityEngine;
 public class ItemPickup : MonoBehaviour
 {
     public ItemData itemData;
-    private TextMeshProUGUI textGUI;
+    public TextMeshProUGUI textGUI;
     private GameObject canvas;
 
     private void Start()
     {   
         canvas = GameObject.Find("/HoverCanvas");
         textGUI = canvas.GetComponentInChildren<TextMeshProUGUI>(true);
-        
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sortingLayerName = "Ground";
+        spriteRenderer.sortingOrder = 5;
         textGUI.gameObject.transform.parent.gameObject.SetActive(false);
         if (itemData != null)
         {
@@ -35,8 +37,6 @@ public class ItemPickup : MonoBehaviour
         spriteRenderer.sprite = itemData.itemIcon;
         spriteRenderer.sortingLayerName = "Ground";
         spriteRenderer.sortingOrder = 5;
-        
-        // setup circle collider
         
         // setup hover text
         this.itemData = itemData;

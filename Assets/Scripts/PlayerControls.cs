@@ -7,7 +7,7 @@ using UnityEngine;
 /// Player controls for platformer demo
 /// Author: Indie Marc (Marc-Antoine Desbiens)
 /// </summary>
-
+    
 namespace EndlessDescent
 {
 
@@ -42,14 +42,30 @@ namespace EndlessDescent
             controls[player_id] = this;
             mainCamera = Camera.main;
 
-            up_key = KeybindManager.instance.keybinds["up"];
-            down_key = KeybindManager.instance.keybinds["down"];
-            right_key = KeybindManager.instance.keybinds["right"];
-            left_key = KeybindManager.instance.keybinds["left"];
-            attackKey = KeybindManager.instance.keybinds["attack"];
-            action_key = KeybindManager.instance.keybinds["interact"];
-            switchKey = KeybindManager.instance.keybinds["switch"];
-            dropKey = KeybindManager.instance.keybinds["drop"];
+            if (KeybindManager.instance != null)
+            {
+                up_key = KeybindManager.instance.keybinds["up"];
+                down_key = KeybindManager.instance.keybinds["down"];
+                right_key = KeybindManager.instance.keybinds["right"];
+                left_key = KeybindManager.instance.keybinds["left"];
+                attackKey = KeybindManager.instance.keybinds["attack"];
+                action_key = KeybindManager.instance.keybinds["interact"];
+                switchKey = KeybindManager.instance.keybinds["switch"];
+                dropKey = KeybindManager.instance.keybinds["drop"];
+            }
+            else
+            {
+                up_key = KeyCode.W;
+                down_key = KeyCode.S;
+                right_key = KeyCode.D;
+                left_key = KeyCode.A;
+                attackKey = KeyCode.Space;
+                action_key = KeyCode.E;
+                switchKey = KeyCode.Tab;
+                dropKey = KeyCode.Q;
+            }
+
+            
         }
 
         void Start()
