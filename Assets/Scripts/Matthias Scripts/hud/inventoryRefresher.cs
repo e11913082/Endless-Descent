@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class inventoryRefresher : MonoBehaviour
 {
-    public int paddingBetweenSlots = 20; //padding between slots
+    public float paddingBetweenSlots = 0.01f; //padding between slots, gets multiplied by the screen width
 
 
     private CharacterWeaponInventory playerInv;
@@ -18,11 +18,12 @@ public class inventoryRefresher : MonoBehaviour
     private Image curWeaponOverlay;
     private bool initDone = false; //needed to avoid refresh on playercreation
 
+
     void Start()
     {
         playerInv = PlayerCharacter.Get(Hud.GetPlayerId()).GetComponent<CharacterWeaponInventory>();
         baseInvSlot = transform.GetChild(0).gameObject;
-        slots = new List<GameObject>() {baseInvSlot};
+        slots = new List<GameObject>() { baseInvSlot };
 
         curWeaponOverlay = gameObject.transform.Find("CurWeaponOverlay").GetComponent<Image>();
         curWeaponOverlay.color = new Color(curWeaponOverlay.color.r, curWeaponOverlay.color.g, curWeaponOverlay.color.b, 0);
@@ -34,10 +35,10 @@ public class inventoryRefresher : MonoBehaviour
         {
             GameObject nextSlot = Instantiate(baseInvSlot);
             nextSlot.transform.SetParent(gameObject.transform, false);
-            curPos.x = curPos.x - paddingBetweenSlots - slotWidth/2;
+            curPos.x = curPos.x - paddingBetweenSlots * Screen.width - slotWidth;
             nextSlot.transform.position = curPos;
-            
-            slots.Insert(0,nextSlot);
+
+            slots.Insert(0, nextSlot);
             Refresh();
         }
         initDone = true;
@@ -61,7 +62,7 @@ public class inventoryRefresher : MonoBehaviour
 
     void Refresh()
     {
-        if(initDone)
+        if (initDone)
         {
             curWeaponOverlay.color = new Color(curWeaponOverlay.color.r, curWeaponOverlay.color.g, curWeaponOverlay.color.b, 0);//in case no weapon is there anymore the currentweapon-icon gets blended out
             int weaponIndex = 0;
@@ -87,8 +88,8 @@ public class inventoryRefresher : MonoBehaviour
 
     void RefreshOverlay()
     {
-        
-        for(int i = 0; i < playerInv.weapons.Count; i++)
+
+        for (int i = 0; i < playerInv.weapons.Count; i++)
         {
             if (playerInv.weapons[i] == playerInv.equippedWeapon)
             {
