@@ -36,7 +36,7 @@ public class MeleeWeapon : MonoBehaviour
         {
             if (Time.time - lastUse > stats.attackSpeed)
             {   
-                playerAnim.AnimateAttack();
+                playerAnim.AnimateAttack(1, 1);
                 lastUse = Time.time;
                 Invoke("Use", delay);
             }

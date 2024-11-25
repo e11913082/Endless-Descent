@@ -13,9 +13,9 @@ public class EnemyCharacter : MonoBehaviour
     public int playerId;
     private Vector3 idlePosition;
     public float idleRadius;
-    public float combatDistance = 0.2f;
-    public Vector2 pathFindTarget;
-    public float returnIdleTime = 10.0f;
+    public float meleeDistance = 1.3f;
+    public float shootDistance = 3f;
+    public float returnIdleTime = 5f;
     public Weapon weapon;
     private enum State{
         Idle,
@@ -30,7 +30,6 @@ public class EnemyCharacter : MonoBehaviour
     private bool outsidePreviously;
     private bool enemyEnabled;
     private GameObject targetCharacter;
-    private bool playerVisible = false;
     private ContactFilter2D contactFilter;
     private float originalMoveSpeed;
     private float idleMoveSpeed;
@@ -126,12 +125,24 @@ public class EnemyCharacter : MonoBehaviour
             return;
         }
 
+        bool targetVisible = pathFinder.TargetVisible(transform.position, targetCharacter.transform.position - transform.position);
+
+        float combatDistance = meleeDistance;
+        bool distanceWeapon = weapon.type == 0;
+        if (distanceWeapon) // if weapon is distance weapon
+        {
+            combatDistance = shootDistance;
+        }
+
         stats.MoveSpeed = originalMoveSpeed;
         Vector3 playerDirection = targetCharacter.transform.position - gameObject.transform.position;
 
-        if (playerDirection.magnitude < combatDistance)
+        if (playerDirection.magnitude < combatDistance && targetVisible)
         {
-            controls.SetMove(Vector2.zero);
+            if (!distanceWeapon)
+            {
+                controls.SetMove(Vector2.zero);
+            }
             controls.SetMousePos(targetCharacter.transform.position);
             controls.SetAttack(true);
             return;
@@ -140,6 +151,7 @@ public class EnemyCharacter : MonoBehaviour
         {
             controls.SetAttack(false);
         }
+
         (bool targetContact, Vector2 newMoveDirection) = pathFinder.GetNextMoveDirection(transform.position, targetCharacter.transform.position);
 
         if (targetContact is true)
@@ -157,6 +169,7 @@ public class EnemyCharacter : MonoBehaviour
         else if (Time.time - timeDisappeared > returnIdleTime)
         {
             state = State.AttackToIdle;
+            return;
         }
     }
 
@@ -166,8 +179,11 @@ public class EnemyCharacter : MonoBehaviour
             pathFinder.TargetVisible(transform.position, targetCharacter.transform.position - transform.position) is true)
         {
             state = State.Attack;
+            return;
         }
+
         (bool backAtSpawn, Vector2 returnMoveDirection) = pathFinder.GetReturnMoveDirection(transform.position);
+
         if (backAtSpawn != true)
         {
             controls.SetMove(returnMoveDirection);
@@ -175,6 +191,7 @@ public class EnemyCharacter : MonoBehaviour
         else
         {
             state = State.Idle;
+            return;
         }
     }
     private void CalculateMovementDirection()

@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// Top down character movement
@@ -47,6 +48,7 @@ namespace EndlessDescent
         
         private Vector2 lookat = Vector2.zero;
         private float side = 1f;
+        private int sideAnim = 0;
 
         private bool disable_controls = false;
         private float hit_timer = 0f;
@@ -97,12 +99,13 @@ namespace EndlessDescent
                 //update hp and max_hp
                 max_hp = stats.MaxHealth;
                 //Movement velocity
-                float desiredSpeedX = Mathf.Abs(move_input.x) > 0.1f ? move_input.x * move_max : 0f;
-                float accelerationX = Mathf.Abs(move_input.x) > 0.1f ? move_accel : move_deccel;
-                move.x = Mathf.MoveTowards(move.x, desiredSpeedX, accelerationX * Time.fixedDeltaTime);
-                float desiredSpeedY = Mathf.Abs(move_input.y) > 0.1f ? move_input.y * move_max : 0f;
-                float accelerationY = Mathf.Abs(move_input.y) > 0.1f ? move_accel : move_deccel;
-                move.y = Mathf.MoveTowards(move.y, desiredSpeedY, accelerationY * Time.fixedDeltaTime);
+                //float desiredSpeedX = Mathf.Abs(move_input.x) > 0.1f ? move_input.x * move_max : 0f;
+                //float accelerationX = Mathf.Abs(move_input.x) > 0.1f ? move_accel : move_deccel;
+                //move.x = Mathf.MoveTowards(move.x, desiredSpeedX, accelerationX * Time.fixedDeltaTime);
+                //float desiredSpeedY = Mathf.Abs(move_input.y) > 0.1f ? move_input.y * move_max : 0f;
+                //float accelerationY = Mathf.Abs(move_input.y) > 0.1f ? move_accel : move_deccel;
+                //move.y = Mathf.MoveTowards(move.y, desiredSpeedY, accelerationY * Time.fixedDeltaTime);
+                move = move_input.normalized * stats.moveSpeed;
                 //move_input = Vector2.zero;
 
                 //Move
@@ -132,11 +135,19 @@ namespace EndlessDescent
             }
 
             //Update lookat side
-            if (move.magnitude > 0.1f)
-                lookat = move.normalized;
+            //if (move.magnitude > 0.1f)
+            lookat = move.normalized;
+            float lookAngle = Vector2.Angle(Vector2.up, lookat);
             if (Mathf.Abs(lookat.x) > 0.02)
                 side = Mathf.Sign(lookat.x);
-            
+            if (lookAngle < 45)
+                {sideAnim = 4;}
+            else if (45 <= lookAngle && lookAngle < 135 && lookat.x > 0)
+                {sideAnim = 1;}
+            else if (45 <= lookAngle && lookAngle < 135 && lookat.x <= 0)
+                {sideAnim = 3;}
+            else if (lookAngle >= 135)
+                {sideAnim = 2;}
         }
 
         public void HealDamage(float heal)
@@ -257,7 +268,8 @@ namespace EndlessDescent
 
         public int GetSideAnim()
         {
-            return (side >= 0) ? 1 : 3;
+            return sideAnim;
+            //return (side >= 0) ? 1 : 3;
         }
 
         public bool IsDead()

@@ -89,7 +89,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -105541197
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 462434960, guid: 90c7332c857b6b043bad30766e14a946, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -226,10 +226,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerId: 1
   idleRadius: 2
-  combatDistance: 1.3
-  pathFindTarget: {x: 0.5, y: 5.5}
-  returnIdleTime: 2
-  weapon: {fileID: 11400000, guid: 57583a8ed9bd23aa095e2a6ca50721f1, type: 2}
+  meleeDistance: 1.3
+  shootDistance: 3
+  returnIdleTime: 4
+  weapon: {fileID: 11400000, guid: 272fe3940243b1c37adf222c7b81b78d, type: 2}
 --- !u!114 &3702767706727041646
 MonoBehaviour:
   m_ObjectHideFlags: 0

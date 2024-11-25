@@ -44,7 +44,7 @@ public class WeaponAttack : MonoBehaviour
                 {
                     if (Time.time - lastUse > stats.attackSpeed)
                     {
-                        characterAnim.AnimateAttack();
+                        characterAnim.AnimateAttack(0, GetAttackSide());
                         lastUse = Time.time;
                         Invoke("UseDistance", inventory.equippedWeapon.delay);
                     }
@@ -53,7 +53,7 @@ public class WeaponAttack : MonoBehaviour
                 {
                     if (Time.time - lastUse > stats.attackSpeed)
                     {
-                        characterAnim.AnimateAttack();
+                        characterAnim.AnimateAttack(1, GetAttackSide());
                         lastUse = Time.time;
                         Invoke("UseMelee", inventory.equippedWeapon.delay);
                     }
@@ -108,5 +108,23 @@ public class WeaponAttack : MonoBehaviour
         }
 
         Debug.Log("Attacked with "+ inventory.equippedWeapon.weaponName +" on position: " + attackPos + " with damage: " + stats.damage);
+    }
+
+    private int GetAttackSide()
+    {
+        Vector2 direction = (Vector2)(character.GetMousePos() - transform.position).normalized;
+        float angle = Vector2.Angle(Vector2.up, direction);
+        int attackSide = 1;
+
+        if (angle < 45)
+            {attackSide = 4;}
+        else if (45 <= angle && angle < 135 && direction.x > 0)
+            {attackSide = 1;}
+        else if (45 <= angle && angle < 135 && direction.x <= 0)
+            {attackSide = 3;}
+        else if (angle >= 135)
+            {attackSide = 2;}
+
+        return attackSide;
     }
 }
