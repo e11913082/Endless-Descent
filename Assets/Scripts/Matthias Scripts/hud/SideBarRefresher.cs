@@ -23,6 +23,8 @@ public class SidebarRefresher : MonoBehaviour
     private PlayerStats stats;
     private UnityAction onItemPickup;
     
+    private Coroutine fadeCoroutine;
+    
 
     private void Awake()
     {
@@ -104,7 +106,13 @@ public class SidebarRefresher : MonoBehaviour
 
         statChangeTmp.text = statChangeStrB.ToString();
         statChangeTmp.alpha = 1f; //make statChanges visible
-        StartCoroutine(FadeOut(wait: 2));
+
+        if (fadeCoroutine != null)
+        {
+            StopCoroutine(fadeCoroutine);
+        }
+        
+        fadeCoroutine = StartCoroutine(FadeOut(wait: 2));
 
 
 
@@ -116,15 +124,18 @@ public class SidebarRefresher : MonoBehaviour
                 {
                     statChangeStrB.Append("<color=green>+");
                     statChangeStrB.Append(statModifier.ToString(stringMask));
-                    statChangeStrB.Append("</color>");
+                    
                 }
                 else
                 {
                     statChangeStrB.Append("<color=red>");
                     statChangeStrB.Append(statModifier.ToString(stringMask));
-                    statChangeStrB.Append("</color>");
                 }
+
+                statChangeStrB.Append("%");
+                statChangeStrB.Append("</color>");
             }
+            
             statChangeStrB.Append(LF);
         }
 

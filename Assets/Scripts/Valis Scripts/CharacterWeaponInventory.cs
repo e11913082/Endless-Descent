@@ -76,10 +76,13 @@ public class CharacterWeaponInventory : MonoBehaviour
         
         if (weapons.Count > 0)
         {
+            float previousDamage = equippedWeapon.damageBonus;
             equippedWeapon = weapons[0];
+            stats.damage = stats.damage - previousDamage + equippedWeapon.damageBonus;
         }
         else
         {
+            stats.damage -= equippedWeapon.damageBonus;
             equippedWeapon = null;
         }
     }

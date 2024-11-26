@@ -60,13 +60,14 @@ namespace EndlessDescent
         private Vector2 mouse_pos = Vector2.zero;
         // Stats 
         private PlayerStats stats;
+        private PlayerBuildupManager buildup_manager;
         void Awake()
         {
             rigid = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
             auto_order = GetComponent<AutoOrderLayer>();
             meleeWeapon = GetComponent<MeleeWeapon>();
-            
+            buildup_manager = GetComponentInChildren<PlayerBuildupManager>();
             player_id = CharacterIdGenerator.GetCharacterId(gameObject, 0);
             character_list[player_id] = this;
             stats = PlayerStats.GetPlayerStats(player_id);
@@ -188,10 +189,17 @@ namespace EndlessDescent
                     }
                 }
                 else if (gameObject.layer == LayerMask.NameToLayer("Player"))
-                {
+                {   
+                    LightTouch light_touch = GetComponent<LightTouch>();
+                    
                     float damageToPlayer = damage * ((100f - stats.defense) / 100f);
+                    Debug.Log("InLight: " + light_touch.inLight + " Coroutine: " +buildup_manager.IsEmpty());
+                    
                     stats.CurrentFear += damageToPlayer;
-
+                    if (light_touch.inLight > 0)
+                    {
+                        buildup_manager.PauseBuildup();
+                    }
                     if (stats.currentFear >= stats.MaxFear)
                     {
                         print("kill");

@@ -6,11 +6,19 @@ public class ChestController : MonoBehaviour
 {
     public List<ItemData> commonItems; // List of common items
     public List<ItemData> rareItems;   // List of rare items
-
+    
+    private AudioSource audioSource;
+    
     [Range(0, 1)] public float rareDropChance = 0.2f; // 20% chance for a rare item
     public GameObject itemPrefab;
     public Sprite openChestSprite;
 
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+    
+    
     public ItemData GetRandomItem()
     {
         // Determine if the drop is rare or common
@@ -35,7 +43,8 @@ public class ChestController : MonoBehaviour
     {
         ItemData droppedItem = GetRandomItem();
         if (droppedItem != null)
-        {
+        {   
+            audioSource.Play();
             Debug.Log($"You received: {droppedItem.itemName}");
             ItemPickup pickup = Instantiate(itemPrefab, new Vector3(transform.position.x, transform.position.y-0.5f, transform.position.z), Quaternion.identity).GetComponent<ItemPickup>();
             pickup.Initialize(droppedItem);

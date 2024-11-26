@@ -7,11 +7,13 @@ public class OrderLayer : MonoBehaviour
 {
     private SpriteRenderer spriteRendererUpper;
     private SpriteRenderer spriteRendererLower;
+    
 
     private void Start()
     {
         Transform upper = transform.Find("Upper");
         Transform lower = transform.Find("Lower");
+        
 
         if (upper != null)
         {
