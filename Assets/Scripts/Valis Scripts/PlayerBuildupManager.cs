@@ -47,6 +47,11 @@ public class PlayerBuildupManager : MonoBehaviour
         }
     }
 
+    public bool IsEmpty()
+    {
+        return buildupCoroutine == null;
+    }
+    
     public void StartBuildup()
     {
         if (buildupCoroutine != null)
