@@ -25,7 +25,8 @@ GameObject:
   - component: {fileID: 7445903141468337987}
   - component: {fileID: 8108686635482222492}
   - component: {fileID: 9126783904486958396}
-  m_Layer: 25
+  - component: {fileID: 1491575795168080706}
+  m_Layer: 22
   m_Name: Witch
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -70,7 +71,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0c27ac3ebde03834085920058f140006, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -89,7 +90,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -105541197
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 462434960, guid: 90c7332c857b6b043bad30766e14a946, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -210,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7838e6d53ced4440a63fca0a0ae8b05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player_id: 1
+  player_id: 0
   invulnerable: 0
 --- !u!114 &7564183154885829875
 MonoBehaviour:
@@ -224,12 +225,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc0186dc1068ea94b8e0b4e7ab1dbcf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerId: 1
+  playerId: 0
   idleRadius: 2
-  combatDistance: 1.3
-  pathFindTarget: {x: 0.5, y: 5.5}
-  returnIdleTime: 2
-  weapon: {fileID: 11400000, guid: 57583a8ed9bd23aa095e2a6ca50721f1, type: 2}
+  meleeDistance: 1.3
+  shootDistance: 3
+  returnIdleTime: 4
+  weapon: {fileID: 11400000, guid: 272fe3940243b1c37adf222c7b81b78d, type: 2}
 --- !u!114 &3702767706727041646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,7 +363,6 @@ MonoBehaviour:
   maxInventorySize: 2
   droppedWeaponPrefab: {fileID: 7442463993698038990, guid: 0d384326a7ad6d54d8659517b059f326,
     type: 3}
-  text: {fileID: 0}
 --- !u!114 &9126783904486958396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +375,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d8a40686cc90143bba3edf7a4fcbe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1491575795168080706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173577608035208917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b809d1a6a4c4a30a05f551742f2d29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5495001365235276540
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,7 +396,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1747898611429827908}
-  m_Layer: 25
+  m_Layer: 22
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,7 +430,7 @@ GameObject:
   - component: {fileID: 874905840186940785}
   - component: {fileID: 4484567655778861406}
   - component: {fileID: 7150642369894865946}
-  m_Layer: 25
+  m_Layer: 22
   m_Name: Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -452,7 +464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3612abc5b64eb834587a4eb6d4d40450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player_id: 1
+  player_id: 0
   left_key: 97
   right_key: 100
   up_key: 119
@@ -473,7 +485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f65774da85e1733a0b885d84735f8b86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player_id: 1
+  player_id: 0
 --- !u!114 &7150642369894865946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -486,19 +498,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f082994feeb52799e7e2a0140f8423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player_id: 1
+  player_id: 0
   maxHealth: 100
   healthRegen: 0.5
   currentHealth: 50
-  moveSpeed: 1
-  damage: 20
+  moveSpeed: 2
+  damage: 1
   attackRange: 1.5
   attackSpeed: 1
+  defense: 10
   fearIncrease: 1
   fearDecrease: 1
   currentFear: 0
   maxFear: 100
   equippedItems: []
+  lastItem: {fileID: 0}
 --- !u!1 &6946326868374637809
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,7 +523,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6713504646481309772}
   - component: {fileID: 5853688642407394140}
-  m_Layer: 25
+  m_Layer: 22
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

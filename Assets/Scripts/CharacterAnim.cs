@@ -45,12 +45,22 @@ namespace EndlessDescent
             //    animator.SetBool("Hold", character_item.GetHeldItem() != null);
         }
 
-        public void AnimateAttack()
+        public void AnimateAttack(int type, int attackSide)
         {
             if (!character.IsDead())
             {
-                print("attacking");
-                animator.SetTrigger("Attack");
+                switch (type) {
+                    case 0:
+                        animator.SetInteger("AttackSide", attackSide);
+                        animator.SetTrigger("AttackDistance");
+                        break;
+
+                    case 1:
+                        animator.SetInteger("AttackSide", attackSide);
+                        animator.SetTrigger("AttackMelee");
+                        break;
+                }
+
             }
         }
 
