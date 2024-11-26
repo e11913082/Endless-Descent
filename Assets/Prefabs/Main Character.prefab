@@ -42,7 +42,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.26, y: 1.91, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1747898611429827908}
@@ -363,7 +363,6 @@ MonoBehaviour:
   maxInventorySize: 2
   droppedWeaponPrefab: {fileID: 7442463993698038990, guid: 0d384326a7ad6d54d8659517b059f326,
     type: 3}
-  text: {fileID: 0}
 --- !u!114 &9126783904486958396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -495,11 +494,13 @@ MonoBehaviour:
   damage: 20
   attackRange: 1.5
   attackSpeed: 1
+  defense: 20
   fearIncrease: 1
   fearDecrease: 1
   currentFear: 0
   maxFear: 100
   equippedItems: []
+  lastItem: {fileID: 0}
 --- !u!1 &6946326868374637809
 GameObject:
   m_ObjectHideFlags: 0
