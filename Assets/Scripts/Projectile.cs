@@ -31,7 +31,8 @@ namespace EndlessDescent
             Rigid = GetComponent<Rigidbody2D> ();
             Animator = GetComponent<Animator>();
             audioSource = GetComponent<AudioSource>();
-            audioSource.PlayOneShot(CreationSound);
+            float volume = PlayerPrefs.GetFloat("EffectVolume", 1f);
+            audioSource.PlayOneShot(CreationSound, volume);
         }
 
         // Update is called once per frame
