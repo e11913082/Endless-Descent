@@ -30,7 +30,7 @@ namespace EndlessDescent
 
         public UnityAction onDeath;
         public UnityAction onHit;
-        public List<AudioClip> damageGrunts;
+
         private Rigidbody2D rigid;
         private Animator animator;
         private AutoOrderLayer auto_order;
@@ -61,10 +61,6 @@ namespace EndlessDescent
         // Stats 
         private PlayerStats stats;
         private PlayerBuildupManager buildup_manager;
-        private SpriteRenderer spriteRenderer;
-        private bool movementEnabled = true;
-        private AudioSource audioSource;
-
         void Awake()
         {
             rigid = GetComponent<Rigidbody2D>();
@@ -72,8 +68,6 @@ namespace EndlessDescent
             auto_order = GetComponent<AutoOrderLayer>();
             meleeWeapon = GetComponent<MeleeWeapon>();
             buildup_manager = GetComponentInChildren<PlayerBuildupManager>();
-            spriteRenderer = GetComponent<SpriteRenderer>();
-            audioSource = GetComponent<AudioSource>();
             player_id = CharacterIdGenerator.GetCharacterId(gameObject, 0);
             character_list[player_id] = this;
             stats = PlayerStats.GetPlayerStats(player_id);
@@ -121,10 +115,7 @@ namespace EndlessDescent
                 //move_input = Vector2.zero;
 
                 //Move
-                if (movementEnabled is true)
-                {
-                    rigid.velocity = move;
-                }
+                rigid.velocity = move;
                             
             }
         }
@@ -176,14 +167,11 @@ namespace EndlessDescent
         
         
         
-        public void TakeDamage(float damage, Vector2 hitDirection)
+        public void TakeDamage(float damage)
         {
+            print("taking damage");
             if (!is_dead && !invulnerable && hit_timer > 0f)
             {
-                spriteRenderer.color = Color.red;
-                DamageSetBack(hitDirection);
-                Invoke("ResetRenderColor", 0.1f);
-
                 hit_timer = -1f;
                 if (gameObject.layer == LayerMask.NameToLayer("Enemy"))
                 {
@@ -191,6 +179,7 @@ namespace EndlessDescent
 
                     if (stats.CurrentHealth <= 0f)
                     {
+                        print("kill");
                         Kill();
                     }
                     else
@@ -201,7 +190,6 @@ namespace EndlessDescent
                 }
                 else if (gameObject.layer == LayerMask.NameToLayer("Player"))
                 {   
-                    audioSource.PlayOneShot(damageGrunts[UnityEngine.Random.Range(0, damageGrunts.Count)]);
                     LightTouch light_touch = GetComponent<LightTouch>();
                     
                     float damageToPlayer = damage * ((100f - stats.defense) / 100f);
@@ -214,6 +202,7 @@ namespace EndlessDescent
                     }
                     if (stats.currentFear >= stats.MaxFear)
                     {
+                        print("kill");
                         Kill();
                     }
                     else
@@ -224,21 +213,6 @@ namespace EndlessDescent
                 }
 
             }
-        }
-
-        private void DamageSetBack(Vector2 hitDirection)
-        {
-            movementEnabled = false;
-            rigid.AddForce(hitDirection * 100f, ForceMode2D.Impulse);
-            Invoke("EnableMovement", 0.05f);
-        }
-        private void EnableMovement()
-        {
-            movementEnabled = true;
-        }
-        private void ResetRenderColor()
-        {
-            spriteRenderer.color = Color.white;
         }
 
         public void Kill()

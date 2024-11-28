@@ -19,7 +19,6 @@ namespace EndlessDescent
         public AudioClip CreationSound;
         public AudioClip DestructionSound;
         public LayerMask targetLayer;
-        private Vector2 shootDirection;
         // Start is called before the first frame update
         void Start()
         {
@@ -31,8 +30,7 @@ namespace EndlessDescent
             Rigid = GetComponent<Rigidbody2D> ();
             Animator = GetComponent<Animator>();
             audioSource = GetComponent<AudioSource>();
-            float volume = PlayerPrefs.GetFloat("EffectVolume", 1f);
-            audioSource.PlayOneShot(CreationSound, volume);
+            audioSource.PlayOneShot(CreationSound);
         }
 
         // Update is called once per frame
@@ -46,7 +44,6 @@ namespace EndlessDescent
             Rigid.velocity = direction * Speed;
             transform.rotation = Quaternion.Euler(0, 0, (float) Math.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
             targetLayer = target;
-            shootDirection = direction;
             Destroy(gameObject, 10f);
         }
 
@@ -60,7 +57,7 @@ namespace EndlessDescent
 
                 if (collision.gameObject.layer == targetLayer)
                 {
-                    collision.gameObject.GetComponent<PlayerCharacter>().TakeDamage(damage, shootDirection);
+                    collision.gameObject.GetComponent<PlayerCharacter>().TakeDamage(damage);
                 }
                 
                 Rigid.velocity = Vector2.zero;

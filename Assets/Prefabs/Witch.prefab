@@ -26,10 +26,7 @@ GameObject:
   - component: {fileID: 8108686635482222492}
   - component: {fileID: 9126783904486958396}
   - component: {fileID: 1491575795168080706}
-  - component: {fileID: 6187819734139708474}
-  - component: {fileID: 2402184436281440438}
-  - component: {fileID: 5772162614084830237}
-  m_Layer: 25
+  m_Layer: 22
   m_Name: Witch
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -187,7 +184,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.3, y: 0.5}
+  m_Size: {x: 0.3, y: 0.6}
   m_Direction: 0
 --- !u!114 &4512698490884665209
 MonoBehaviour:
@@ -216,7 +213,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_id: 0
   invulnerable: 0
-  damageGrunts: []
 --- !u!114 &7564183154885829875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,52 +387,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2b809d1a6a4c4a30a05f551742f2d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6187819734139708474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173577608035208917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9102c88022309b79d8384e0d2c3b25d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inLight: 0
---- !u!114 &2402184436281440438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173577608035208917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b778273e4f15a5a89b4e0781a6c2e0a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meleePrefab: {fileID: 5873806722197866145, guid: ce6b3376b68bf9a5f8bf760a543ac183,
-    type: 3}
-  isAvailable: 1
-  Selected: 1
-  equippedWeapon: {fileID: 11400000, guid: 57583a8ed9bd23aa095e2a6ca50721f1, type: 2}
-  delay: 0
-  enemies:
-    serializedVersion: 2
-    m_Bits: 33554432
---- !u!114 &5772162614084830237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173577608035208917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7adbd2a6a2320cb3cbb5c24f8409896c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5495001365235276540
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,7 +396,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1747898611429827908}
-  m_Layer: 25
+  m_Layer: 22
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -480,7 +430,7 @@ GameObject:
   - component: {fileID: 874905840186940785}
   - component: {fileID: 4484567655778861406}
   - component: {fileID: 7150642369894865946}
-  m_Layer: 25
+  m_Layer: 22
   m_Name: Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -573,7 +523,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6713504646481309772}
   - component: {fileID: 5853688642407394140}
-  m_Layer: 25
+  m_Layer: 22
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
