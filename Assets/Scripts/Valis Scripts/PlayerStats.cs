@@ -23,6 +23,8 @@ public class PlayerStats : MonoBehaviour
     public float fearDecrease = 0.5f;
     public float currentFear = 0f;
     public float maxFear = 100f;
+
+    public float coins = 30f;
     
     private static Dictionary<int, PlayerStats> stats = new Dictionary<int, PlayerStats>();
     public List<ItemData> equippedItems = new List<ItemData>();
@@ -121,7 +123,21 @@ public class PlayerStats : MonoBehaviour
         }
         
     }
-    
+
+    public void AddCoins(float amount)
+    {
+        coins += amount;
+    }
+
+    public float GetCoins()
+    {
+        return coins;
+    }
+
+    public void RemoveCoins(float amount)
+    {
+        coins = Math.Max(coins - amount, 0);
+    }
     public void resetStats()
     {
         maxHealth = 1f;
