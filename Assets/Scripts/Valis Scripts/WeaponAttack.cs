@@ -89,22 +89,31 @@ public class WeaponAttack : MonoBehaviour
 
        // LayerMask enemies = LayerMask.NameToLayer("Enemy");
         Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos, 0.5f); // , enemies); // the layer filtering here does not work for some reason
-        print(enemiesToDamage.Length);
-        print(LayerMask.LayerToName(enemies));
 
         MeleePrefab melee = Instantiate(inventory.equippedWeapon.projectilePrefab, attackPos, transform.rotation)
             .GetComponent<MeleePrefab>();
         melee.Attack(direction);
 
+        bool hitEnemy = false;
         for (int i = 0; i < enemiesToDamage.Length; i++)
         {
             float damage = PlayerStats.GetPlayerStats(character.player_id).damage;
             PlayerCharacter e = enemiesToDamage[i].GetComponent<PlayerCharacter>();
             if (e != null && e.gameObject.layer == enemies)
             {
-                e.TakeDamage(damage);
+                e.TakeDamage(damage, (e.transform.position - transform.position).normalized);
+                hitEnemy = true;
             }
             
+        }
+
+        if (hitEnemy is true)
+        {
+            melee.PlayHitSound();
+        }
+        else
+        {
+            melee.PlaySwingSound();
         }
 
         Debug.Log("Attacked with "+ inventory.equippedWeapon.weaponName +" on position: " + attackPos + " with damage: " + stats.damage);
