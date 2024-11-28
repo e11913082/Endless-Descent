@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 7445903141468337987}
   - component: {fileID: 8108686635482222492}
   - component: {fileID: 9126783904486958396}
+  - component: {fileID: 6499465029340626357}
   m_Layer: 22
   m_Name: Main Character
   m_TagString: Player
@@ -375,6 +376,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d8a40686cc90143bba3edf7a4fcbe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6499465029340626357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173577608035208917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b809d1a6a4c4a30a05f551742f2d29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5495001365235276540
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,7 +503,7 @@ MonoBehaviour:
   maxHealth: 100
   healthRegen: 0.5
   currentHealth: 50
-  moveSpeed: 1
+  moveSpeed: 3
   damage: 20
   attackRange: 1.5
   attackSpeed: 1

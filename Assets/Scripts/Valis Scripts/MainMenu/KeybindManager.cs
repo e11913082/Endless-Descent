@@ -62,30 +62,41 @@ public class KeybindManager : MonoBehaviour
        
         UpdateKeybindUI();
         
-        upButton.onClick.AddListener(() => StartRebinding("up"));
-        downButton.onClick.AddListener(() => StartRebinding("down"));
-        rightButton.onClick.AddListener(() => StartRebinding("right"));
-        leftButton.onClick.AddListener(() => StartRebinding("left"));
-        attackButton.onClick.AddListener(() => StartRebinding("attack"));
-        interactButton.onClick.AddListener(() => StartRebinding("interact"));
-        switchButton.onClick.AddListener(() => StartRebinding("switch"));
-        dropButton.onClick.AddListener(() => StartRebinding("drop"));
+        upButton.onClick.AddListener(() => StartRebinding("up", upText));
+        downButton.onClick.AddListener(() => StartRebinding("down", downText));
+        rightButton.onClick.AddListener(() => StartRebinding("right", rightText));
+        leftButton.onClick.AddListener(() => StartRebinding("left", leftText));
+        attackButton.onClick.AddListener(() => StartRebinding("attack", attackText));
+        interactButton.onClick.AddListener(() => StartRebinding("interact", interactText));
+        switchButton.onClick.AddListener(() => StartRebinding("switch", switchText));
+        dropButton.onClick.AddListener(() => StartRebinding("drop", dropText));
     }
 
     // Update is called once per frame
     void Update()
     {
         if (!string.IsNullOrEmpty(keyToBind))
-        {
+        {   
             ListenForKeyPress();
         }   
     }
 
-    public void StartRebinding(string key)
-    {
+    public void StartRebinding(string key, TextMeshProUGUI currentKey)
+    {   
+        currentKey.text = "<press a key>";
         keyToBind = key;
         Debug.Log("Press a key to rebind: "+key);
+        
+        upButton.gameObject.SetActive(false);
+        downButton.gameObject.SetActive(false);
+        rightButton.gameObject.SetActive(false);
+        leftButton.gameObject.SetActive(false);
+        attackButton.gameObject.SetActive(false);
+        interactButton.gameObject.SetActive(false);
+        switchButton.gameObject.SetActive(false);
+        dropButton.gameObject.SetActive(false);
     }
+    
     
     
     public void ListenForKeyPress()
@@ -105,7 +116,16 @@ public class KeybindManager : MonoBehaviour
                     
                     keyToBind = "";
                     Debug.Log("Rebinding complete for " + keyToBind + " to " + key);
-
+                    
+                    upButton.gameObject.SetActive(true);
+                    downButton.gameObject.SetActive(true);
+                    rightButton.gameObject.SetActive(true);
+                    leftButton.gameObject.SetActive(true);
+                    attackButton.gameObject.SetActive(true);
+                    interactButton.gameObject.SetActive(true);
+                    switchButton.gameObject.SetActive(true);
+                    dropButton.gameObject.SetActive(true);
+                    
                     break;
                 }
             }
