@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: [Chest, Hud]
+  tags:
+  - Chest
+  - Hud
   layers:
   - Default
   - TransparentFX
@@ -55,4 +57,7 @@ TagManager:
     locked: 0
   - name: Top
     uniqueID: 1502599955
+    locked: 0
+  - name: Top
+    uniqueID: 443109637
     locked: 0
