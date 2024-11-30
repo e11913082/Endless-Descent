@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.AssetImporters;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -138,6 +140,46 @@ public class PlayerStats : MonoBehaviour
     {
         coins = Math.Max(coins - amount, 0);
     }
+    
+    // Gambling Heaven
+
+    public String WheelOfFortune(int segmentIndex, ItemData rewardItem)
+    {
+        
+        if (rewardItem != null)
+        {
+            PickupItem(rewardItem);
+        }
+        
+        switch (segmentIndex)
+        {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+                return "You won a common Item!";
+            case 2:
+            case 6:
+                coins = Mathf.Max(coins - 20, 0);
+                if (coins == 0)
+                {
+                    return "You lose the rest of your lantern oil, good luck now!";
+                }
+                return "You lose 20 lantern oil!";
+            case 0:
+                coins += 20;
+                return "You won a bottle of lantern oil!";
+            case 4:
+                return "You won a rare item!";
+            default:
+                
+                return "MISSING SEGMENT!";
+        }
+
+        
+    }
+    
+    
     public void resetStats()
     {
         maxHealth = 1f;

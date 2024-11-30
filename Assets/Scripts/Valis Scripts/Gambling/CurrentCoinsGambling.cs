@@ -9,7 +9,7 @@ public class CurrentCoinsGambling : MonoBehaviour
     private int player_id;
     
     private TextMeshProUGUI textMesh;
-    private PlayerStats playerStats;
+    public PlayerStats playerStats;
     
     public void Awake()
     {
