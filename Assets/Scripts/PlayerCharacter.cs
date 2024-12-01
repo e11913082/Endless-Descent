@@ -30,6 +30,7 @@ namespace EndlessDescent
 
         public UnityAction onDeath;
         public UnityAction onHit;
+        public GameObject coinPrefab;
         public List<AudioClip> damageGrunts;
         private Rigidbody2D rigid;
         private Animator animator;
@@ -191,6 +192,7 @@ namespace EndlessDescent
 
                     if (stats.CurrentHealth <= 0f)
                     {
+                        Instantiate(coinPrefab, transform.position, Quaternion.identity);
                         Kill();
                     }
                     else
@@ -205,17 +207,18 @@ namespace EndlessDescent
                     LightTouch light_touch = GetComponent<LightTouch>();
                     
                     float damageToPlayer = damage * ((100f - stats.defense) / 100f);
-                    Debug.Log("InLight: " + light_touch.inLight + " Coroutine: " +buildup_manager.IsEmpty());
+                    
                     
                     stats.CurrentFear += damageToPlayer;
-                    if (light_touch.inLight > 0)
-                    {
-                        buildup_manager.PauseBuildup();
-                    }
                     if (stats.currentFear >= stats.MaxFear)
                     {
                         Kill();
                     }
+                    if (light_touch.inLight > 0)
+                    {
+                        buildup_manager.PauseBuildup();
+                    }
+                    
                     else
                     {
                         if (onHit != null)

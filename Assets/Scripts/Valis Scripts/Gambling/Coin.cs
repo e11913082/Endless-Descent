@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    public float amount;
+    public float amount = 25f;
 
     private TextMeshProUGUI text;
     private GameObject canvas;

@@ -13,10 +13,13 @@ public class WheelOfFortuneHandler : MonoBehaviour
     public float maxSpeed = 720f;
     public TextMeshProUGUI outText;
     public TextMeshProUGUI oilText;
+    public TextMeshProUGUI buttonText;
     
     private float currentSpeed;
     private bool isSpinning = false;
-
+    public int spinCount = 0;
+    public int maxSpinCount = 3;
+    
     public List<ItemData> commonItems; // List of common items
     public List<ItemData> rareItems;
 
@@ -24,7 +27,8 @@ public class WheelOfFortuneHandler : MonoBehaviour
     public Coroutine fadeCoroutine;
 
     private void Awake()
-    {
+    {   
+        buttonText.text = "Spin = 10 Oil ("+(maxSpinCount-spinCount)+" left)";
         outText.text = "";
         stats = oilText.GetComponent<CurrentCoinsGambling>().playerStats;
     }
@@ -33,13 +37,13 @@ public class WheelOfFortuneHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            GameObject.Find("/GamblingCanvas").gameObject.SetActive(false);
-            StopCoroutine(fadeCoroutine);
+            if(fadeCoroutine != null) StopCoroutine(fadeCoroutine);
             Time.timeScale = 1f;
+            GameObject.Find("/GamblingCanvas").gameObject.SetActive(false);
         }
     }
 
-    public IEnumerator FadeOut(int wait) //fades out statChanged string after "wait" seconds
+    private IEnumerator FadeOut(int wait)
     {
         yield return new WaitForSeconds(wait);
         for(float alpha = outText.alpha; alpha >= -1f; alpha -= 0.2f)
@@ -55,21 +59,33 @@ public class WheelOfFortuneHandler : MonoBehaviour
         {
             StopCoroutine(fadeCoroutine);
         }
-        fadeCoroutine = StartCoroutine(FadeOut(2));
+        fadeCoroutine = StartCoroutine(FadeOut(1));
     }
     
     public void StartSpin()
-    {
+    {   
+        
+        
         if (!isSpinning)
-        {
+        {   
+            
             stats = oilText.GetComponent<CurrentCoinsGambling>().playerStats;
             if (stats.coins < 10)
             {
                 outText.text = "You do not have enough lantern oil";
                 return;
             }
+            if (spinCount >= maxSpinCount)
+            {
+                outText.text = "No more spins left";
+                outText.color = Color.red;
+                return;
+            }
+            spinCount++;
+            buttonText.text = "Spin = 10 Oil ("+(maxSpinCount-spinCount)+" left)";
+            
             stats.coins -= 10;
-            spinDuration = Random.Range(2f, 5f); // Random duration between 2 and 5 seconds
+            spinDuration = Random.Range(2f, 5f); 
             maxSpeed = Random.Range(500f, 1000f);
             StartCoroutine(Spin());
         }
@@ -77,6 +93,8 @@ public class WheelOfFortuneHandler : MonoBehaviour
 
     private IEnumerator Spin()
     {
+        
+        
         isSpinning = true;
         float time = 0;
 
@@ -102,35 +120,41 @@ public class WheelOfFortuneHandler : MonoBehaviour
 
     private void HandleReward()
     {
-        float offset = 45f;
-        float angle = (transform.eulerAngles.z - offset + 360) % 360;
+        float offset = 0f;
+        float angle = (transform.eulerAngles.z) % 360;
 
         int totalSegments = 8;
-        int segmentIndex = Mathf.FloorToInt(angle / (360f / totalSegments));
-        
+        float segmentAngleSize = 360f / totalSegments;
+        int segmentIndex = Mathf.FloorToInt(angle / segmentAngleSize);
+
+
+        float targetAngle = segmentIndex * segmentAngleSize + (segmentAngleSize / 2);
+
+        StartCoroutine(SnapToSegment(targetAngle));
         
         ItemData item = null;
         
         switch (segmentIndex)
         {
-            case 1:
-            case 3:
-            case 5:
-            case 7:
+            case 0:
+            case 2:
+            case 4:
+            case 6:
                 item = GetRandomItem(0);
                 outText.color = Color.green;
                 break;
-            case 0:
-            case 4:
+            case 5:
+                item = GetRandomItem((1));
                 outText.color = Color.yellow;
                 break;
-            case 2:
+            case 1:    
+                outText.color = Color.gray;
+                break;
+            case 3:
+            case 7:
                 outText.color = Color.red;
                 break;
-            case 6:
-                item = GetRandomItem(1);
-                outText.color = Color.red;
-                break;
+            
         }
         string result = stats.WheelOfFortune(segmentIndex, item);
         
@@ -138,6 +162,35 @@ public class WheelOfFortuneHandler : MonoBehaviour
         
         outText.text = result;
         FadeOut();
+    }
+
+    private IEnumerator SnapToSegment(float targetAngle)
+    {
+        float currentAngle = transform.eulerAngles.z % 360; 
+        float angleDifference = Mathf.DeltaAngle(currentAngle, targetAngle);
+        Debug.Log($"Current: {currentAngle}, Target: {targetAngle}, Difference: {angleDifference}");
+
+        yield return new WaitForSecondsRealtime(0.3f);
+        
+        float snapSpeed = 200f; 
+        while (Mathf.Abs(angleDifference) > 0.1f) 
+        {
+            float rotationStep = Mathf.Sign(angleDifference) * snapSpeed * Time.unscaledDeltaTime;
+            if (Mathf.Abs(rotationStep) > Mathf.Abs(angleDifference))
+                rotationStep = angleDifference; 
+
+            transform.Rotate(0, 0, rotationStep);
+            currentAngle = transform.eulerAngles.z % 360;
+            angleDifference = Mathf.DeltaAngle(currentAngle, targetAngle);
+            
+            
+
+            
+            yield return null;
+        }
+
+        
+        transform.eulerAngles = new Vector3(0, 0, targetAngle);
     }
     
     

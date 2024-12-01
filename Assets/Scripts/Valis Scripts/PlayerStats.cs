@@ -1,10 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.AssetImporters;
 using UnityEngine;
-using UnityEngine.UIElements.Experimental;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -153,26 +149,25 @@ public class PlayerStats : MonoBehaviour
         
         switch (segmentIndex)
         {
-            case 1:
-            case 3:
-            case 5:
-            case 7:
-                return "You won a common Item!";
+            case 0:
             case 2:
+            case 4:
             case 6:
+                return "You won a common Item!";
+            case 3:
+            case 7:
                 coins = Mathf.Max(coins - 20, 0);
                 if (coins == 0)
                 {
-                    return "You lose the rest of your lantern oil, good luck now!";
+                    return "You lose the rest of your lantern oil!";
                 }
                 return "You lose 20 lantern oil!";
-            case 0:
+            case 1:
                 coins += 20;
                 return "You won a bottle of lantern oil!";
-            case 4:
+            case 5:
                 return "You won a rare item!";
             default:
-                
                 return "MISSING SEGMENT!";
         }
 
