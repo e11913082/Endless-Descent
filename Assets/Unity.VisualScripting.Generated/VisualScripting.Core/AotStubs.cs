@@ -629,12 +629,6 @@ namespace Unity.VisualScripting.Generated.Aot
 	// SidebarRefresher.op_Implicit
 	// SidebarRefresher.op_Equality
 	// SidebarRefresher.op_Inequality
-	// LightUpnEnter.op_Implicit
-	// LightUpnEnter.op_Equality
-	// LightUpnEnter.op_Inequality
-	// WinInteraction.op_Implicit
-	// WinInteraction.op_Equality
-	// WinInteraction.op_Inequality
 	// ChangeChildTexturesWizard.op_Implicit
 	// ChangeChildTexturesWizard.op_Equality
 	// ChangeChildTexturesWizard.op_Inequality
@@ -683,18 +677,12 @@ namespace Unity.VisualScripting.Generated.Aot
 	// MainMenu.op_Implicit
 	// MainMenu.op_Equality
 	// MainMenu.op_Inequality
-	// MenuVolumeManager.op_Implicit
-	// MenuVolumeManager.op_Equality
-	// MenuVolumeManager.op_Inequality
-	// Settings.op_Implicit
-	// Settings.op_Equality
-	// Settings.op_Inequality
+	// MenuMusicManager.op_Implicit
+	// MenuMusicManager.op_Equality
+	// MenuMusicManager.op_Inequality
 	// SettingsHoverChangeColor.op_Implicit
 	// SettingsHoverChangeColor.op_Equality
 	// SettingsHoverChangeColor.op_Inequality
-	// SliderHoverChange.op_Implicit
-	// SliderHoverChange.op_Equality
-	// SliderHoverChange.op_Inequality
 	// MeleePrefab.op_Implicit
 	// MeleePrefab.op_Equality
 	// MeleePrefab.op_Inequality
@@ -8280,76 +8268,6 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
-		// LightUpnEnter.op_Implicit
-		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void LightUpnEnter_op_Implicit()
-		{
-			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
-			bool conversion = ((bool)(arg0));
-			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
-			optimized.Invoke(null, arg0);
-			optimized.Invoke(default(object[]));
-		}
-		
-		// LightUpnEnter.op_Equality
-		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void LightUpnEnter_op_Equality()
-		{
-			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
-			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
-			bool @operator = (arg0 == arg1);
-			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
-			optimized.Invoke(null, arg0, arg1);
-			optimized.Invoke(default(object[]));
-		}
-		
-		// LightUpnEnter.op_Inequality
-		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void LightUpnEnter_op_Inequality()
-		{
-			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
-			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
-			bool @operator = (arg0 != arg1);
-			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
-			optimized.Invoke(null, arg0, arg1);
-			optimized.Invoke(default(object[]));
-		}
-		
-		// WinInteraction.op_Implicit
-		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void WinInteraction_op_Implicit()
-		{
-			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
-			bool conversion = ((bool)(arg0));
-			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
-			optimized.Invoke(null, arg0);
-			optimized.Invoke(default(object[]));
-		}
-		
-		// WinInteraction.op_Equality
-		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void WinInteraction_op_Equality()
-		{
-			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
-			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
-			bool @operator = (arg0 == arg1);
-			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
-			optimized.Invoke(null, arg0, arg1);
-			optimized.Invoke(default(object[]));
-		}
-		
-		// WinInteraction.op_Inequality
-		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void WinInteraction_op_Inequality()
-		{
-			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
-			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
-			bool @operator = (arg0 != arg1);
-			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
-			optimized.Invoke(null, arg0, arg1);
-			optimized.Invoke(default(object[]));
-		}
-		
 		// ChangeChildTexturesWizard.op_Implicit
 		[global::UnityEngine.Scripting.PreserveAttribute()]
 		public static void ChangeChildTexturesWizard_op_Implicit()
@@ -8910,9 +8828,9 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
-		// MenuVolumeManager.op_Implicit
+		// MenuMusicManager.op_Implicit
 		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void MenuVolumeManager_op_Implicit()
+		public static void MenuMusicManager_op_Implicit()
 		{
 			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
 			bool conversion = ((bool)(arg0));
@@ -8921,9 +8839,9 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
-		// MenuVolumeManager.op_Equality
+		// MenuMusicManager.op_Equality
 		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void MenuVolumeManager_op_Equality()
+		public static void MenuMusicManager_op_Equality()
 		{
 			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
 			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
@@ -8933,44 +8851,9 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
-		// MenuVolumeManager.op_Inequality
+		// MenuMusicManager.op_Inequality
 		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void MenuVolumeManager_op_Inequality()
-		{
-			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
-			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
-			bool @operator = (arg0 != arg1);
-			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
-			optimized.Invoke(null, arg0, arg1);
-			optimized.Invoke(default(object[]));
-		}
-		
-		// Settings.op_Implicit
-		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void Settings_op_Implicit()
-		{
-			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
-			bool conversion = ((bool)(arg0));
-			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
-			optimized.Invoke(null, arg0);
-			optimized.Invoke(default(object[]));
-		}
-		
-		// Settings.op_Equality
-		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void Settings_op_Equality()
-		{
-			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
-			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
-			bool @operator = (arg0 == arg1);
-			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
-			optimized.Invoke(null, arg0, arg1);
-			optimized.Invoke(default(object[]));
-		}
-		
-		// Settings.op_Inequality
-		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void Settings_op_Inequality()
+		public static void MenuMusicManager_op_Inequality()
 		{
 			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
 			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
@@ -9006,41 +8889,6 @@ namespace Unity.VisualScripting.Generated.Aot
 		// SettingsHoverChangeColor.op_Inequality
 		[global::UnityEngine.Scripting.PreserveAttribute()]
 		public static void SettingsHoverChangeColor_op_Inequality()
-		{
-			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
-			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
-			bool @operator = (arg0 != arg1);
-			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
-			optimized.Invoke(null, arg0, arg1);
-			optimized.Invoke(default(object[]));
-		}
-		
-		// SliderHoverChange.op_Implicit
-		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void SliderHoverChange_op_Implicit()
-		{
-			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
-			bool conversion = ((bool)(arg0));
-			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
-			optimized.Invoke(null, arg0);
-			optimized.Invoke(default(object[]));
-		}
-		
-		// SliderHoverChange.op_Equality
-		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void SliderHoverChange_op_Equality()
-		{
-			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
-			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
-			bool @operator = (arg0 == arg1);
-			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
-			optimized.Invoke(null, arg0, arg1);
-			optimized.Invoke(default(object[]));
-		}
-		
-		// SliderHoverChange.op_Inequality
-		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void SliderHoverChange_op_Inequality()
 		{
 			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
 			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
