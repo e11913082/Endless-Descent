@@ -20,8 +20,14 @@ public class CharacterItemPickup : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Item"))
         {
-            stats.PickupItem(other.gameObject.GetComponent<ItemPickup>().getItemData());
-                
+            if (other.CompareTag("Coin"))
+            {
+                stats.AddCoins(other.gameObject.GetComponent<Coin>().amount);   
+            }
+            else
+            {
+                stats.PickupItem(other.gameObject.GetComponent<ItemPickup>().getItemData());
+            }
             Destroy(other.gameObject);
         }
     }

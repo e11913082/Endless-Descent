@@ -213,6 +213,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_id: 0
   invulnerable: 0
+  coinPrefab: {fileID: 5255464759237831223, guid: 7e788f68e9ff0c24694ca442fb68fed6,
+    type: 3}
 --- !u!114 &7564183154885829875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499,18 +501,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_id: 0
-  maxHealth: 100
-  healthRegen: 0.5
+  maxHealth: 50
+  healthRegen: 0
   currentHealth: 50
   moveSpeed: 2
   damage: 1
   attackRange: 1.5
-  attackSpeed: 1
-  defense: 10
-  fearIncrease: 1
-  fearDecrease: 1
+  attackSpeed: 0.5
+  defense: 0
+  fearIncrease: 0
+  fearDecrease: 0
   currentFear: 0
   maxFear: 100
+  coins: 30
   equippedItems: []
   lastItem: {fileID: 0}
 --- !u!1 &6946326868374637809

@@ -629,9 +629,12 @@ namespace Unity.VisualScripting.Generated.Aot
 	// SidebarRefresher.op_Implicit
 	// SidebarRefresher.op_Equality
 	// SidebarRefresher.op_Inequality
+<<<<<<< HEAD
 	// LightUpnEnter.op_Implicit
 	// LightUpnEnter.op_Equality
 	// LightUpnEnter.op_Inequality
+=======
+>>>>>>> shop
 	// ChangeChildTexturesWizard.op_Implicit
 	// ChangeChildTexturesWizard.op_Equality
 	// ChangeChildTexturesWizard.op_Inequality
@@ -662,6 +665,24 @@ namespace Unity.VisualScripting.Generated.Aot
 	// Enemy.op_Implicit
 	// Enemy.op_Equality
 	// Enemy.op_Inequality
+<<<<<<< HEAD
+=======
+	// CharacterGamblingTrader.op_Implicit
+	// CharacterGamblingTrader.op_Equality
+	// CharacterGamblingTrader.op_Inequality
+	// Coin.op_Implicit
+	// Coin.op_Equality
+	// Coin.op_Inequality
+	// CurrentCoinsGambling.op_Implicit
+	// CurrentCoinsGambling.op_Equality
+	// CurrentCoinsGambling.op_Inequality
+	// DarkBackgroundHandler.op_Implicit
+	// DarkBackgroundHandler.op_Equality
+	// DarkBackgroundHandler.op_Inequality
+	// WheelOfFortuneHandler.op_Implicit
+	// WheelOfFortuneHandler.op_Equality
+	// WheelOfFortuneHandler.op_Inequality
+>>>>>>> shop
 	// ItemData.op_Implicit
 	// ItemData.op_Equality
 	// ItemData.op_Inequality
@@ -680,12 +701,27 @@ namespace Unity.VisualScripting.Generated.Aot
 	// MainMenu.op_Implicit
 	// MainMenu.op_Equality
 	// MainMenu.op_Inequality
+<<<<<<< HEAD
 	// MenuMusicManager.op_Implicit
 	// MenuMusicManager.op_Equality
 	// MenuMusicManager.op_Inequality
 	// SettingsHoverChangeColor.op_Implicit
 	// SettingsHoverChangeColor.op_Equality
 	// SettingsHoverChangeColor.op_Inequality
+=======
+	// MenuVolumeManager.op_Implicit
+	// MenuVolumeManager.op_Equality
+	// MenuVolumeManager.op_Inequality
+	// Settings.op_Implicit
+	// Settings.op_Equality
+	// Settings.op_Inequality
+	// SettingsHoverChangeColor.op_Implicit
+	// SettingsHoverChangeColor.op_Equality
+	// SettingsHoverChangeColor.op_Inequality
+	// SliderHoverChange.op_Implicit
+	// SliderHoverChange.op_Equality
+	// SliderHoverChange.op_Inequality
+>>>>>>> shop
 	// MeleePrefab.op_Implicit
 	// MeleePrefab.op_Equality
 	// MeleePrefab.op_Inequality
@@ -1086,6 +1122,10 @@ namespace Unity.VisualScripting.Generated.Aot
 	// --------------- Asset Stubs
 	// --------------- Scene Stubs
 	// --------------- Scene Stubs
+<<<<<<< HEAD
+=======
+	// --------------- Scene Stubs
+>>>>>>> shop
 	[UnityEngine.Scripting.PreserveAttribute()]
 	public class AotStubs
 	{
@@ -8271,6 +8311,7 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
+<<<<<<< HEAD
 		// LightUpnEnter.op_Implicit
 		[global::UnityEngine.Scripting.PreserveAttribute()]
 		public static void LightUpnEnter_op_Implicit()
@@ -8306,6 +8347,8 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
+=======
+>>>>>>> shop
 		// ChangeChildTexturesWizard.op_Implicit
 		[global::UnityEngine.Scripting.PreserveAttribute()]
 		public static void ChangeChildTexturesWizard_op_Implicit()
@@ -8656,6 +8699,184 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
+<<<<<<< HEAD
+=======
+		// CharacterGamblingTrader.op_Implicit
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void CharacterGamblingTrader_op_Implicit()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			bool conversion = ((bool)(arg0));
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// CharacterGamblingTrader.op_Equality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void CharacterGamblingTrader_op_Equality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 == arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// CharacterGamblingTrader.op_Inequality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void CharacterGamblingTrader_op_Inequality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 != arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Coin.op_Implicit
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Coin_op_Implicit()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			bool conversion = ((bool)(arg0));
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Coin.op_Equality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Coin_op_Equality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 == arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Coin.op_Inequality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Coin_op_Inequality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 != arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// CurrentCoinsGambling.op_Implicit
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void CurrentCoinsGambling_op_Implicit()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			bool conversion = ((bool)(arg0));
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// CurrentCoinsGambling.op_Equality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void CurrentCoinsGambling_op_Equality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 == arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// CurrentCoinsGambling.op_Inequality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void CurrentCoinsGambling_op_Inequality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 != arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// DarkBackgroundHandler.op_Implicit
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void DarkBackgroundHandler_op_Implicit()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			bool conversion = ((bool)(arg0));
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// DarkBackgroundHandler.op_Equality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void DarkBackgroundHandler_op_Equality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 == arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// DarkBackgroundHandler.op_Inequality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void DarkBackgroundHandler_op_Inequality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 != arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// WheelOfFortuneHandler.op_Implicit
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void WheelOfFortuneHandler_op_Implicit()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			bool conversion = ((bool)(arg0));
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// WheelOfFortuneHandler.op_Equality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void WheelOfFortuneHandler_op_Equality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 == arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// WheelOfFortuneHandler.op_Inequality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void WheelOfFortuneHandler_op_Inequality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 != arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+>>>>>>> shop
 		// ItemData.op_Implicit
 		[global::UnityEngine.Scripting.PreserveAttribute()]
 		public static void ItemData_op_Implicit()
@@ -8866,9 +9087,15 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
+<<<<<<< HEAD
 		// MenuMusicManager.op_Implicit
 		[global::UnityEngine.Scripting.PreserveAttribute()]
 		public static void MenuMusicManager_op_Implicit()
+=======
+		// MenuVolumeManager.op_Implicit
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void MenuVolumeManager_op_Implicit()
+>>>>>>> shop
 		{
 			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
 			bool conversion = ((bool)(arg0));
@@ -8877,9 +9104,15 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
+<<<<<<< HEAD
 		// MenuMusicManager.op_Equality
 		[global::UnityEngine.Scripting.PreserveAttribute()]
 		public static void MenuMusicManager_op_Equality()
+=======
+		// MenuVolumeManager.op_Equality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void MenuVolumeManager_op_Equality()
+>>>>>>> shop
 		{
 			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
 			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
@@ -8889,9 +9122,50 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
+<<<<<<< HEAD
 		// MenuMusicManager.op_Inequality
 		[global::UnityEngine.Scripting.PreserveAttribute()]
 		public static void MenuMusicManager_op_Inequality()
+=======
+		// MenuVolumeManager.op_Inequality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void MenuVolumeManager_op_Inequality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 != arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Settings.op_Implicit
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Settings_op_Implicit()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			bool conversion = ((bool)(arg0));
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Settings.op_Equality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Settings_op_Equality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 == arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// Settings.op_Inequality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void Settings_op_Inequality()
+>>>>>>> shop
 		{
 			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
 			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
@@ -8936,6 +9210,44 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
+<<<<<<< HEAD
+=======
+		// SliderHoverChange.op_Implicit
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void SliderHoverChange_op_Implicit()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			bool conversion = ((bool)(arg0));
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// SliderHoverChange.op_Equality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void SliderHoverChange_op_Equality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 == arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// SliderHoverChange.op_Inequality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void SliderHoverChange_op_Inequality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 != arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+>>>>>>> shop
 		// MeleePrefab.op_Implicit
 		[global::UnityEngine.Scripting.PreserveAttribute()]
 		public static void MeleePrefab_op_Implicit()
