@@ -6,26 +6,30 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {   
     private Canvas settingsCanvas;
+    private Canvas introCanvas;
 
     void Start()
     {
         settingsCanvas = GameObject.Find("SettingsCanvas").GetComponent<Canvas>();
         settingsCanvas.enabled = false;
+        introCanvas = GameObject.Find("IntroCanvas").GetComponent<Canvas>();
     }
     
     public void PlayGame()
     {   
-        SceneManager.LoadScene("Scenes/Matthias Playground/stage1.1");
+        SceneManager.LoadScene("stage1.2");
     }
     
     public void OpenSettings()
     {
         if (settingsCanvas.enabled == false)
-        {
+        {   
+            introCanvas.enabled = false;
             settingsCanvas.enabled = true;
         }
         else
-        {
+        {   
+            introCanvas.enabled = true;
             settingsCanvas.enabled = false;
         }
         

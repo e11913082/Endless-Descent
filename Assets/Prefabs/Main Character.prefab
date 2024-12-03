@@ -25,6 +25,8 @@ GameObject:
   - component: {fileID: 7445903141468337987}
   - component: {fileID: 8108686635482222492}
   - component: {fileID: 9126783904486958396}
+  - component: {fileID: 4112755052662951865}
+  - component: {fileID: 6670824074277398997}
   m_Layer: 22
   m_Name: Main Character
   m_TagString: Player
@@ -70,7 +72,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0c27ac3ebde03834085920058f140006, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -90,7 +92,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -105541197
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 524369923, guid: 458e7f19f297df34f83189adbe058367, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -212,6 +214,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_id: 1
   invulnerable: 0
+  coinPrefab: {fileID: 0}
+  damageGrunts: []
 --- !u!114 &7564183154885829875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,7 +241,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1173577608035208917}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43478abf9b5ed9d4a834065471fc4607, type: 3}
   m_Name: 
@@ -333,6 +337,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inPickupRange: 0
+  weaponHintCounter: 0
+  weaponHintMaxCounter: 3
 --- !u!114 &7445903141468337987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +381,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d8a40686cc90143bba3edf7a4fcbe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4112755052662951865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173577608035208917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b809d1a6a4c4a30a05f551742f2d29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chestHintCounter: 0
+  chestHintMaxCounter: 3
+--- !u!114 &6670824074277398997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173577608035208917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d6e5bba83d22b4c9b08682d184731e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  traderHintCounter: 0
+  traderHintMaxCounter: 3
 --- !u!1 &5495001365235276540
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,15 +525,16 @@ MonoBehaviour:
   maxHealth: 100
   healthRegen: 0.5
   currentHealth: 50
-  moveSpeed: 1
+  moveSpeed: 2
   damage: 20
   attackRange: 1.5
-  attackSpeed: 1
+  attackSpeed: 0.7
   defense: 20
   fearIncrease: 1
   fearDecrease: 1
   currentFear: 0
   maxFear: 100
+  coins: 30
   equippedItems: []
   lastItem: {fileID: 0}
 --- !u!1 &6946326868374637809

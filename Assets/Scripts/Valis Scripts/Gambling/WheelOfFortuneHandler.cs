@@ -45,11 +45,11 @@ public class WheelOfFortuneHandler : MonoBehaviour
 
     private IEnumerator FadeOut(int wait)
     {
-        yield return new WaitForSeconds(wait);
+        yield return new WaitForSecondsRealtime(1f);
         for(float alpha = outText.alpha; alpha >= -1f; alpha -= 0.2f)
         {
             outText.alpha = alpha;
-            yield return new WaitForSeconds(0.1667f);
+            yield return new WaitForSecondsRealtime(0.1667f);
         }
     }
 

@@ -22,7 +22,7 @@ public class PlayerStats : MonoBehaviour
     public float currentFear = 0f;
     public float maxFear = 100f;
 
-    public float coins = 30f;
+    public float coins = 50f;
     
     private static Dictionary<int, PlayerStats> stats = new Dictionary<int, PlayerStats>();
     public List<ItemData> equippedItems = new List<ItemData>();

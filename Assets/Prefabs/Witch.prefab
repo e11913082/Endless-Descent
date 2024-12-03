@@ -21,12 +21,11 @@ GameObject:
   - component: {fileID: 315604755546}
   - component: {fileID: 3768158010330934186}
   - component: {fileID: 4694262215316790272}
-  - component: {fileID: 5237827880173265806}
   - component: {fileID: 7445903141468337987}
   - component: {fileID: 8108686635482222492}
   - component: {fileID: 9126783904486958396}
   - component: {fileID: 1491575795168080706}
-  m_Layer: 22
+  m_Layer: 25
   m_Name: Witch
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -215,6 +214,7 @@ MonoBehaviour:
   invulnerable: 0
   coinPrefab: {fileID: 5255464759237831223, guid: 7e788f68e9ff0c24694ca442fb68fed6,
     type: 3}
+  damageGrunts: []
 --- !u!114 &7564183154885829875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,19 +323,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inLight: 0
---- !u!114 &5237827880173265806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173577608035208917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4210dc3e068b1ff4a8eacf2ade9177e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inPickupRange: 0
 --- !u!114 &7445903141468337987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,7 +385,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1747898611429827908}
-  m_Layer: 22
+  m_Layer: 25
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -432,7 +419,7 @@ GameObject:
   - component: {fileID: 874905840186940785}
   - component: {fileID: 4484567655778861406}
   - component: {fileID: 7150642369894865946}
-  m_Layer: 22
+  m_Layer: 25
   m_Name: Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -526,7 +513,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6713504646481309772}
   - component: {fileID: 5853688642407394140}
-  m_Layer: 22
+  m_Layer: 25
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
