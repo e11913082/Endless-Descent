@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -41,8 +42,8 @@ public class SettingsHoverChangeColor : MonoBehaviour, IPointerEnterHandler, IPo
     {
         buttonText.color = hoverColor;
         if (currentKeyText != null)
-        {
-            currentKeyText.color = defaultColor; 
+        {   
+            currentKeyText.color = hoverColor; 
         }
     }
 
@@ -51,7 +52,24 @@ public class SettingsHoverChangeColor : MonoBehaviour, IPointerEnterHandler, IPo
         buttonText.color = defaultColor;
         if (currentKeyText != null)
         {
-            currentKeyText.color = defaultColor; 
+            if (currentKeyText.text.Equals("None"))
+            {
+                currentKeyText.color = new Color(1f, 0.16f, 0.16f);
+            }
+            else
+            {
+                currentKeyText.color = defaultColor; 
+            }
+            
         }
+    }
+
+    private void OnEnable()
+    {
+        if (buttonText != null)
+        {
+            buttonText.color = defaultColor;
+        }
+        
     }
 }

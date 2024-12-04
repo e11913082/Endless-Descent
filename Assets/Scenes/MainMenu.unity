@@ -879,7 +879,7 @@ MonoBehaviour:
   leftText: {fileID: 699398136}
   attackButton: {fileID: 1782027194}
   attackText: {fileID: 2095868510}
-  interactButton: {fileID: 1782027194}
+  interactButton: {fileID: 1888939242}
   interactText: {fileID: 519276835}
   switchButton: {fileID: 407837231}
   switchText: {fileID: 405593486}

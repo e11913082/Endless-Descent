@@ -10,6 +10,7 @@ public class KeybindManager : MonoBehaviour
     public static KeybindManager instance;
     
     public Dictionary<string, KeyCode> keybinds = new Dictionary<string, KeyCode>();
+    private Dictionary<string, TextMeshProUGUI> keybindTexts = new Dictionary<string, TextMeshProUGUI>();
     
     // UI references
     public Button upButton;
@@ -54,6 +55,15 @@ public class KeybindManager : MonoBehaviour
         keybinds["interact"] = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("interact", KeyCode.E.ToString()));
         keybinds["switch"] = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("switch", KeyCode.Tab.ToString()));
         keybinds["drop"] = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("drop", KeyCode.Q.ToString()));
+        
+        keybindTexts["up"] = upText;
+        keybindTexts["down"] = downText;
+        keybindTexts["right"] = rightText;
+        keybindTexts["left"] = leftText;
+        keybindTexts["attack"] = attackText;
+        keybindTexts["interact"] = interactText;
+        keybindTexts["switch"] = switchText;
+        keybindTexts["drop"] = dropText;
     }
 
     // Start is called before the first frame update
@@ -78,7 +88,7 @@ public class KeybindManager : MonoBehaviour
         if (!string.IsNullOrEmpty(keyToBind))
         {
             ListenForKeyPress();
-        }   
+        }  
     }
 
     public void StartRebinding(string key, TextMeshProUGUI text)
@@ -105,8 +115,11 @@ public class KeybindManager : MonoBehaviour
             foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
             {
                 if (Input.GetKeyDown(key))
-                {
+                {   
+                    CheckKeybindUsed(key);
+                    
                     keybinds[keyToBind] = key;
+                    
                     
                     PlayerPrefs.SetString(keyToBind, key.ToString());
                     PlayerPrefs.Save();
@@ -131,8 +144,45 @@ public class KeybindManager : MonoBehaviour
         }
     }
 
+    private void CheckKeybindUsed(KeyCode key)
+    {
+       if (keybinds.ContainsValue(key) && keybinds[keyToBind] != key)
+       {
+           String usedKeyString = "";
+           foreach (KeyValuePair<string, KeyCode> pair in keybinds)
+           {
+               if (pair.Value == key)
+               {
+                   usedKeyString = pair.Key;
+                   break;
+               }
+           }
+           keybinds[usedKeyString] = KeyCode.None;
+           PlayerPrefs.SetString(usedKeyString, KeyCode.None.ToString());
+       }
+    }
+    
     void UpdateKeybindUI()
     {
+        foreach (var keybind in keybinds)
+        {
+            string action = keybind.Key;
+            KeyCode keyCode = keybind.Value;
+            TextMeshProUGUI keyText = keybindTexts[action];
+            
+            keyText.text = keyCode.ToString();
+
+            if (keyCode == KeyCode.None)
+            {
+                keyText.color = new Color(1f, 0.16f, 0.16f);
+            }
+            else
+            {
+                keyText.color = Color.black;
+            }
+        }
+        
+        
         upText.text = keybinds["up"].ToString();
         downText.text = keybinds["down"].ToString();
         rightText.text = keybinds["right"].ToString();
