@@ -1614,8 +1614,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.015349984, y: 0.59865, z: 0}
-    m_Extent: {x: 0.65985, y: 0.97685003, z: 0}
+    m_Center: {x: 0.014750004, y: 0.5992, z: 0}
+    m_Extent: {x: 0.65995, y: 0.97669995, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -4529,25 +4529,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 16322213765465486, guid: b281043a8b94e764884d945c3f9a71d9,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 7ff77aac75ca00c41bfc68396aed3f3f, type: 2}
     - target: {fileID: 1173577608035208917, guid: b281043a8b94e764884d945c3f9a71d9,
         type: 3}
       propertyPath: m_Name
       value: Main Character
-      objectReference: {fileID: 0}
-    - target: {fileID: 1211063031471900547, guid: b281043a8b94e764884d945c3f9a71d9,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1211063031471900547, guid: b281043a8b94e764884d945c3f9a71d9,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2902257392719249671, guid: b281043a8b94e764884d945c3f9a71d9,
         type: 3}
