@@ -1,30 +1,10 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MenuVolumeManager : MonoBehaviour
-{   
-    public static MenuVolumeManager Instance;
-    
-    public AudioSource backgroundMusicSource;
-    public AudioSource effectAudioSource; // Reference to the Audio Source for background music
-    public Slider musicSlider;
-    public Slider effectSlider;
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-        
-    }
+public class MenuMusicManager : MonoBehaviour
+{
+    public AudioSource backgroundMusicSource;  // Reference to the Audio Source for background music
+    public Slider volumeSlider;                // Reference to the Slider
 
     void Start()
     {
@@ -34,19 +14,14 @@ public class MenuVolumeManager : MonoBehaviour
             backgroundMusicSource = GetComponent<AudioSource>();
             backgroundMusicSource.volume = 1f;
         }
-        
+
         // Initialize the slider value with the AudioSource's current volume
-        if (musicSlider != null)
+        if (volumeSlider != null)
         {
-            musicSlider.value = backgroundMusicSource.volume;
-            musicSlider.onValueChanged.AddListener(SetVolumeMusic);
+            volumeSlider.value = backgroundMusicSource.volume;
+            volumeSlider.onValueChanged.AddListener(SetVolume);
         }
 
-        if (effectSlider != null)
-        {
-            effectSlider.onValueChanged.AddListener(SetVolumeEffect);
-        }
-        
         if (!backgroundMusicSource.isPlaying)
         {
             backgroundMusicSource.Play();
@@ -54,36 +29,26 @@ public class MenuVolumeManager : MonoBehaviour
         
     }
 
-    public void SetVolumeMusic(float volume)
+    public void SetVolume(float volume)
     {
         backgroundMusicSource.volume = volume;
         PlayerPrefs.SetFloat("MusicVolume", volume);  // Save volume setting for persistence
         
-        Debug.Log("Music Volume set: " + backgroundMusicSource.volume);
-    }
-
-    public void SetVolumeEffect(float volume)
-    {
-        PlayerPrefs.SetFloat("EffectVolume", volume);
-        
-        Debug.Log("Effect Volume set: " + backgroundMusicSource.volume);
+        Debug.Log("Volume set: " + backgroundMusicSource.volume);
     }
 
     void OnEnable()
     {
         // Load volume from PlayerPrefs when the scene starts
-        float savedMusicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);  // Default value is 0.5 if not set
+        float savedVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);  // Default value is 0.5 if not set
         if (backgroundMusicSource != null)
         {
-            backgroundMusicSource.volume = savedMusicVolume;
+            backgroundMusicSource.volume = savedVolume;
         }
-        Debug.Log("Music Volume set: " + backgroundMusicSource.volume);
-        if (musicSlider != null)
+        Debug.Log("Volume set: " + backgroundMusicSource.volume);
+        if (volumeSlider != null)
         {
-            musicSlider.value = savedMusicVolume;
+            volumeSlider.value = savedVolume;
         }
-        
-        
-        
     }
 }

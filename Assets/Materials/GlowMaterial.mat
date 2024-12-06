@@ -42,7 +42,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _Intensity: 0.59247136
+    - _Intensity: 1.4569284
     m_Colors:
     - _Color: {r: 1, g: 0.83137256, b: 0.42745098, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}

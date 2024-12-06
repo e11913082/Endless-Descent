@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -23,8 +24,13 @@ public class SettingsHoverChangeColor : MonoBehaviour, IPointerEnterHandler, IPo
         if (buttonText != null)
         {
             buttonText.color = defaultColor;
-            currentKeyText.color = defaultColor;
+            if (currentKeyText != null)
+            {
+               currentKeyText.color = defaultColor; 
+            }
+            
         }
+           
         else
         {
             Debug.LogError("TextMeshProUGUI component is missing on the button.");
@@ -35,12 +41,35 @@ public class SettingsHoverChangeColor : MonoBehaviour, IPointerEnterHandler, IPo
     public void OnPointerEnter(PointerEventData eventData)
     {
         buttonText.color = hoverColor;
-        currentKeyText.color = hoverColor;
+        if (currentKeyText != null)
+        {   
+            currentKeyText.color = hoverColor; 
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         buttonText.color = defaultColor;
-        currentKeyText.color = defaultColor;
+        if (currentKeyText != null)
+        {
+            if (currentKeyText.text.Equals("None"))
+            {
+                currentKeyText.color = new Color(1f, 0.16f, 0.16f);
+            }
+            else
+            {
+                currentKeyText.color = defaultColor; 
+            }
+            
+        }
+    }
+
+    private void OnEnable()
+    {
+        if (buttonText != null)
+        {
+            buttonText.color = defaultColor;
+        }
+        
     }
 }

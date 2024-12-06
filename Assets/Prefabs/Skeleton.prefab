@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 315604755546}
   - component: {fileID: 3768158010330934186}
   - component: {fileID: 4694262215316790272}
-  - component: {fileID: 5237827880173265806}
   - component: {fileID: 7445903141468337987}
   - component: {fileID: 8108686635482222492}
   - component: {fileID: 9126783904486958396}
@@ -70,7 +69,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0c27ac3ebde03834085920058f140006, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -212,6 +211,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_id: 1
   invulnerable: 0
+  coinPrefab: {fileID: 5255464759237831223, guid: 7e788f68e9ff0c24694ca442fb68fed6,
+    type: 3}
+  damageGrunts: []
 --- !u!114 &7564183154885829875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,19 +322,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inLight: 0
---- !u!114 &5237827880173265806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173577608035208917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4210dc3e068b1ff4a8eacf2ade9177e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inPickupRange: 0
 --- !u!114 &7445903141468337987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499,6 +488,7 @@ MonoBehaviour:
   fearDecrease: 1
   currentFear: 0
   maxFear: 100
+  coins: 30
   equippedItems: []
   lastItem: {fileID: 0}
 --- !u!1 &6946326868374637809

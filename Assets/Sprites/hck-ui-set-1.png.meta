@@ -123,22 +123,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hck-ui-set-1_15
+      name: hck-ui-set-1_0
       rect:
         serializedVersion: 2
-        x: 130
-        y: 0
+        x: 66
+        y: 64
         width: 60
         height: 40
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0bda4b3b759297d79764a358f39db39
-      internalID: 1522323524
+      spriteID: 82eb7ce253023c461980e59246408fd2
+      internalID: 2021104140
       vertices: []
       indices: 
       edges: []
@@ -154,26 +154,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      hck-ui-set-1_0: -604485709
-      hck-ui-set-1_1: 1929589115
-      hck-ui-set-1_10: -1129907373
-      hck-ui-set-1_11: 1216501577
-      hck-ui-set-1_12: -1097015375
-      hck-ui-set-1_13: 653874232
-      hck-ui-set-1_14: -1226041832
-      hck-ui-set-1_15: 1522323524
-      hck-ui-set-1_16: 928892763
-      hck-ui-set-1_17: -96301023
-      hck-ui-set-1_18: -359255754
-      hck-ui-set-1_19: -1876884028
-      hck-ui-set-1_2: 747676022
-      hck-ui-set-1_3: -1173368141
-      hck-ui-set-1_4: -250416551
-      hck-ui-set-1_5: 20469244
-      hck-ui-set-1_6: 1084961154
-      hck-ui-set-1_7: -1949274553
-      hck-ui-set-1_8: 1563470869
-      hck-ui-set-1_9: 69612718
+      hck-ui-set-1_0: 2021104140
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

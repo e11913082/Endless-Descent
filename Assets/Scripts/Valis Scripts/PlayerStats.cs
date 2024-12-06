@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -23,6 +21,8 @@ public class PlayerStats : MonoBehaviour
     public float fearDecrease = 0.5f;
     public float currentFear = 0f;
     public float maxFear = 100f;
+
+    public float coins = 50f;
     
     private static Dictionary<int, PlayerStats> stats = new Dictionary<int, PlayerStats>();
     public List<ItemData> equippedItems = new List<ItemData>();
@@ -121,6 +121,59 @@ public class PlayerStats : MonoBehaviour
         }
         
     }
+
+    public void AddCoins(float amount)
+    {
+        coins += amount;
+    }
+
+    public float GetCoins()
+    {
+        return coins;
+    }
+
+    public void RemoveCoins(float amount)
+    {
+        coins = Math.Max(coins - amount, 0);
+    }
+    
+    // Gambling Heaven
+
+    public String WheelOfFortune(int segmentIndex, ItemData rewardItem)
+    {
+        
+        if (rewardItem != null)
+        {
+            PickupItem(rewardItem);
+        }
+        
+        switch (segmentIndex)
+        {
+            case 0:
+            case 2:
+            case 4:
+            case 6:
+                return "You won a common Item!";
+            case 3:
+            case 7:
+                coins = Mathf.Max(coins - 20, 0);
+                if (coins == 0)
+                {
+                    return "You lose the rest of your lantern oil!";
+                }
+                return "You lose 20 lantern oil!";
+            case 1:
+                coins += 20;
+                return "You won a bottle of lantern oil!";
+            case 5:
+                return "You won a rare item!";
+            default:
+                return "MISSING SEGMENT!";
+        }
+
+        
+    }
+    
     
     public void resetStats()
     {

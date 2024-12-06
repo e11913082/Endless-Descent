@@ -5,37 +5,29 @@ using UnityEngine;
 
 public class OrderLayer : MonoBehaviour
 {
-    private SpriteRenderer spriteRendererUpper;
-    private SpriteRenderer spriteRendererLower;
-    
+    private SpriteRenderer spriteRenderer;
+    private Transform characterTransform;
 
-    private void Start()
+    public float layerOffset;
+    // Start is called before the first frame update
+    void Start()
     {
-        Transform upper = transform.Find("Upper");
-        Transform lower = transform.Find("Lower");
-        
-
-        if (upper != null)
-        {
-            spriteRendererUpper = upper.GetComponent<SpriteRenderer>();
-        }
-
-        if (lower != null)
-        {
-            spriteRendererLower = lower.GetComponent<SpriteRenderer>();
-        }
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        characterTransform = GameObject.Find("/Main Character").transform;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void Update()
     {
-        if (spriteRendererUpper != null)
+        if (characterTransform.position.y > transform.position.y + layerOffset)
         {
-            spriteRendererUpper.sortingOrder = Mathf.RoundToInt(-transform.position.y * 100);
+            spriteRenderer.sortingLayerName = "Props";
+            spriteRenderer.sortingOrder = 1;
         }
-        if (spriteRendererLower != null)
+        else
         {
-            spriteRendererLower.sortingOrder = Mathf.RoundToInt(-transform.position.y * 100);
+            spriteRenderer.sortingLayerName = "Ground";
+            spriteRenderer.sortingOrder = 2;
         }
     }
 }

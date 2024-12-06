@@ -24,7 +24,7 @@ public class MeleePrefab : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        audioSource.volume = PlayerPrefs.GetFloat("EffectVolume");
     }
 
     public void Attack(Vector2 direction)

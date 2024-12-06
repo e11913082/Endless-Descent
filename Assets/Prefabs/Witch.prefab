@@ -21,14 +21,10 @@ GameObject:
   - component: {fileID: 315604755546}
   - component: {fileID: 3768158010330934186}
   - component: {fileID: 4694262215316790272}
-  - component: {fileID: 5237827880173265806}
   - component: {fileID: 7445903141468337987}
   - component: {fileID: 8108686635482222492}
   - component: {fileID: 9126783904486958396}
   - component: {fileID: 1491575795168080706}
-  - component: {fileID: 6187819734139708474}
-  - component: {fileID: 2402184436281440438}
-  - component: {fileID: 5772162614084830237}
   m_Layer: 25
   m_Name: Witch
   m_TagString: Player
@@ -187,7 +183,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.3, y: 0.5}
+  m_Size: {x: 0.3, y: 0.6}
   m_Direction: 0
 --- !u!114 &4512698490884665209
 MonoBehaviour:
@@ -216,6 +212,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_id: 0
   invulnerable: 0
+  coinPrefab: {fileID: 5255464759237831223, guid: 7e788f68e9ff0c24694ca442fb68fed6,
+    type: 3}
   damageGrunts: []
 --- !u!114 &7564183154885829875
 MonoBehaviour:
@@ -325,19 +323,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inLight: 0
---- !u!114 &5237827880173265806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173577608035208917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4210dc3e068b1ff4a8eacf2ade9177e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inPickupRange: 0
 --- !u!114 &7445903141468337987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,52 +374,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2b809d1a6a4c4a30a05f551742f2d29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6187819734139708474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173577608035208917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9102c88022309b79d8384e0d2c3b25d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inLight: 0
---- !u!114 &2402184436281440438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173577608035208917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b778273e4f15a5a89b4e0781a6c2e0a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meleePrefab: {fileID: 5873806722197866145, guid: ce6b3376b68bf9a5f8bf760a543ac183,
-    type: 3}
-  isAvailable: 1
-  Selected: 1
-  equippedWeapon: {fileID: 11400000, guid: 57583a8ed9bd23aa095e2a6ca50721f1, type: 2}
-  delay: 0
-  enemies:
-    serializedVersion: 2
-    m_Bits: 33554432
---- !u!114 &5772162614084830237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173577608035208917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7adbd2a6a2320cb3cbb5c24f8409896c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5495001365235276540
@@ -549,18 +488,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_id: 0
-  maxHealth: 100
-  healthRegen: 0.5
+  maxHealth: 50
+  healthRegen: 0
   currentHealth: 50
   moveSpeed: 2
   damage: 1
   attackRange: 1.5
-  attackSpeed: 1
-  defense: 10
-  fearIncrease: 1
-  fearDecrease: 1
+  attackSpeed: 0.5
+  defense: 0
+  fearIncrease: 0
+  fearDecrease: 0
   currentFear: 0
   maxFear: 100
+  coins: 30
   equippedItems: []
   lastItem: {fileID: 0}
 --- !u!1 &6946326868374637809

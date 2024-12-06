@@ -89,6 +89,8 @@ public class WeaponAttack : MonoBehaviour
 
        // LayerMask enemies = LayerMask.NameToLayer("Enemy");
         Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos, 0.5f); // , enemies); // the layer filtering here does not work for some reason
+        print(enemiesToDamage.Length);
+        print(LayerMask.LayerToName(enemies));
 
         MeleePrefab melee = Instantiate(inventory.equippedWeapon.projectilePrefab, attackPos, transform.rotation)
             .GetComponent<MeleePrefab>();
@@ -106,7 +108,7 @@ public class WeaponAttack : MonoBehaviour
             }
             
         }
-
+        
         if (hitEnemy is true)
         {
             melee.PlayHitSound();
