@@ -35,7 +35,7 @@ public class WeaponAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (character.GetAttackDown())
+        if (character.GetAttackDown() && !character.IsDead())
         {
             if (inventory.equippedWeapon != null)
             {
@@ -89,8 +89,6 @@ public class WeaponAttack : MonoBehaviour
 
        // LayerMask enemies = LayerMask.NameToLayer("Enemy");
         Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos, 0.5f); // , enemies); // the layer filtering here does not work for some reason
-        print(enemiesToDamage.Length);
-        print(LayerMask.LayerToName(enemies));
 
         MeleePrefab melee = Instantiate(inventory.equippedWeapon.projectilePrefab, attackPos, transform.rotation)
             .GetComponent<MeleePrefab>();

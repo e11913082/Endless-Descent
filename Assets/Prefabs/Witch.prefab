@@ -25,6 +25,8 @@ GameObject:
   - component: {fileID: 8108686635482222492}
   - component: {fileID: 9126783904486958396}
   - component: {fileID: 1491575795168080706}
+  - component: {fileID: 349256660469757217}
+  - component: {fileID: 3476324244270177632}
   m_Layer: 25
   m_Name: Witch
   m_TagString: Player
@@ -183,7 +185,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.3, y: 0.6}
+  m_Size: {x: 0.3, y: 0.5}
   m_Direction: 0
 --- !u!114 &4512698490884665209
 MonoBehaviour:
@@ -376,6 +378,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2b809d1a6a4c4a30a05f551742f2d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chestHintCounter: 0
+  chestHintMaxCounter: 3
+--- !u!114 &349256660469757217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173577608035208917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9102c88022309b79d8384e0d2c3b25d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inLight: 0
+--- !u!114 &3476324244270177632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173577608035208917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7adbd2a6a2320cb3cbb5c24f8409896c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5495001365235276540
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,7 +523,7 @@ MonoBehaviour:
   moveSpeed: 2
   damage: 1
   attackRange: 1.5
-  attackSpeed: 0.5
+  attackSpeed: 1
   defense: 0
   fearIncrease: 0
   fearDecrease: 0

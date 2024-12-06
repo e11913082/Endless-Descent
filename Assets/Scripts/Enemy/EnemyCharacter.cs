@@ -139,10 +139,8 @@ public class EnemyCharacter : MonoBehaviour
 
         if (playerDirection.magnitude < combatDistance && targetVisible)
         {
-            if (!distanceWeapon)
-            {
-                controls.SetMove(Vector2.zero);
-            }
+            controls.SetMove(Vector2.zero);
+
             controls.SetMousePos(targetCharacter.transform.position);
             controls.SetAttack(true);
             return;

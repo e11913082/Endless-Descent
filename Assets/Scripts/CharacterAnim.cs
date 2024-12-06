@@ -34,8 +34,12 @@ namespace EndlessDescent
             //Anims
             if (!character.IsDead())
             {
-                animator.SetFloat("Speed", character.GetMove().magnitude);
-                side = character.GetSideAnim();
+                float speed = character.GetMove().magnitude;
+                animator.SetFloat("Speed", speed);
+                if (speed > 0.001)
+                {
+                    side = character.GetSideAnim();
+                }
                 animator.SetInteger("Side", side);
             }
 

@@ -51,7 +51,8 @@ namespace EndlessDescent
 
         void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.collider.gameObject != Shooter) 
+            //if (collision.collider.gameObject != Shooter) 
+            if (collision.collider.gameObject.layer == targetLayer) 
             {   
                 // enemy hit logic
                 PlayerCharacter player = Shooter.GetComponent<PlayerCharacter>();
