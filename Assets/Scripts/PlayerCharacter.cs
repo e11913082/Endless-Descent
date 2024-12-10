@@ -158,11 +158,11 @@ namespace EndlessDescent
                 side = Mathf.Sign(lookat.x);
             if (lookAngle < 45)
                 {sideAnim = 4;}
-            else if (45 <= lookAngle && lookAngle < 135 && lookat.x > 0)
+            else if (45 <= lookAngle && lookAngle <= 135 && lookat.x > 0)
                 {sideAnim = 1;}
-            else if (45 <= lookAngle && lookAngle < 135 && lookat.x <= 0)
+            else if (45 <= lookAngle && lookAngle <= 135 && lookat.x < 0)
                 {sideAnim = 3;}
-            else if (lookAngle >= 135)
+            else if (lookAngle > 135)
                 {sideAnim = 2;}
         }
 
