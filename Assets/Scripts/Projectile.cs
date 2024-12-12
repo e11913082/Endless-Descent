@@ -75,7 +75,6 @@ namespace EndlessDescent
             //destroys projectile on collision "Props" layer
             else if((destructionLayer.value & (1 << collision.collider.gameObject.layer)) != 0) 
             {
-                Debug.Log("hit");
                 Rigid.velocity = Vector2.zero;
                 Animator.SetBool("Hit", true);
                 audioSource.Stop();
