@@ -72,7 +72,8 @@ namespace EndlessDescent
                 AudioSource.PlayClipAtPoint(DestructionSound, transform.position, 1000);
                 Invoke("DestroyProjectile", DestructionDelay); 
             }
-            else if((destructionLayer.value & (1 << collision.collider.gameObject.layer)) != 0)
+            //destroys projectile on collision "Props" layer
+            else if((destructionLayer.value & (1 << collision.collider.gameObject.layer)) != 0) 
             {
                 Debug.Log("hit");
                 Rigid.velocity = Vector2.zero;
