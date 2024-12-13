@@ -103,10 +103,16 @@ public class WeaponAttack : MonoBehaviour
             float damage = PlayerStats.GetPlayerStats(character.player_id).damage;
             Collider2D eObject = enemiesToDamage[i];
             PlayerCharacter e = eObject.GetComponent<PlayerCharacter>();
+
+            if (e == null)
+            {
+                break;
+            }
+
             Vector2 enemyDirection = (e.transform.position - transform.position).normalized;
             bool withinAngle = Math.Abs(Vector2.Angle(direction, enemyDirection)) < 20;
 
-            if (e != null && e.gameObject.layer == enemies && withinAngle && !eObject.isTrigger)
+            if (e.gameObject.layer == enemies && withinAngle && !eObject.isTrigger)
             {
                 e.TakeDamage(damage, (e.transform.position - transform.position).normalized);
                 hitEnemy = true;

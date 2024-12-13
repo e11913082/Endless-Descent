@@ -947,7 +947,7 @@ PrefabInstance:
     - target: {fileID: 3776450486010772446, guid: 9eeee5e3bdbacdd479c5cab43e1026ab,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3776450486010772446, guid: 9eeee5e3bdbacdd479c5cab43e1026ab,
         type: 3}
@@ -972,7 +972,7 @@ PrefabInstance:
     - target: {fileID: 4553154174858028821, guid: 9eeee5e3bdbacdd479c5cab43e1026ab,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4553154174858028821, guid: 9eeee5e3bdbacdd479c5cab43e1026ab,
         type: 3}
@@ -1615,8 +1615,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.015249997, y: 0.5992, z: 0}
-    m_Extent: {x: 0.65945005, y: 0.97599995, z: 0}
+    m_Center: {x: 0.015199989, y: 0.59865, z: 0}
+    m_Extent: {x: 0.6596, y: 0.97665, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -3397,7 +3397,7 @@ PrefabInstance:
     - target: {fileID: 3776450486010772446, guid: 9eeee5e3bdbacdd479c5cab43e1026ab,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3776450486010772446, guid: 9eeee5e3bdbacdd479c5cab43e1026ab,
         type: 3}

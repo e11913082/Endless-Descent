@@ -36,13 +36,13 @@ public class MeleePrefab : MonoBehaviour
     public void PlaySwingSound()
     {
         //audioSource.PlayOneShot(swingSounds[UnityEngine.Random.Range(0, swingSounds.Count)]);
-        AudioSource.PlayClipAtPoint(swingSounds[UnityEngine.Random.Range(0, swingSounds.Count)], transform.position);
+        AudioSource.PlayClipAtPoint(swingSounds[UnityEngine.Random.Range(0, swingSounds.Count)], transform.position, 10f);
     }
 
     public void PlayHitSound()
     {
         //audioSource.PlayOneShot(hitSounds[UnityEngine.Random.Range(0, hitSounds.Count)]);
-        AudioSource.PlayClipAtPoint(hitSounds[UnityEngine.Random.Range(0, hitSounds.Count)], transform.position);
+        AudioSource.PlayClipAtPoint(hitSounds[UnityEngine.Random.Range(0, hitSounds.Count)], transform.position, 1000f);
     }
 
     public void DestroySelf()
