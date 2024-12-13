@@ -73,6 +73,7 @@ public class PlayerStats : MonoBehaviour
         UpdateStats(newItem);
         lastItem = newItem;
         EventManager.TriggerEvent("ItemPickup");
+        Debug.Log("Itempickup event triggert");
     }
     
     public void UpdateStats(ItemData newItem)

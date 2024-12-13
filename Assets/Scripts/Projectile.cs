@@ -36,6 +36,8 @@ namespace EndlessDescent
             audioSource = GetComponent<AudioSource>();
             audioSource.PlayOneShot(CreationSound);
             origin = transform.position;
+
+            destructionLayer = LayerMask.GetMask("Props");
         }
 
         // Update is called once per frame
@@ -69,7 +71,7 @@ namespace EndlessDescent
                 {
                     collision.gameObject.GetComponent<PlayerCharacter>().TakeDamage(damage, shootDirection);
                 }
-                
+                Debug.Log("test");
                 Rigid.velocity = Vector2.zero;
                 Animator.SetBool("Hit", true);
                 audioSource.Stop();
