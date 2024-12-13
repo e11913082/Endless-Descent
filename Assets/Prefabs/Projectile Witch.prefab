@@ -144,7 +144,7 @@ MonoBehaviour:
   DestructionSound: {fileID: 8300000, guid: 1eb7cbaf61d23a64bbd36c0a38b5cb0c, type: 3}
   targetLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 65798199
 --- !u!50 &5961991461307746741
 Rigidbody2D:
   serializedVersion: 4

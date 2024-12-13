@@ -5,26 +5,33 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
+
 
 public class SidebarRefresher : MonoBehaviour
 {
-    private const string LF = "\n";
-    private const float delta = 0.1667f; //frame delta
-
     public int maximumDecimalPlaces = 1;
+    public Sprite upArrowGreen;
+    public Sprite downArrowGreen;
+    public Sprite downArrowRed;
+
+    private const string LF = "\n";
+    private const float DELTA = 0.01667f; //frame delta
+    private readonly float VERTSTATPADDING = 0.08f * Screen.height; //vetical distance between statChanges | measured in proportion to the screenheigth
+    
     private string stringMask; //used for limiting the decimal places without rounding
 
-    private TextMeshProUGUI statsTmp;
-    private TextMeshProUGUI statChangeTmp;
-
-    private StringBuilder statStrB;
     private StringBuilder statChangeStrB; //displays stat adjustment on itempickup
 
     private PlayerStats stats;
     private UnityAction onItemPickup;
     
-    private Coroutine fadeCoroutine;
+    private GameObject sampleStatChange;
+
     
+
+
+    private static Vector2 statPosition;
 
     private void Awake()
     {
@@ -33,25 +40,16 @@ public class SidebarRefresher : MonoBehaviour
 
     void Start()
     {
-        statsTmp = GameObject.Find("Hud/SideBar/Stats").GetComponent<TextMeshProUGUI>();
-        statChangeTmp = GameObject.Find("Hud/SideBar/ChangeStats").GetComponent<TextMeshProUGUI>();
-
-        statStrB = new StringBuilder();
         statChangeStrB = new StringBuilder();
 
         stats = PlayerStats.GetPlayerStats(Hud.GetPlayerId());
         stringMask = Hud.CreateStringMask(maximumDecimalPlaces);
 
-        //set the appropriate size for stats-textmesh and backround
-        //Vector2 preferredValues = statsTmp.GetPreferredValues();
-        //GameObject.Find("Hud/SideBar/Stats/Background").GetComponent<RectTransform>().sizeDelta = preferredValues;
+        sampleStatChange = GameObject.Find("Hud V2/SideBar/SampleStatChange");
+        sampleStatChange.SetActive(false);
+        statPosition = sampleStatChange.transform.position;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        refreshStats();
-    }
+   
 
     private void OnEnable()
     {
@@ -63,90 +61,76 @@ public class SidebarRefresher : MonoBehaviour
         EventManager.StopListening("ItemPickup", onItemPickup);
     }
 
-
-    //Dirty approach  TODO find a more modular but still performant solution for creating stat strings
-    void refreshStats() 
+    void ChangeAlphaOfStatChange(GameObject parentObj, float alpha)
     {
-        statStrB.Clear();
-        statStrB.Append("Movespeed: ");
-        statStrB.Append(stats.moveSpeed.ToString(stringMask));
-        statStrB.Append(LF);
+        Image image = parentObj.GetComponentInChildren<Image>();
+        image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
 
-        statStrB.Append("Atk: ");
-        statStrB.Append(stats.damage.ToString(stringMask));
-        statStrB.Append(LF);
-
-        statStrB.Append("Atkrange: ");
-        statStrB.Append(stats.attackRange.ToString(stringMask));
-        statStrB.Append(LF);
-
-        statStrB.Append("Atkspeed: ");
-        statStrB.Append(stats.attackSpeed.ToString(stringMask));
-        statStrB.Append(LF);
-
-        statStrB.Append("Fearinc: ");
-        statStrB.Append(stats.fearIncrease.ToString(stringMask));
-        statStrB.Append(LF);
-
-        statStrB.Append("Feardec: ");
-        statStrB.Append(stats.fearDecrease.ToString(stringMask));
-        statsTmp.text = statStrB.ToString();
+        TextMeshProUGUI text = parentObj.GetComponentInChildren<TextMeshProUGUI>();
+        text.alpha = alpha;
     }
 
     void ShowChangedStats()
     {
-        Dictionary<string, float> statChangesDict = stats.lastItem.GetAttributesDictionary();
-        statChangeStrB.Clear();
-        AppendStatChange("moveSpeed");
-        AppendStatChange("damage");
-        AppendStatChange("attackRange");
-        AppendStatChange("attackSpeed");
-        AppendStatChange("fearIncrease");
-        AppendStatChange("fearDecrease");
-
-        statChangeTmp.text = statChangeStrB.ToString();
-        statChangeTmp.alpha = 1f; //make statChanges visible
-
-        if (fadeCoroutine != null)
+        foreach (KeyValuePair<string, float> statChange in stats.lastItem.GetAttributesDictionary())
         {
-            StopCoroutine(fadeCoroutine);
+            GameObject newStatChange = CreateStatChange(statChange.Key, statChange.Value);
+            StartCoroutine(DisplayStatChange(newStatChange));
         }
-        
-        fadeCoroutine = StartCoroutine(FadeOut(wait: 2));
+    }
 
+    GameObject CreateStatChange(string name, float value)
+    {
+        GameObject outputObj = Instantiate(sampleStatChange);
+        TextMeshProUGUI statsText = outputObj.transform.Find("Text").GetComponent<TextMeshProUGUI>();
+        StringBuilder textSb = new StringBuilder();
 
-
-        void AppendStatChange(string statName)
+        if (value > 0)
         {
-            if (statChangesDict.TryGetValue(statName, out float statModifier))
-            {
-                if (statModifier > 0)
-                {
-                    statChangeStrB.Append("<color=green>+");
-                    statChangeStrB.Append(statModifier.ToString(stringMask));
-                    
-                }
-                else
-                {
-                    statChangeStrB.Append("<color=red>");
-                    statChangeStrB.Append(statModifier.ToString(stringMask));
-                }
-
-                statChangeStrB.Append("%");
-                statChangeStrB.Append("</color>");
-            }
-            
-            statChangeStrB.Append(LF);
+            textSb.Append("<color=green>+");
+            outputObj.transform.Find("Image").GetComponent<Image>().sprite = upArrowGreen;
+        }
+        else if (name == "fearIncrease") // value <= 0
+        {
+            textSb.Append("<color=green>");
+            outputObj.transform.Find("Image").GetComponent<Image>().sprite = downArrowGreen;
+        }
+        else
+        {
+            textSb.Append("<color=red>");
+            outputObj.transform.Find("Image").GetComponent<Image>().sprite = downArrowRed;
         }
 
-        IEnumerator FadeOut(int wait) //fades out statChanged string after "wait" seconds
+        textSb.Append(value.ToString(stringMask));
+        textSb.Append("% ");
+        textSb.Append(LF);
+        textSb.Append(name);
+        statChangeStrB.Append("</color>");
+
+        statsText.text = textSb.ToString();
+        return outputObj;
+    }
+
+    
+    IEnumerator DisplayStatChange(GameObject statChange)
+    {
+        statChange.transform.SetParent(gameObject.transform, false);
+        statChange.transform.position = statPosition;
+        statPosition.y -= VERTSTATPADDING;
+        ChangeAlphaOfStatChange(statChange, 0);
+        statChange.SetActive(true);
+        for (float alpha = 0; alpha <= 1; alpha += 0.15f)
         {
-            yield return new WaitForSeconds(wait);
-            for(float alpha = statChangeTmp.alpha; alpha >= -1f; alpha -= 0.2f)
-            {
-                statChangeTmp.alpha = alpha;
-                yield return new WaitForSeconds(delta);
-            }
+            ChangeAlphaOfStatChange(statChange, alpha);
+            yield return new WaitForSeconds(DELTA);
         }
+        yield return new WaitForSeconds(3f);
+        for(float alpha = 1; alpha >= 0; alpha -= 0.05f)
+        {
+            ChangeAlphaOfStatChange(statChange, alpha);
+            yield return new WaitForSeconds(DELTA);
+        }
+        Destroy(statChange);
+        statPosition.y += VERTSTATPADDING;
     }
 }

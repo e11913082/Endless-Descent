@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6162875901501218452}
   - component: {fileID: 3776450486010772446}
   - component: {fileID: 6254343113292258}
-  m_Layer: 19
+  m_Layer: 21
   m_Name: pipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8915100342976601435}
-  m_Layer: 19
+  m_Layer: 21
   m_Name: sampleLantern_mid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -300,7 +300,7 @@ GameObject:
   - component: {fileID: 4553154174858028821}
   - component: {fileID: 3363878770758575047}
   - component: {fileID: 7055294856880387373}
-  m_Layer: 19
+  m_Layer: 21
   m_Name: lantern
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -456,7 +456,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5472668496542499022}
   - component: {fileID: 6044168015624111236}
-  m_Layer: 19
+  m_Layer: 21
   m_Name: innerLight (optional)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

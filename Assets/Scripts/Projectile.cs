@@ -20,6 +20,7 @@ namespace EndlessDescent
         public AudioClip CreationSound;
         public AudioClip DestructionSound;
         public LayerMask targetLayer;
+        private LayerMask destructionLayer; 
         private Vector2 shootDirection;
         private Vector2 origin;
         // Start is called before the first frame update
@@ -74,6 +75,15 @@ namespace EndlessDescent
                 audioSource.Stop();
                 AudioSource.PlayClipAtPoint(DestructionSound, transform.position, 1000);
                 Invoke("DestroyProjectile", DestructionDelay); 
+            }
+            //destroys projectile on collision "Props" layer
+            else if((destructionLayer.value & (1 << collision.collider.gameObject.layer)) != 0) 
+            {
+                Rigid.velocity = Vector2.zero;
+                Animator.SetBool("Hit", true);
+                audioSource.Stop();
+                AudioSource.PlayClipAtPoint(DestructionSound, transform.position, 1000);
+                Invoke("DestroyProjectile", DestructionDelay);
             }
            
         }

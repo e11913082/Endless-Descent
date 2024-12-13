@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8742214525198923304}
   - component: {fileID: 1629818507438420470}
-  - component: {fileID: 5179442615289183711}
+  - component: {fileID: 4275890820096992212}
   m_Layer: 21
   m_Name: PF Plant - Tree 03
   m_TagString: Untagged
@@ -165,7 +165,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.34558892, y: 0.24378252}
   m_EdgeRadius: 0
---- !u!114 &5179442615289183711
+--- !u!114 &4275890820096992212
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5219745843317036380}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bd6a3435cb368ba0933a7083ce53504, type: 3}
+  m_Script: {fileID: 11500000, guid: 6fa92f26af4ea4145bc671238d88a342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5559778398057263045

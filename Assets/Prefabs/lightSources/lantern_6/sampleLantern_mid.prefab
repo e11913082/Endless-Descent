@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1137645122973668403}
   - component: {fileID: 564645922864220609}
   - component: {fileID: 2277247422841866091}
-  m_Layer: 19
+  m_Layer: 21
   m_Name: sampleLantern6_small (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 1277933809809756130}
   - component: {fileID: 1847494308241920528}
   - component: {fileID: 139594299045633210}
-  m_Layer: 19
+  m_Layer: 21
   m_Name: sampleLantern6_small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -512,7 +512,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3295680011779594054}
   - component: {fileID: 5996298582215305905}
-  m_Layer: 19
+  m_Layer: 21
   m_Name: innerLight (optional)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -594,7 +594,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3731517834327182487}
   - component: {fileID: 5567216578002301280}
-  m_Layer: 19
+  m_Layer: 21
   m_Name: innerLight (optional)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -675,7 +675,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3779469426534175025}
-  m_Layer: 19
+  m_Layer: 21
   m_Name: sampleLantern_mid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -712,7 +712,7 @@ GameObject:
   - component: {fileID: 1895308554854339326}
   - component: {fileID: 8909024244731770804}
   - component: {fileID: 5754944632119342472}
-  m_Layer: 19
+  m_Layer: 21
   m_Name: pipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}

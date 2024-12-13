@@ -47,6 +47,6 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-/UserSettings/
-*.meta
+[Uu]serSettings/
 memo_crash.*
+mono_crash.*
