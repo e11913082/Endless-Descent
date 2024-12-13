@@ -121,7 +121,7 @@ public class EnemyCharacter : MonoBehaviour
         if (targetCharacter.IsDestroyed())
         {
             controls.SetAttack(false);
-            state = State.Idle;
+            state = State.AttackToIdle;
             return;
         }
 
