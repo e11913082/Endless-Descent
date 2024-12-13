@@ -11,6 +11,7 @@ namespace EndlessDescent
     public class Projectile : MonoBehaviour
     {
         public float Speed;
+        public float Range = 4f;
         private Rigidbody2D Rigid;
         private Animator Animator;
         public float DestructionDelay;
@@ -21,6 +22,7 @@ namespace EndlessDescent
         public LayerMask targetLayer;
         private LayerMask destructionLayer; 
         private Vector2 shootDirection;
+        private Vector2 origin;
         // Start is called before the first frame update
         void Start()
         {
@@ -33,14 +35,16 @@ namespace EndlessDescent
             Animator = GetComponent<Animator>();
             audioSource = GetComponent<AudioSource>();
             audioSource.PlayOneShot(CreationSound);
-
-            destructionLayer = (1 << LayerMask.NameToLayer("Props"));
+            origin = transform.position;
         }
 
         // Update is called once per frame
         void Update()
         {
-
+            if (((Vector2) transform.position - origin).magnitude > Range)
+            {
+                Destroy(gameObject);
+            }
         }
 
         public void Shoot(Vector2 direction, LayerMask target)

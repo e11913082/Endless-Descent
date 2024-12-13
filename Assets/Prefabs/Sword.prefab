@@ -121,9 +121,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swingSounds:
-  - {fileID: 8300000, guid: 673042f3430dd3c44b393d951846b3b9, type: 3}
+  - {fileID: 8300000, guid: 948b94a49dbcae64094be70069a7a2ee, type: 3}
   hitSounds:
-  - {fileID: 8300000, guid: cc65dcdb20d100d418da53f0a088031c, type: 3}
+  - {fileID: 8300000, guid: 70da1eeec76a97f4598ea233493f0026, type: 3}
 --- !u!82 &-8858461078256786065
 AudioSource:
   m_ObjectHideFlags: 0

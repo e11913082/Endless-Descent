@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using EndlessDescent;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponAttack : MonoBehaviour
@@ -88,7 +91,7 @@ public class WeaponAttack : MonoBehaviour
         Vector3 attackPos = transform.position + new Vector3(direction.x, direction.y, 0) * stats.attackRange;
 
        // LayerMask enemies = LayerMask.NameToLayer("Enemy");
-        Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos, 0.5f); // , enemies); // the layer filtering here does not work for some reason
+        Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos, stats.attackRange); // , enemies); // the layer filtering here does not work for some reason
 
         MeleePrefab melee = Instantiate(inventory.equippedWeapon.projectilePrefab, attackPos, transform.rotation)
             .GetComponent<MeleePrefab>();
@@ -98,8 +101,18 @@ public class WeaponAttack : MonoBehaviour
         for (int i = 0; i < enemiesToDamage.Length; i++)
         {
             float damage = PlayerStats.GetPlayerStats(character.player_id).damage;
-            PlayerCharacter e = enemiesToDamage[i].GetComponent<PlayerCharacter>();
-            if (e != null && e.gameObject.layer == enemies)
+            Collider2D eObject = enemiesToDamage[i];
+            PlayerCharacter e = eObject.GetComponent<PlayerCharacter>();
+
+            if (e == null)
+            {
+                break;
+            }
+
+            Vector2 enemyDirection = (e.transform.position - transform.position).normalized;
+            bool withinAngle = Math.Abs(Vector2.Angle(direction, enemyDirection)) < 20;
+
+            if (e.gameObject.layer == enemies && withinAngle && !eObject.isTrigger)
             {
                 e.TakeDamage(damage, (e.transform.position - transform.position).normalized);
                 hitEnemy = true;

@@ -26,7 +26,7 @@ public class PathFinder : MonoBehaviour
         }
         obstacleContactFilter = new ContactFilter2D() {
             useTriggers = false,
-            layerMask = ~ LayerMask.GetMask("Player"),
+            layerMask = ~ LayerMask.GetMask("Player", "Enemy"),
             useLayerMask = true
             };
         targetContactFilter = new ContactFilter2D() {
