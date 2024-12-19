@@ -7,6 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
+using System.Linq;
 
 /// <summary>
 /// Top down character movement
@@ -32,6 +33,8 @@ namespace EndlessDescent
         public UnityAction onHit;
         public GameObject coinPrefab;
         public List<AudioClip> damageGrunts;
+        public AudioClip stepSound;
+        public AudioClip dashSound;
         private Rigidbody2D rigid;
         private Animator animator;
         private AutoOrderLayer auto_order;
@@ -41,12 +44,12 @@ namespace EndlessDescent
         private bool weaponSwitch;
         private bool action_down;
         private bool weaponDrop;
-        private MeleeWeapon meleeWeapon;
         
         private bool is_dead = false;
         private Vector2 move;
         private Vector2 move_input;
         private bool attackDown;
+        private bool dashDown;
         
         private Vector2 lookat = Vector2.zero;
         private float side = 1f;
@@ -65,13 +68,17 @@ namespace EndlessDescent
         private SpriteRenderer spriteRenderer;
         private bool movementEnabled = true;
         private AudioSource audioSource;
+        private float lastStepTime;
+        private float lastDashTime;
+        private const float stepTime = 0.5f;
+        private LayerMask tmpForceReceiveLayers;
+        private LayerMask tmpForceSendLayers;
 
         void Awake()
         {
             rigid = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
             auto_order = GetComponent<AutoOrderLayer>();
-            meleeWeapon = GetComponent<MeleeWeapon>();
             buildup_manager = GetComponentInChildren<PlayerBuildupManager>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             audioSource = GetComponent<AudioSource>();
@@ -88,6 +95,11 @@ namespace EndlessDescent
         void Start()
         {
             max_hp = stats.MaxHealth;
+            if (PlayerPrefs.GetFloat("EffectVolume") == null || PlayerPrefs.GetFloat("EffectVolume")==0f)
+            {
+                PlayerPrefs.SetFloat("EffectVolume", 0.3f);
+            }
+            audioSource.volume = PlayerPrefs.GetFloat("EffectVolume");
         }
 
         private void Update()
@@ -126,6 +138,17 @@ namespace EndlessDescent
                 {
                     rigid.velocity = move;
                 }
+
+                if (move.magnitude > 0.001 && Time.time - lastStepTime > stepTime / stats.moveSpeed && stepSound!=null)
+                {
+                    lastStepTime = Time.time;
+                    audioSource.PlayOneShot(stepSound, 0.3f);
+                }
+
+                if (dashDown)
+                {
+                    Dash();
+                }
                             
             }
         }
@@ -144,11 +167,14 @@ namespace EndlessDescent
                 PlayerControls controls = PlayerControls.Get(player_id);
                 move_input = controls.GetMove();
                 attackDown = controls.GetAttackDown();
+                dashDown = controls.GetDashDown();
                 mouse_pos = controls.GetMousePos();
                 action_down = controls.GetActionDown();
                 weaponSwitch = controls.GetWeaponSwitch();
                 weaponDrop = controls.GetWeaponDrop();
             }
+
+
 
             //Update lookat side
             //if (move.magnitude > 0.1f)
@@ -179,7 +205,7 @@ namespace EndlessDescent
         
         public void TakeDamage(float damage, Vector2 hitDirection)
         {
-            if (!is_dead && !invulnerable && hit_timer > 0f)
+            if (!is_dead && !invulnerable) // && hit_timer > 0f)
             {
                 spriteRenderer.color = Color.red;
                 DamageSetBack(hitDirection);
@@ -235,6 +261,7 @@ namespace EndlessDescent
             rigid.AddForce(hitDirection * 100f, ForceMode2D.Impulse);
             Invoke("EnableMovement", 0.05f);
         }
+
         private void EnableMovement()
         {
             movementEnabled = true;
@@ -242,6 +269,42 @@ namespace EndlessDescent
         private void ResetRenderColor()
         {
             spriteRenderer.color = Color.white;
+        }
+        private void SetVulnerable()
+        {
+            invulnerable = false;
+        }
+        private void ResetForceLayers()
+        {
+            List<CapsuleCollider2D> capsules = GetComponentsInChildren<CapsuleCollider2D>().Where(go => go.gameObject != this.gameObject).ToList();
+            CapsuleCollider2D capsule = capsules[0];
+            capsule.forceSendLayers = tmpForceSendLayers;
+            capsule.forceReceiveLayers = tmpForceReceiveLayers;
+        }
+        private void Dash()
+        {
+            if (Time.time - lastDashTime > stats.dashCoolDown)
+            {
+                lastDashTime = Time.time;
+                audioSource.PlayOneShot(dashSound);
+                Color newColor = Color.white;
+                newColor.a = 0.5f;
+                spriteRenderer.color = newColor;
+                movementEnabled = false;
+                invulnerable = true;
+                List<CapsuleCollider2D> capsules = GetComponentsInChildren<CapsuleCollider2D>().Where(go => go.gameObject != this.gameObject).ToList();
+                CapsuleCollider2D capsule = capsules[0];
+                tmpForceReceiveLayers = capsule.forceReceiveLayers;
+                tmpForceSendLayers = capsule.forceSendLayers;
+                capsule.forceReceiveLayers = ~LayerMask.GetMask("Enemy");
+                capsule.forceSendLayers = ~LayerMask.GetMask("Enemy");
+                Vector2 direction = move.magnitude > 0 ? move.normalized: Vector2.up; 
+                rigid.AddForce(direction * 70f, ForceMode2D.Impulse);
+                Invoke("EnableMovement", 0.1f);
+                Invoke("ResetRenderColor", 0.1f);
+                Invoke("SetVulnerable", 0.1f);
+                Invoke("ResetForceLayers", 0.1f);
+            }
         }
 
         public void Kill()

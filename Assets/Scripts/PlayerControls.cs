@@ -22,6 +22,7 @@ namespace EndlessDescent
         public KeyCode attackKey;
         public KeyCode switchKey;
         public KeyCode dropKey;
+        public KeyCode dashKey;
 
         private Vector2 move = Vector2.zero;
         private bool action_press = false;
@@ -29,6 +30,7 @@ namespace EndlessDescent
         private bool attackPress = false;
         private bool weaponSwitch = false;
         private bool weaponDrop = false;
+        private bool dashPress = false;
         
         // mouse logic
         private Vector3 mouse_pos = Vector3.zero;
@@ -52,6 +54,7 @@ namespace EndlessDescent
                 action_key = KeybindManager.instance.keybinds["interact"];
                 switchKey = KeybindManager.instance.keybinds["switch"];
                 dropKey = KeybindManager.instance.keybinds["drop"];
+                dashKey = KeybindManager.instance.keybinds["dash"];
             }
             else
             {
@@ -63,6 +66,7 @@ namespace EndlessDescent
                 action_key = KeyCode.E;
                 switchKey = KeyCode.Tab;
                 dropKey = KeyCode.Q;
+                dashKey = KeyCode.LeftShift;
             }
 
             
@@ -93,6 +97,7 @@ namespace EndlessDescent
             action_hold = false;
             action_press = false;
             attackPress = false;
+            dashPress = false;
             weaponSwitch = false;
             weaponDrop = false;
             
@@ -110,6 +115,8 @@ namespace EndlessDescent
                 action_press = true;
             if (Input.GetKeyDown(attackKey))
                 attackPress = true;
+            if (Input.GetKeyDown(dashKey))
+                dashPress = true;
             if (Input.GetKeyDown(switchKey))
                 weaponSwitch = true;
             if (Input.GetKeyDown(dropKey))
@@ -143,6 +150,16 @@ namespace EndlessDescent
         public void SetAttack(bool attack)
         {
             attackPress = attack;
+        }
+
+        public bool GetDashDown()
+        {
+            return dashPress;
+        }
+
+        public void SetDash(bool dash)
+        {
+            dashPress = dash;
         }
 
         public bool GetWeaponDrop()
