@@ -551,6 +551,7 @@ MonoBehaviour:
   attackKey: 32
   switchKey: 9
   dropKey: 0
+  dashKey: 0
 --- !u!4 &177436655
 Transform:
   m_ObjectHideFlags: 0
@@ -586,6 +587,8 @@ MonoBehaviour:
   damage: 20
   attackRange: 1.5
   attackSpeed: 1
+  dashCoolDown: 0.5
+  attackAnimationSpeed: 3
   defense: 20
   fearIncrease: 1
   fearDecrease: 1
@@ -1481,6 +1484,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbeab85cbe3b90b41a444794aab794ef, type: 3}
+--- !u!1001 &910747487
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5873806722197866145, guid: ce6b3376b68bf9a5f8bf760a543ac183,
+        type: 3}
+      propertyPath: m_Name
+      value: Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185609380613232794, guid: ce6b3376b68bf9a5f8bf760a543ac183,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.12021011
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185609380613232794, guid: ce6b3376b68bf9a5f8bf760a543ac183,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.399151
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185609380613232794, guid: ce6b3376b68bf9a5f8bf760a543ac183,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.96286273
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185609380613232794, guid: ce6b3376b68bf9a5f8bf760a543ac183,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185609380613232794, guid: ce6b3376b68bf9a5f8bf760a543ac183,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185609380613232794, guid: ce6b3376b68bf9a5f8bf760a543ac183,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185609380613232794, guid: ce6b3376b68bf9a5f8bf760a543ac183,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185609380613232794, guid: ce6b3376b68bf9a5f8bf760a543ac183,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185609380613232794, guid: ce6b3376b68bf9a5f8bf760a543ac183,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185609380613232794, guid: ce6b3376b68bf9a5f8bf760a543ac183,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ce6b3376b68bf9a5f8bf760a543ac183, type: 3}
 --- !u!1001 &915335555
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1615,8 +1686,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.015199989, y: 0.59865, z: 0}
-    m_Extent: {x: 0.6596, y: 0.97665, z: 0}
+    m_Center: {x: 0.014649987, y: 0.59905, z: 0}
+    m_Extent: {x: 0.65905, y: 0.97615, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -2743,7 +2814,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.17, y: -0.85}
   m_SizeDelta: {x: 588, y: 574}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1205881113
@@ -10682,7 +10753,7 @@ Transform:
   m_GameObject: {fileID: 2038629006}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.94, y: 2.49, z: -0.9765957}
+  m_LocalPosition: {x: -2.94, y: 2.49, z: 0}
   m_LocalScale: {x: 0.31, y: 0.31, z: 0.31}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -10836,3 +10907,4 @@ SceneRoots:
   - {fileID: 1098782818}
   - {fileID: 1594989629}
   - {fileID: 953716608}
+  - {fileID: 910747487}

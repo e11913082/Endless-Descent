@@ -29,6 +29,8 @@ public class KeybindManager : MonoBehaviour
     public TextMeshProUGUI switchText;
     public Button dropButton;
     public TextMeshProUGUI dropText;
+    public Button dashButton;
+    public TextMeshProUGUI dashText;
     
     
     private string keyToBind = "";
@@ -55,6 +57,7 @@ public class KeybindManager : MonoBehaviour
         keybinds["interact"] = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("interact", KeyCode.E.ToString()));
         keybinds["switch"] = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("switch", KeyCode.Tab.ToString()));
         keybinds["drop"] = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("drop", KeyCode.Q.ToString()));
+        keybinds["drop"] = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("drop", KeyCode.LeftShift.ToString()));
         
         keybindTexts["up"] = upText;
         keybindTexts["down"] = downText;
@@ -64,6 +67,7 @@ public class KeybindManager : MonoBehaviour
         keybindTexts["interact"] = interactText;
         keybindTexts["switch"] = switchText;
         keybindTexts["drop"] = dropText;
+        keybindTexts["drop"] = dashText;
     }
 
     // Start is called before the first frame update
@@ -80,6 +84,7 @@ public class KeybindManager : MonoBehaviour
         interactButton.onClick.AddListener(() => StartRebinding("interact", interactText));
         switchButton.onClick.AddListener(() => StartRebinding("switch", switchText));
         dropButton.onClick.AddListener(() => StartRebinding("drop", dropText));
+        dashButton.onClick.AddListener(() => StartRebinding("dash", dropText));
     }
 
     // Update is called once per frame
@@ -105,6 +110,7 @@ public class KeybindManager : MonoBehaviour
         interactButton.gameObject.SetActive(false);
         switchButton.gameObject.SetActive(false);
         dropButton.gameObject.SetActive(false);
+        dashButton.gameObject.SetActive(false);
     }
     
     
@@ -137,6 +143,7 @@ public class KeybindManager : MonoBehaviour
                     interactButton.gameObject.SetActive(true);
                     switchButton.gameObject.SetActive(true);
                     dropButton.gameObject.SetActive(true);
+                    dashButton.gameObject.SetActive(true);
                     
                     break;
                 }
@@ -191,5 +198,6 @@ public class KeybindManager : MonoBehaviour
         interactText.text = keybinds["interact"].ToString();
         switchText.text = keybinds["switch"].ToString();
         dropText.text = keybinds["drop"].ToString();
+        dashText.text = keybinds["dash"].ToString();
     }
 }

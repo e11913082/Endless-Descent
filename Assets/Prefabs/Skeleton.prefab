@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1211063031471900547}
   - component: {fileID: 16322213765465486}
   - component: {fileID: 7863608268597491126}
-  - component: {fileID: 5873394128428277596}
   - component: {fileID: 4512698490884665209}
   - component: {fileID: 9059422318549555085}
   - component: {fileID: 7564183154885829875}
@@ -48,6 +47,7 @@ Transform:
   - {fileID: 1747898611429827908}
   - {fileID: 6713504646481309772}
   - {fileID: 6278054667809725440}
+  - {fileID: 8171276882289410695}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1211063031471900547
@@ -150,41 +150,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!70 &5873394128428277596
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173577608035208917}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.35}
-  m_Size: {x: 0.4, y: 0.2}
-  m_Direction: 0
 --- !u!114 &4512698490884665209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +180,8 @@ MonoBehaviour:
   coinPrefab: {fileID: 5255464759237831223, guid: 7e788f68e9ff0c24694ca442fb68fed6,
     type: 3}
   damageGrunts: []
+  stepSound: {fileID: 0}
+  dashSound: {fileID: 0}
 --- !u!114 &7564183154885829875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,10 +344,10 @@ CapsuleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -399,6 +366,73 @@ CapsuleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.00000023841858, y: -0.15}
   m_Size: {x: 0.4, y: 0.8}
+  m_Direction: 0
+--- !u!1 &4414876799806064671
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8171276882289410695}
+  - component: {fileID: 7007454190229232509}
+  m_Layer: 25
+  m_Name: RigidCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8171276882289410695
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4414876799806064671}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2902257392719249671}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &7007454190229232509
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4414876799806064671}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.35}
+  m_Size: {x: 0.4, y: 0.2}
   m_Direction: 0
 --- !u!1 &5495001365235276540
 GameObject:
@@ -486,6 +520,7 @@ MonoBehaviour:
   attackKey: 32
   switchKey: 9
   dropKey: 113
+  dashKey: 0
 --- !u!114 &4484567655778861406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,7 +553,9 @@ MonoBehaviour:
   moveSpeed: 1
   damage: 20
   attackRange: 1.5
-  attackSpeed: 1
+  attackSpeed: 2
+  dashCoolDown: 0.5
+  attackAnimationSpeed: 3
   defense: 20
   fearIncrease: 1
   fearDecrease: 1

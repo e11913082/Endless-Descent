@@ -15,6 +15,7 @@ namespace EndlessDescent
         private SpriteRenderer spriteRenderer;
         public bool flipSpriteOnTurn = false;
         private int side;
+        private PlayerStats stats;
 
         void Awake()
         {
@@ -22,6 +23,7 @@ namespace EndlessDescent
             character_item = GetComponent<CharacterHoldItem>();
             animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
+            stats = PlayerStats.GetPlayerStats(character.player_id);
         }
 
         void Start()
@@ -34,6 +36,7 @@ namespace EndlessDescent
             //Anims
             if (!character.IsDead())
             {
+                animator.SetFloat("AttackSpeed", stats.attackAnimationSpeed);
                 float speed = character.GetMove().magnitude;
                 animator.SetFloat("Speed", speed);
                 if (speed > 0.001)

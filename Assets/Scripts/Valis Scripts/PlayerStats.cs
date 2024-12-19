@@ -15,6 +15,8 @@ public class PlayerStats : MonoBehaviour
     public float damage = 20f;
     public float attackRange = 1.5f;
     public float attackSpeed = 1f;
+    public float dashCoolDown = 0.5f;
+    public float attackAnimationSpeed = 3;
     public float defense = 20f;
     
     public float fearIncrease= 1f;
