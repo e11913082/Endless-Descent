@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -8780125545295176397}
   - component: {fileID: 8692204171788628044}
   - component: {fileID: -5446096230055405762}
+  - component: {fileID: 5746860051160503763}
   m_Layer: 0
   m_Name: Projectile Witch
   m_TagString: Untagged
@@ -306,3 +307,60 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5746860051160503763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5844561221490569420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 1
+  m_LightType: 1
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.786
+  m_Color: {r: 0.099999905, g: 0, b: 1, a: 1}
+  m_Intensity: 3
+  m_LightVolumeIntensity: 1
+  m_LightVolumeIntensityEnabled: 0
+  m_ApplyToSortingLayers: 0000000003819490b391b5f9e4317d4c13db8f5913db8f590551691a
+  m_LightCookieSprite: {fileID: -1165984779, guid: 4bd7e27cfe517944aa33b51a2eb1ce0c,
+    type: 3}
+  m_DeprecatedPointLightCookieSprite: {fileID: 0}
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_OverlapOperation: 0
+  m_NormalMapDistance: 3
+  m_NormalMapQuality: 2
+  m_UseNormalMap: 0
+  m_ShadowIntensityEnabled: 0
+  m_ShadowIntensity: 0.75
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.75
+  m_LocalBounds:
+    m_Center: {x: 0.006950021, y: -0.006099999, z: 0}
+    m_Extent: {x: 0.61705, y: 0.5582, z: 0}
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 1
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.059816387, y: 0.0131236045, z: 0}
+  - {x: -0.11143257, y: -0.0041633816, z: 0}
+  - {x: -0.05902975, y: -0.023649085, z: 0}
+  - {x: 0.03791277, y: -0.062621094, z: 0}
+  - {x: 0.0911887, y: -0.064786434, z: 0}
+  - {x: 0.11477037, y: -0.043135732, z: 0}
+  - {x: 0.12350538, y: -0.0030820556, z: 0}
+  - {x: 0.11124516, y: 0.037551627, z: 0}
+  - {x: 0.09207224, y: 0.051801678, z: 0}
+  - {x: 0.04095923, y: 0.05094492, z: 0}

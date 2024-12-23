@@ -8,19 +8,19 @@ using UnityEngine;
 
 public class WeaponAttack : MonoBehaviour
 {
+    private HaloLogic halo;
     private CharacterWeaponInventory inventory;
     private PlayerCharacter character;
     private PlayerStats stats;
     private CharacterAnim characterAnim;
 
     private float lastUse;
-
-
     private LayerMask enemies;
 
     // Start is called before the first frame update
     void Start()
     {
+        halo = GetComponent<HaloLogic>();
         inventory = GetComponent<CharacterWeaponInventory>();
         character = GetComponent<PlayerCharacter>();
         stats = PlayerStats.GetPlayerStats(character.player_id);
@@ -50,6 +50,7 @@ public class WeaponAttack : MonoBehaviour
                         characterAnim.AnimateAttack(0, GetAttackSide());
                         lastUse = Time.time;
                         Invoke("UseDistance", inventory.equippedWeapon.delay);
+                        halo.OnMagicAttack();
                     }
                 } // melee weapon
                 else
@@ -59,6 +60,7 @@ public class WeaponAttack : MonoBehaviour
                         characterAnim.AnimateAttack(1, GetAttackSide());
                         lastUse = Time.time;
                         Invoke("UseMelee", inventory.equippedWeapon.delay);
+                        halo.OnMeleeAttack();
                     }
                 }
             }

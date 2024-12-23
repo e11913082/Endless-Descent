@@ -5,14 +5,16 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class LightUpnEnter : MonoBehaviour
+public class LightUpOnEnter : MonoBehaviour
 {
     private Light2D[] childLights;
     private List<float> intensitySteps = new List<float>();
     private int numSteps = 10;
+    private LayerMask playerLayer;
     void Start()
     {
         childLights = GetComponentsInChildren<Light2D>();
+        playerLayer = LayerMask.GetMask("Player");
         foreach (Light2D light in childLights)
         {
             intensitySteps.Add(light.intensity/numSteps);
@@ -22,9 +24,11 @@ public class LightUpnEnter : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log(other.gameObject.tag);
         //TODO play secret sound
-        if(other.CompareTag("Player"))
+        if ((playerLayer.value & (1 << other.gameObject.layer)) != 0)
         {
+            
             for(int i = 0; i < childLights.Count(); i++)
             {
                 StartCoroutine(TurnUpLight(childLights[i], intensitySteps[i]));

@@ -74,6 +74,9 @@ namespace EndlessDescent
         private LayerMask tmpForceReceiveLayers;
         private LayerMask tmpForceSendLayers;
 
+        // Other
+        private HaloLogic halo;
+
         void Awake()
         {
             rigid = GetComponent<Rigidbody2D>();
@@ -85,6 +88,7 @@ namespace EndlessDescent
             player_id = CharacterIdGenerator.GetCharacterId(gameObject, 0);
             character_list[player_id] = this;
             stats = PlayerStats.GetPlayerStats(player_id);
+            halo = gameObject.GetComponent<HaloLogic>();
         }
 
         void OnDestroy()
@@ -250,8 +254,8 @@ namespace EndlessDescent
                         if (onHit != null)
                             onHit.Invoke();
                     }
+                    halo.OnPlayerDamage();
                 }
-
             }
         }
 
