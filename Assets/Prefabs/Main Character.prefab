@@ -713,7 +713,7 @@ MonoBehaviour:
   maxHealth: 1000000
   healthRegen: 0.5
   currentHealth: 50
-  moveSpeed: 2
+  moveSpeed: 3
   damage: 20
   attackRange: 0.8
   attackSpeed: 0.5
