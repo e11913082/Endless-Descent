@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
 using System.Linq;
+using System.Text;
 
 /// <summary>
 /// Top down character movement
@@ -77,8 +78,28 @@ namespace EndlessDescent
         // Other
         private HaloLogic halo;
 
+        //needed for player persistence over loops
+        private LayerMask playerLayer;
+        private static PlayerCharacter instance;
+
         void Awake()
         {
+            //player persistence
+            playerLayer = LayerMask.GetMask("Player");
+            if ((playerLayer & (1 << gameObject.layer)) != 0)
+            {
+                if(instance == null)
+                {
+                    instance = this;
+                    DontDestroyOnLoad(gameObject);
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
+            }
+            
+
             rigid = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
             auto_order = GetComponent<AutoOrderLayer>();
@@ -87,7 +108,6 @@ namespace EndlessDescent
             audioSource = GetComponent<AudioSource>();
             player_id = CharacterIdGenerator.GetCharacterId(gameObject, 0);
             character_list[player_id] = this;
-            stats = PlayerStats.GetPlayerStats(player_id);
             halo = gameObject.GetComponent<HaloLogic>();
         }
 
@@ -98,6 +118,11 @@ namespace EndlessDescent
 
         void Start()
         {
+            stats = PlayerStats.GetPlayerStats(player_id);
+            if (stats == null)
+            {
+                Debug.Log("Asking with playerId: " + player_id);
+            }
             max_hp = stats.MaxHealth;
             if (PlayerPrefs.GetFloat("EffectVolume") == null || PlayerPrefs.GetFloat("EffectVolume")==0f)
             {

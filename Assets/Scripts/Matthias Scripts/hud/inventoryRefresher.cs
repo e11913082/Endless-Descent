@@ -18,7 +18,6 @@ public class inventoryRefresher : MonoBehaviour
     private Image curWeaponOverlay;
     private bool initDone = false; //needed to avoid refresh on playercreation
 
-
     void Start()
     {
         playerInv = PlayerCharacter.Get(Hud.GetPlayerId()).GetComponent<CharacterWeaponInventory>();
@@ -82,6 +81,7 @@ public class inventoryRefresher : MonoBehaviour
                 }
                 weaponIndex++;
             }
+
             RefreshOverlay();
         }
     }
@@ -95,8 +95,11 @@ public class inventoryRefresher : MonoBehaviour
             {
                 curWeaponOverlay.transform.position = slots[i].transform.position;
                 curWeaponOverlay.color = new Color(curWeaponOverlay.color.r, curWeaponOverlay.color.g, curWeaponOverlay.color.b, 1);
+                Debug.Log("switched to Weapon at slot " + i);
                 return;
             }
+
+
         }
     }
 }

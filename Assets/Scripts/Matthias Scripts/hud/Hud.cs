@@ -9,16 +9,30 @@ using System.Linq;
 public class Hud : MonoBehaviour
 {
     private int player_id = 0;
+    private static Hud instance;
 
     public void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void Start()
+    {
         PlayerStats[] playerStats = FindObjectsOfType<PlayerStats>();
         playerStats = System.Array.FindAll(playerStats, ps => ps.gameObject.layer == LayerMask.NameToLayer("Player"));
-        if(playerStats.Count() > 1)
+        if (playerStats.Count() > 1)
         {
             Debug.Log("More than one active player in the scene");
         }
-        else if(playerStats.Count() == 0)
+        else if (playerStats.Count() == 0)
         {
             Debug.Log("No active playerobject in the scene");
         }
@@ -28,7 +42,6 @@ public class Hud : MonoBehaviour
             EventManager.TriggerEvent("PlayerIdFetched");
         }
     }
-
     public static string CreateStringMask(int decimalNum) //used by subcomponents for setting the number of decimal places
     {
         StringBuilder outputMask = new StringBuilder("0.");
