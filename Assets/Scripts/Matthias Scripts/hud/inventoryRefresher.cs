@@ -10,7 +10,6 @@ public class inventoryRefresher : MonoBehaviour
 {
     public float paddingBetweenSlots = 0.01f; //padding between slots, gets multiplied by the screen width
 
-
     private CharacterWeaponInventory playerInv;
     private GameObject baseInvSlot;
     private List<GameObject> slots;
@@ -41,10 +40,6 @@ public class inventoryRefresher : MonoBehaviour
             Refresh();
         }
         initDone = true;
-    }
-
-    void Update()
-    {
     }
 
     private void OnEnable()
@@ -95,7 +90,7 @@ public class inventoryRefresher : MonoBehaviour
             {
                 curWeaponOverlay.transform.position = slots[i].transform.position;
                 curWeaponOverlay.color = new Color(curWeaponOverlay.color.r, curWeaponOverlay.color.g, curWeaponOverlay.color.b, 1);
-                Debug.Log("switched to Weapon at slot " + i);
+                //Debug.Log("switched to Weapon at slot " + i);
                 return;
             }
 

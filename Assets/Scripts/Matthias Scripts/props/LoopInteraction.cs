@@ -19,20 +19,18 @@ public class LoopInteraction : MonoBehaviour
     private LayerMask playerLayer;
     private void Awake()
     {
-        DeactivateLoopEnemies();
-        if (instance == null)
+        if (instance == null) //case: game start first iteration
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
             spawnPos = GameObject.Find("Main Character/Managers").transform.position;
-            loopCount++;
         }
-        else
+        else //case: player is looping
         {
+            loopCount++;
             curPlayer.transform.position = spawnPos;
             Destroy(gameObject);
         }
-
         HandleEnemies();
     }
     void Start()
@@ -54,14 +52,16 @@ public class LoopInteraction : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    void HandleEnemies()
+    void HandleEnemies() //fills the map with an appropriate amount of enemies based on the number if the loop
     {
-        float spawnThreshold = (10 - 2*loopCount) / 10;
+        DeactivateAllLoopEnemies();
+        float spawnThreshold = (10f - 2*loopCount) / 10f;
         int enemyCount = loopEnemies.transform.childCount;
+        Debug.Log("New spawnThreshold: " + spawnThreshold);
 
         for (int i = 0; i < enemyCount; i++)
         {
-            float randomeFloat = UnityEngine.Random.Range(0.0f, 0.1f);
+            float randomeFloat = UnityEngine.Random.Range(0.0f, 1.0f);
             if(randomeFloat > spawnThreshold)
             {
                 GameObject enemy = loopEnemies.transform.GetChild(i).gameObject;
@@ -69,8 +69,7 @@ public class LoopInteraction : MonoBehaviour
             }
         }
     }
-
-    void DeactivateLoopEnemies()
+    void DeactivateAllLoopEnemies()
     {
         int childCount = loopEnemies.transform.childCount;
 
