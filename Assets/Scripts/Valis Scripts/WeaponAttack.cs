@@ -94,7 +94,6 @@ public class WeaponAttack : MonoBehaviour
 
        // LayerMask enemies = LayerMask.NameToLayer("Enemy");
         Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(transform.position, stats.attackRange); // , enemies); // the layer filtering here does not work for some reason
-        print(enemiesToDamage.Length);
 
         MeleePrefab melee = Instantiate(inventory.equippedWeapon.projectilePrefab, attackPos, transform.rotation)
             .GetComponent<MeleePrefab>();
@@ -115,7 +114,7 @@ public class WeaponAttack : MonoBehaviour
             Vector2 enemyDirection = (e.transform.position - transform.position).normalized;
             bool withinAngle = Math.Abs(Vector2.Angle(direction, enemyDirection)) < 20;
 
-            if (eCollider.gameObject.layer == enemies && withinAngle)
+            if (eCollider.gameObject.layer == enemies && eCollider.isTrigger is false && withinAngle)
             {
                 e.TakeDamage(damage, (e.transform.position - transform.position).normalized);
                 hitEnemy = true;

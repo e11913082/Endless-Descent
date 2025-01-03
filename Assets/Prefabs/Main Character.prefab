@@ -28,8 +28,9 @@ GameObject:
   - component: {fileID: 6670824074277398997}
   - component: {fileID: 7804264739737691017}
   - component: {fileID: 2689710000002698}
-  - component: {fileID: 8049980247576472279}
   - component: {fileID: 4504246121553324020}
+  - component: {fileID: 5596722964878612626}
+  - component: {fileID: 1786674091510932326}
   m_Layer: 22
   m_Name: Main Character
   m_TagString: Player
@@ -120,7 +121,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 7ff77aac75ca00c41bfc68396aed3f3f, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -535,7 +536,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.15}
   m_Size: {x: 0.4, y: 0.8}
   m_Direction: 0
---- !u!114 &8049980247576472279
+--- !u!114 &4504246121553324020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173577608035208917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 972556ead4edf4d46a72f52bb81b3f9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5596722964878612626
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -585,7 +598,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!114 &4504246121553324020
+--- !u!114 &1786674091510932326
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -710,7 +723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_id: 1
-  maxHealth: 1000000
+  maxHealth: 100
   healthRegen: 0.5
   currentHealth: 50
   moveSpeed: 3
@@ -723,7 +736,7 @@ MonoBehaviour:
   fearIncrease: 1
   fearDecrease: 1
   currentFear: 0
-  maxFear: 1000000
+  maxFear: 100
   coins: 30
   equippedItems: []
   lastItem: {fileID: 0}
