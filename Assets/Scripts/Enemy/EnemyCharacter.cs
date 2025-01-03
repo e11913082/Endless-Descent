@@ -17,6 +17,7 @@ public class EnemyCharacter : MonoBehaviour
     public float shootDistance = 3f;
     public float returnIdleTime = 5f;
     public Weapon weapon;
+    public bool disableEnemyBehaviour = false;
     private enum State{
         Idle,
         Attack,
@@ -42,13 +43,11 @@ public class EnemyCharacter : MonoBehaviour
 
     void Awake()
     {
-        playerId = CharacterIdGenerator.GetCharacterId(gameObject, 0);
-        if (gameObject.layer != LayerMask.NameToLayer("Enemy"))
+        enemyEnabled = true;
+        if (gameObject.layer != LayerMask.NameToLayer("Enemy") || disableEnemyBehaviour)
         {
             enemyEnabled = false;
-            return;
         }
-        enemyEnabled = true;
         rigid = GetComponent<Rigidbody2D> ();
         state = State.Idle;
         playerCharacter = GetComponent<PlayerCharacter> ();
@@ -60,9 +59,10 @@ public class EnemyCharacter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!enemyEnabled)
-            return;
+        //if (!enemyEnabled)
+        //    return;
 
+        playerId = CharacterIdGenerator.GetCharacterId(gameObject, 0);
         controls = PlayerControls.Get(playerId);
         //playerCharacter.DisableControls(); 
         ResetMovementDirection();
@@ -260,5 +260,15 @@ public class EnemyCharacter : MonoBehaviour
             ResetMovementDirection();
         } 
            
+    }
+
+    public void activateEnemyBehaviour()
+    {
+        disableEnemyBehaviour = false;
+    }
+
+    public void deactivateEnemyBehaviour()
+    {
+        disableEnemyBehaviour = true;
     }
 }

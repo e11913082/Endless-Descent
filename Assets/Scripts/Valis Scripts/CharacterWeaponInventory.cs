@@ -19,13 +19,13 @@ public class CharacterWeaponInventory : MonoBehaviour
 
     private void Awake()
     {
-        stats = PlayerStats.GetPlayerStats(GetComponent<PlayerCharacter>().player_id); 
         weapons = new List<Weapon>();
         currentIndex = 0;
     }
 
     private void Start()
     {
+        stats = PlayerStats.GetPlayerStats(CharacterIdGenerator.GetCharacterId(gameObject, 0)); 
         if (equippedWeapon != null)
         {
             stats.damage += equippedWeapon.damageBonus;

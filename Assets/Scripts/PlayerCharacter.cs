@@ -85,9 +85,6 @@ namespace EndlessDescent
             buildup_manager = GetComponentInChildren<PlayerBuildupManager>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             audioSource = GetComponent<AudioSource>();
-            player_id = CharacterIdGenerator.GetCharacterId(gameObject, 0);
-            character_list[player_id] = this;
-            stats = PlayerStats.GetPlayerStats(player_id);
             halo = gameObject.GetComponent<HaloLogic>();
         }
 
@@ -98,12 +95,14 @@ namespace EndlessDescent
 
         void Start()
         {
-            max_hp = stats.MaxHealth;
             if (PlayerPrefs.GetFloat("EffectVolume") == null || PlayerPrefs.GetFloat("EffectVolume")==0f)
             {
                 PlayerPrefs.SetFloat("EffectVolume", 0.3f);
             }
             audioSource.volume = PlayerPrefs.GetFloat("EffectVolume");
+            player_id = CharacterIdGenerator.GetCharacterId(gameObject, 0);
+            character_list[player_id] = this;
+            stats = PlayerStats.GetPlayerStats(player_id);
         }
 
         private void Update()

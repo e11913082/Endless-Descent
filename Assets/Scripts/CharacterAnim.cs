@@ -23,12 +23,12 @@ namespace EndlessDescent
             character_item = GetComponent<CharacterHoldItem>();
             animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
-            stats = PlayerStats.GetPlayerStats(character.player_id);
         }
 
         void Start()
         {
             character.onDeath += AnimateDeath;
+            stats = PlayerStats.GetPlayerStats(CharacterIdGenerator.GetCharacterId(gameObject, 0));
         }
 
         void LateUpdate()

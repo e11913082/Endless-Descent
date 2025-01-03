@@ -511,105 +511,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 591889684}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &177436653
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 177436655}
-  - component: {fileID: 177436654}
-  - component: {fileID: 177436657}
-  - component: {fileID: 177436656}
-  m_Layer: 0
-  m_Name: Managers
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &177436654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 177436653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3612abc5b64eb834587a4eb6d4d40450, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player_id: 0
-  left_key: 97
-  right_key: 100
-  up_key: 119
-  down_key: 115
-  action_key: 101
-  attackKey: 32
-  switchKey: 9
-  dropKey: 0
-  dashKey: 0
---- !u!4 &177436655
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 177436653}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &177436656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 177436653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7f082994feeb52799e7e2a0140f8423, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player_id: 0
-  maxHealth: 100
-  healthRegen: 0.5
-  currentHealth: 50
-  moveSpeed: 1
-  damage: 20
-  attackRange: 1.5
-  attackSpeed: 1
-  dashCoolDown: 0.5
-  attackAnimationSpeed: 3
-  defense: 20
-  fearIncrease: 1
-  fearDecrease: 1
-  currentFear: 0
-  maxFear: 100
-  coins: 50
-  equippedItems: []
-  lastItem: {fileID: 0}
---- !u!114 &177436657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 177436653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f65774da85e1733a0b885d84735f8b86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player_id: 0
 --- !u!4 &185217542 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4526411729153331029, guid: 8c66149e58003104daf96668db118b4f,
@@ -1551,8 +1452,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.015150011, y: 0.5988, z: 0}
-    m_Extent: {x: 0.65915, y: 0.97620004, z: 0}
+    m_Center: {x: 0.014899999, y: 0.59935, z: 0}
+    m_Extent: {x: 0.6594, y: 0.97585, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -10834,7 +10735,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1141447203}
-  - {fileID: 177436655}
   - {fileID: 2090517034}
   - {fileID: 880590603}
   - {fileID: 915335555}
