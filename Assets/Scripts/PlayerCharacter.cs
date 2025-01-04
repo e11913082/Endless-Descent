@@ -277,6 +277,7 @@ namespace EndlessDescent
         {
             invulnerable = false;
         }
+        
         private void ResetForceLayers()
         {
             List<CapsuleCollider2D> capsules = GetComponentsInChildren<CapsuleCollider2D>().Where(go => go.gameObject != this.gameObject).ToList();

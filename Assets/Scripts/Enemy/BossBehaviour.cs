@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.TextCore.Text;
+using EndlessDescent;
 
 
 public class BossBehaviour : MonoBehaviour
 {
     public int playerId;
     public List<GameObject> InitialStageEnemies = new List<GameObject> ();
+    public float vulnerableTimeSpan = 5f;
+    private float vulnerableStartTime;
 
     private enum Stage{
         IdleStage,
@@ -19,16 +23,20 @@ public class BossBehaviour : MonoBehaviour
     private PlayerStats stats;
     private GameObject targetCharacter;
     private List<GameObject> instantiatedEnemies = new List<GameObject> ();
+    private PlayerCharacter character;
+    private bool forceSpawnEnemies = true;
     
     void Awake()
     {
-        playerId = CharacterIdGenerator.GetCharacterId(gameObject, 0);
+        character = GetComponent<PlayerCharacter> ();
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        playerId = CharacterIdGenerator.GetCharacterId(gameObject, 0);
         stats = PlayerStats.GetPlayerStats(playerId);
+        character.invulnerable = true;
     }
 
     // Update is called once per frame
@@ -57,19 +65,20 @@ public class BossBehaviour : MonoBehaviour
     }
     private void InitialStageBehaviour()
     {
-        //bool spawnedEnemiesDead = true;
-        //foreach (GameObject enemy in instantiatedEnemies)
-        //{
-        //    if (!enemy.IsDestroyed())
-        //    {
-        //        spawnedEnemiesDead = false;
-        //    }
-        //}
-        
-        bool spawnedEnemieDead = instantiatedEnemies.All(x => x.IsDestroyed() == true);
-        if (spawnedEnemieDead)
+        bool spawnedEnemiesDead = instantiatedEnemies.All(x => x.IsDestroyed() == true);
+        if (spawnedEnemiesDead)
         {
-            SpawnEnemies(InitialStageEnemies);
+            if (character.invulnerable is true)
+            {
+                character.invulnerable = false;
+                vulnerableStartTime = Time.time;
+            }    
+            if (Time.time - vulnerableStartTime > vulnerableTimeSpan || forceSpawnEnemies)
+            {
+                SpawnEnemies(InitialStageEnemies);
+                character.invulnerable = true;
+                forceSpawnEnemies = false;
+            }        
         }
     }
 

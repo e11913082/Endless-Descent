@@ -40,6 +40,8 @@ public class EnemyCharacter : MonoBehaviour
     private bool withinDetectionTrigger;
     private PlayerControls controls;
     private CharacterWeaponInventory weaponInventory;
+    private HaloLogic halo;
+    private float lastUse;
 
     void Awake()
     {
@@ -54,6 +56,7 @@ public class EnemyCharacter : MonoBehaviour
         gameObject.AddComponent<PathFinder> ();
         pathFinder = gameObject.GetComponent<PathFinder> ();
         weaponInventory = GetComponent<CharacterWeaponInventory> ();
+        halo = GetComponent<HaloLogic>();
 
     }
     // Start is called before the first frame update
@@ -142,7 +145,8 @@ public class EnemyCharacter : MonoBehaviour
             controls.SetMove(Vector2.zero);
 
             controls.SetMousePos(targetCharacter.transform.position);
-            controls.SetAttack(true);
+            halo.BeforeEnemyMeleeAttack();
+            Invoke("Attack", 0.15f);
             return;
         }
         else
@@ -192,6 +196,7 @@ public class EnemyCharacter : MonoBehaviour
             return;
         }
     }
+
     private void CalculateMovementDirection()
     {
         if ((transform.position - idlePosition).magnitude > idleRadius)
@@ -235,6 +240,15 @@ public class EnemyCharacter : MonoBehaviour
                 withinDetectionTrigger = true;
             }
         }  
+    }
+
+    private void Attack()
+    {
+        if (Time.time - lastUse > stats.attackSpeed)
+        {
+            lastUse = Time.time;
+            controls.SetAttack(true);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)

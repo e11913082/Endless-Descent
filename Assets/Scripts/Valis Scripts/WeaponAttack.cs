@@ -23,7 +23,7 @@ public class WeaponAttack : MonoBehaviour
         halo = GetComponent<HaloLogic>();
         inventory = GetComponent<CharacterWeaponInventory>();
         character = GetComponent<PlayerCharacter>();
-        stats = PlayerStats.GetPlayerStats(character.player_id);
+        stats = PlayerStats.GetPlayerStats(CharacterIdGenerator.GetCharacterId(gameObject, 0));
         characterAnim = GetComponent<CharacterAnim>();
         if (gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
@@ -60,6 +60,8 @@ public class WeaponAttack : MonoBehaviour
                         characterAnim.AnimateAttack(1, GetAttackSide());
                         lastUse = Time.time;
                         Invoke("UseMelee", inventory.equippedWeapon.delay);
+                        print(inventory.equippedWeapon.delay);
+                        print(stats.attackSpeed);
                         halo.OnMeleeAttack();
                     }
                 }
