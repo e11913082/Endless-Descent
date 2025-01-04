@@ -23,8 +23,14 @@ public class BossBehaviour : MonoBehaviour
     private PlayerStats stats;
     private GameObject targetCharacter;
     private List<GameObject> instantiatedEnemies = new List<GameObject> ();
+    private List<GameObject> enemiesToSpawn = new List<GameObject> ();
     private PlayerCharacter character;
-    private bool forceSpawnEnemies = true;
+    private bool firstLoop = true;
+    private HaloLogic halo;
+    private CharacterAnim characterAnim;
+    private bool invokingSpawnEnemies = false;
+    private WeaponAttack weaponAttack;
+
     
     void Awake()
     {
@@ -37,6 +43,9 @@ public class BossBehaviour : MonoBehaviour
         playerId = CharacterIdGenerator.GetCharacterId(gameObject, 0);
         stats = PlayerStats.GetPlayerStats(playerId);
         character.invulnerable = true;
+        halo = GetComponent<HaloLogic>();
+        characterAnim = GetComponent<CharacterAnim>();
+        weaponAttack = GetComponent<WeaponAttack>();
     }
 
     // Update is called once per frame
@@ -66,18 +75,23 @@ public class BossBehaviour : MonoBehaviour
     private void InitialStageBehaviour()
     {
         bool spawnedEnemiesDead = instantiatedEnemies.All(x => x.IsDestroyed() == true);
-        if (spawnedEnemiesDead)
+        if (spawnedEnemiesDead && invokingSpawnEnemies is false)
         {
             if (character.invulnerable is true)
             {
                 character.invulnerable = false;
                 vulnerableStartTime = Time.time;
             }    
-            if (Time.time - vulnerableStartTime > vulnerableTimeSpan || forceSpawnEnemies)
+            else if (Time.time - vulnerableStartTime > vulnerableTimeSpan || firstLoop)
             {
-                SpawnEnemies(InitialStageEnemies);
+                enemiesToSpawn = InitialStageEnemies;
+                halo.OnSummonEnemies();
+                Vector2 direction = (targetCharacter.transform.position - transform.position).normalized;
+                characterAnim.AnimateAttack(1, weaponAttack.GetAttackSide(direction));
+                Invoke("SpawnEnemies", 0.155f);
                 character.invulnerable = true;
-                forceSpawnEnemies = false;
+                firstLoop = false;
+                invokingSpawnEnemies = true;
             }        
         }
     }
@@ -96,16 +110,17 @@ public class BossBehaviour : MonoBehaviour
         }  
     }
 
-    private void SpawnEnemies(List<GameObject> enemies)
+    private void SpawnEnemies()
     {
         instantiatedEnemies.Clear();
         float spawnRadius = 1.5f;
         float spawnAngle;
-        foreach (GameObject enemy in enemies)
+        foreach (GameObject enemy in enemiesToSpawn)
         {
             spawnAngle = Random.Range(0, 360);
             Vector2 spawnPos = transform.position + Quaternion.Euler(0, 0, spawnAngle) * Vector2.up * spawnRadius;
             instantiatedEnemies.Add(Instantiate(enemy, spawnPos, transform.rotation));
         }
+        invokingSpawnEnemies = false;
     }
 }

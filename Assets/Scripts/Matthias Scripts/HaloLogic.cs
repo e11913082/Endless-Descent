@@ -9,7 +9,7 @@ public class HaloLogic : MonoBehaviour
     private readonly Color magicAttackCol = new Color(0.125f, 0f, 1f);
     private readonly Color hitCol = new Color(0.527f, 0f, 0.585f);
     private readonly Color enemyBeforeMeleeCol = new Color(255f, 95f, 31f);
-
+    private readonly Color summonEnemiesCol = new Color(102f, 0f, 102f);
     private Light2D halo;
     private float origIntensity;
     private float origInnerRadius;
@@ -56,6 +56,12 @@ public class HaloLogic : MonoBehaviour
     {
         StopCurCoroutine();
         currentFlickerCoroutine = StartCoroutine(Flicker(0.5f, 0.1f, 0.5f, 0.5f, enemyBeforeMeleeCol));
+    }
+
+    public void OnSummonEnemies()
+    {
+        StopCurCoroutine();
+        currentFlickerCoroutine = StartCoroutine(Flicker(0.5f, 0.16f, 0.5f, 0.5f, summonEnemiesCol));
     }
 
     public void OnPlayerDamage()

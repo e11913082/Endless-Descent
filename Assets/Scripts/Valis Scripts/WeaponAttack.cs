@@ -47,7 +47,8 @@ public class WeaponAttack : MonoBehaviour
                 {
                     if (Time.time - lastUse > stats.attackSpeed)
                     {
-                        characterAnim.AnimateAttack(0, GetAttackSide());
+                        Vector2 attackDirection = (Vector2)(character.GetMousePos() - transform.position).normalized;
+                        characterAnim.AnimateAttack(0, GetAttackSide(attackDirection));
                         lastUse = Time.time;
                         Invoke("UseDistance", inventory.equippedWeapon.delay);
                         halo.OnMagicAttack();
@@ -57,7 +58,8 @@ public class WeaponAttack : MonoBehaviour
                 {
                     if (Time.time - lastUse > stats.attackSpeed)
                     {
-                        characterAnim.AnimateAttack(1, GetAttackSide());
+                        Vector2 attackDirection = (Vector2)(character.GetMousePos() - transform.position).normalized;
+                        characterAnim.AnimateAttack(1, GetAttackSide(attackDirection));
                         lastUse = Time.time;
                         Invoke("UseMelee", inventory.equippedWeapon.delay);
                         print(inventory.equippedWeapon.delay);
@@ -136,9 +138,8 @@ public class WeaponAttack : MonoBehaviour
         Debug.Log("Attacked with "+ inventory.equippedWeapon.weaponName +" on position: " + attackPos + " with damage: " + stats.damage);
     }
 
-    private int GetAttackSide()
+    public int GetAttackSide(Vector2 direction)
     {
-        Vector2 direction = (Vector2)(character.GetMousePos() - transform.position).normalized;
         float angle = Vector2.Angle(Vector2.up, direction);
         int attackSide = 1;
 
