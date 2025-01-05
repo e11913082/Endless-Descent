@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 902919316378239568}
   - component: {fileID: 5895264208996604909}
   m_Layer: 0
-  m_Name: outher light
+  m_Name: outer light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -188,7 +188,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -105541197
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e9eba2c8d19c1f84983af5b8f1f98ff1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -408,7 +408,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -105541197
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1272735443, guid: dbb33576a865a4943a6a83c46125a770, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

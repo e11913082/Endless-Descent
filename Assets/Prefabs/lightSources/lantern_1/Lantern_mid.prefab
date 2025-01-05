@@ -145,6 +145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8915100342976601435}
+  - component: {fileID: 1808298200623158388}
   m_Layer: 21
   m_Name: Lantern_mid
   m_TagString: Untagged
@@ -170,6 +171,18 @@ Transform:
   - {fileID: 6227043792309528494}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1808298200623158388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766187535071741868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e69a45862d06f448f9823d5052437b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3915180026582196604
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,7 +195,7 @@ GameObject:
   - component: {fileID: 8742556048485903152}
   - component: {fileID: 8999728051383195164}
   m_Layer: 19
-  m_Name: outher light
+  m_Name: outer light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

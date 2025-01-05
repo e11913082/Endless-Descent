@@ -862,7 +862,7 @@ GameObject:
   - component: {fileID: 3933999327980054362}
   - component: {fileID: 3688139229520583286}
   m_Layer: 19
-  m_Name: outher light
+  m_Name: outer light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

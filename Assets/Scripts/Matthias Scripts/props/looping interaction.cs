@@ -15,43 +15,43 @@ public class LoopInteraction : MonoBehaviour
     private static Vector3 spawnPos;
     private static int loopCount = 0;
 
-    public GameObject loopEnemies;
+    public GameObject loopEnemies; //parentobj of all additional loop enemies
+    public GameObject lanterns; //parentobj of all lantern groups
+
     private LayerMask playerLayer;
  
-    private void Awake()
+    private void Start()
     {
-        if (instance == null) //case: game start first iteration
+        playerLayer = LayerMask.GetMask("Player");
+        if (instance == null) //case: game start (first iteration)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            spawnPos = GameObject.Find("Main Character/Managers").transform.position;
 
+            curPlayer = GameObject.Find("Main Character");
+            spawnPos = GameObject.Find("Main Character").transform.position;
         }
         else //case: player is looping
         {
             loopCount++;
+            
             curPlayer.transform.position = spawnPos;
+            //Debug.Log("Transfered player to pos: " + spawnPos.x + "/" + spawnPos.y + "/" + spawnPos.z);
+
+            HandleEnemies();
+            HandleLanterns();
+
             Destroy(gameObject);
         }
-        HandleEnemies();
-    }
-    void Start()
-    {
-        playerLayer = LayerMask.GetMask("Player");
+        
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other) //reload scene when player enters
     {
         if ((playerLayer.value & (1 << other.gameObject.layer)) != 0)
         {
-            curPlayer = GameObject.Find("Main Character/Managers");
-            ReloadScene();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-    }
-
-    void ReloadScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     void HandleEnemies() //fills the map with an appropriate amount of enemies based on the number if the loop
@@ -59,7 +59,6 @@ public class LoopInteraction : MonoBehaviour
         //DeactivateAllLoopEnemies();
         float spawnThreshold = (10f - 2*loopCount) / 10f;
         int enemyCount = loopEnemies.transform.childCount;
-        Debug.Log("New spawnThreshold: " + spawnThreshold);
 
         for (int i = 0; i < enemyCount; i++)
         {
@@ -71,14 +70,51 @@ public class LoopInteraction : MonoBehaviour
             }
         }
     }
-    void DeactivateAllLoopEnemies()
-    {
-        int childCount = loopEnemies.transform.childCount;
 
-        for (int i = 0; i < childCount; i++)
+    void HandleLanterns()
+    {
+        int lanternGroupCount = lanterns.transform.childCount;
+        for (int i = 0; i < lanternGroupCount; i++)
         {
-            GameObject enemy = loopEnemies.transform.GetChild(i).gameObject;
-            enemy.SetActive(false);
+            HandleLanternGroup(lanterns.transform.GetChild(i).gameObject);
         }
     }
+
+    void HandleLanternGroup(GameObject lanternGroup)
+    {
+        int lanternCount = lanternGroup.transform.childCount;
+        int activeLanterns = lanternCount; //to ensure one lantern is at least active in every group
+
+        float lv1Threshold = (10f - 2*loopCount) / 10f;
+        float lv2Threshold = (10f - loopCount) / 10f;
+        for (int i = 0; i < lanternCount; i++)
+        {
+            float randomeFloat = UnityEngine.Random.Range(0.0f, 1.0f);
+            LightLoopingUtil lanternUtil;
+
+            if(randomeFloat > lv2Threshold && activeLanterns > 1)
+            {
+                Debug.Log("setting lantern to 2");
+                lanternUtil = lanternGroup.transform.GetChild(i).gameObject.GetComponent<LightLoopingUtil>();
+                lanternUtil.SetLanternLv(2);
+                activeLanterns--;
+            }
+            else if(randomeFloat > lv1Threshold)
+            {
+                Debug.Log("setting lantern to 1");
+                lanternUtil = lanternGroup.transform.GetChild(i).gameObject.GetComponent<LightLoopingUtil>();
+                lanternUtil.SetLanternLv(1);
+            }
+        }
+    }
+    //void DeactivateAllLoopEnemies()
+    //{
+    //    int childCount = loopEnemies.transform.childCount;
+
+    //    for (int i = 0; i < childCount; i++)
+    //    {
+    //        GameObject enemy = loopEnemies.transform.GetChild(i).gameObject;
+    //        enemy.SetActive(false);
+    //    }
+    //}
 }
