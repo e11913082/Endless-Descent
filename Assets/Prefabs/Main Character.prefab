@@ -209,6 +209,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 15b5cdc3c6903f84586c012a375842b3, type: 3}
   - {fileID: 8300000, guid: 31be20262058ee048b170c0652eca48d, type: 3}
   - {fileID: 8300000, guid: d9d08ecea4468974387347fb4be0b6c4, type: 3}
+  meleeDamageSounds:
+  - {fileID: 8300000, guid: 70da1eeec76a97f4598ea233493f0026, type: 3}
+  - {fileID: 8300000, guid: ee888647a8825c24b84836cfcd9807f7, type: 3}
   stepSound: {fileID: 8300000, guid: a03a96c5d1e99b4409ddd79098abd9ab, type: 3}
   dashSound: {fileID: 8300000, guid: 4e22d35e0fc60024fa02ecd0f9a62296, type: 3}
 --- !u!114 &7564183154885829875
@@ -229,6 +232,7 @@ MonoBehaviour:
   shootDistance: 3
   returnIdleTime: 2
   weapon: {fileID: 11400000, guid: 57583a8ed9bd23aa095e2a6ca50721f1, type: 2}
+  disableEnemyBehaviour: 0
 --- !u!114 &3702767706727041646
 MonoBehaviour:
   m_ObjectHideFlags: 0

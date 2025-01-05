@@ -102,6 +102,7 @@ public class WeaponAttack : MonoBehaviour
         MeleePrefab melee = Instantiate(inventory.equippedWeapon.projectilePrefab, attackPos, transform.rotation)
             .GetComponent<MeleePrefab>();
         melee.Attack(direction, gameObject, stats.attackRange);
+        melee.PlaySwingSound();
 
         bool hitEnemy = false;
         for (int i = 0; i < enemiesToDamage.Length; i++)
@@ -120,20 +121,12 @@ public class WeaponAttack : MonoBehaviour
 
             if (eCollider.gameObject.layer == enemies && eCollider.isTrigger is false && withinAngle)
             {
-                e.TakeDamage(damage, (e.transform.position - transform.position).normalized);
+                e.TakeDamage(damage, (e.transform.position - transform.position).normalized, 1);
                 hitEnemy = true;
             }
             
         }
         
-        if (hitEnemy is true)
-        {
-            melee.PlayHitSound();
-        }
-        else
-        {
-            melee.PlaySwingSound();
-        }
 
         Debug.Log("Attacked with "+ inventory.equippedWeapon.weaponName +" on position: " + attackPos + " with damage: " + stats.damage);
     }

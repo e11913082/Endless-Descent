@@ -185,6 +185,9 @@ MonoBehaviour:
   damageGrunts:
   - {fileID: 8300000, guid: 34ee2a63371857d40a62afe26049d85d, type: 3}
   - {fileID: 8300000, guid: 7b9b73e106942a2478763fed49f9d51f, type: 3}
+  meleeDamageSounds:
+  - {fileID: 8300000, guid: 978c65ed12c0938468de5c29ad8c31f4, type: 3}
+  - {fileID: 8300000, guid: 722184b4464fce143be932b57a8e4559, type: 3}
   stepSound: {fileID: 0}
   dashSound: {fileID: 0}
 --- !u!114 &7564183154885829875
@@ -390,7 +393,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0
+  m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 0000000003819490b391b5f9e4317d4c13db8f5913db8f590551691a

@@ -6,7 +6,7 @@ using UnityEngine;
 public class MeleePrefab : MonoBehaviour
 {   
     public List<AudioClip> swingSounds;
-    public List<AudioClip> hitSounds;
+    //public List<AudioClip> hitSounds;
     private Animator animator;
     private AudioSource audioSource;
     private Vector2 attackDirection;
@@ -50,11 +50,11 @@ public class MeleePrefab : MonoBehaviour
         AudioSource.PlayClipAtPoint(swingSounds[UnityEngine.Random.Range(0, swingSounds.Count)], transform.position, PlayerPrefs.GetFloat("EffectVolume"));
     }
 
-    public void PlayHitSound()
-    {
-        //audioSource.PlayOneShot(hitSounds[UnityEngine.Random.Range(0, hitSounds.Count)]);
-        AudioSource.PlayClipAtPoint(hitSounds[UnityEngine.Random.Range(0, hitSounds.Count)], transform.position, PlayerPrefs.GetFloat("EffectVolume"));
-    }
+    //public void PlayHitSound()
+    //{
+    //    //audioSource.PlayOneShot(hitSounds[UnityEngine.Random.Range(0, hitSounds.Count)]);
+    //    AudioSource.PlayClipAtPoint(hitSounds[UnityEngine.Random.Range(0, hitSounds.Count)], transform.position, PlayerPrefs.GetFloat("EffectVolume"));
+    //}
 
     public void DestroySelf()
     {

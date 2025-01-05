@@ -42,8 +42,8 @@ namespace EndlessDescent
                 if (speed > 0.001)
                 {
                     side = character.GetSideAnim();
+                    animator.SetInteger("Side", side);
                 }
-                animator.SetInteger("Side", side);
             }
 
             if (flipSpriteOnTurn == true)
@@ -74,6 +74,11 @@ namespace EndlessDescent
         public void AnimateDeath()
         {
             animator.SetTrigger("Die");
+        }
+
+        public void SetSide(int side)
+        {
+            animator.SetInteger("Side", side);
         }
         
     }

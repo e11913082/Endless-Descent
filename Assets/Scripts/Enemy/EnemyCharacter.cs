@@ -30,7 +30,7 @@ public class EnemyCharacter : MonoBehaviour
     private PlayerCharacter playerCharacter;
     private bool outsidePreviously;
     private bool enemyEnabled;
-    private GameObject targetCharacter;
+    public GameObject targetCharacter {get; set;}
     private ContactFilter2D contactFilter;
     private float originalMoveSpeed;
     private float idleMoveSpeed;
@@ -42,6 +42,7 @@ public class EnemyCharacter : MonoBehaviour
     private CharacterWeaponInventory weaponInventory;
     private HaloLogic halo;
     private float lastUse;
+    private float nextAttackTime;
 
     void Awake()
     {
@@ -81,6 +82,8 @@ public class EnemyCharacter : MonoBehaviour
         pathFinder.SetReturnPoint(transform.position);
         weaponInventory.pickupWeapon(weapon);
         weaponInventory.EquipWeapon(0);
+        lastUse = 0f;
+        nextAttackTime = stats.attackSpeed;
     }
 
     // Update is called once per frame
@@ -143,10 +146,8 @@ public class EnemyCharacter : MonoBehaviour
         if (playerDirection.magnitude < combatDistance && targetVisible)
         {
             controls.SetMove(Vector2.zero);
-
+            Attack();
             controls.SetMousePos(targetCharacter.transform.position);
-            halo.BeforeEnemyMeleeAttack();
-            Invoke("Attack", 0.15f);
             return;
         }
         else
@@ -244,11 +245,18 @@ public class EnemyCharacter : MonoBehaviour
 
     private void Attack()
     {
-        if (Time.time - lastUse > stats.attackSpeed)
+        if (Time.time - lastUse > nextAttackTime)
         {
+            halo.BeforeEnemyMeleeAttack();
             lastUse = Time.time;
-            controls.SetAttack(true);
+            Invoke("AttackInvoke", 0.4f);
+            nextAttackTime = UnityEngine.Random.Range(stats.attackSpeed, 2f * stats.attackSpeed);
         }
+    }
+
+    private void AttackInvoke()
+    {
+        controls.SetAttack(true);
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -279,10 +287,18 @@ public class EnemyCharacter : MonoBehaviour
     public void activateEnemyBehaviour()
     {
         disableEnemyBehaviour = false;
+        enemyEnabled = true;
     }
 
     public void deactivateEnemyBehaviour()
     {
         disableEnemyBehaviour = true;
+        enemyEnabled = false;
+    }
+
+    public void SetTarget(GameObject target)
+    {
+        targetCharacter = target;
+        state = State.Attack;
     }
 }
