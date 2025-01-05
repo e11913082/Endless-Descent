@@ -106,6 +106,7 @@ public class BossBehaviour : MonoBehaviour
 
         if (stats.currentHealth < 0.5 * stats.maxHealth)
         {
+            ResetDefaultHalo();
             FinalStageHalo();
             enemyCharacter.activateEnemyBehaviour();
             currentStage = Stage.FinalStage;
