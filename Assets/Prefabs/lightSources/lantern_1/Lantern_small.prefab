@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5683566125212896721}
   - component: {fileID: 5115993556724404259}
   - component: {fileID: -2399355347108700535}
-  - component: {fileID: -939205059045025643}
+  - component: {fileID: 353001643706080160}
   m_Layer: 19
   m_Name: Lantern_small
   m_TagString: Untagged
@@ -252,7 +252,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.4
---- !u!114 &-939205059045025643
+--- !u!114 &353001643706080160
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

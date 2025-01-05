@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 
 public class LoopInteraction : MonoBehaviour
 {
-    public static LoopInteraction instance;
+    private static LoopInteraction instance;
 
     private static GameObject curPlayer;
     private static Vector3 spawnPos;
@@ -34,10 +34,7 @@ public class LoopInteraction : MonoBehaviour
         else //case: player is looping
         {
             loopCount++;
-            
             curPlayer.transform.position = spawnPos;
-            //Debug.Log("Transfered player to pos: " + spawnPos.x + "/" + spawnPos.y + "/" + spawnPos.z);
-
             HandleEnemies();
             HandleLanterns();
 
@@ -56,7 +53,6 @@ public class LoopInteraction : MonoBehaviour
 
     void HandleEnemies() //fills the map with an appropriate amount of enemies based on the number if the loop
     {
-        //DeactivateAllLoopEnemies();
         float spawnThreshold = (10f - 2*loopCount) / 10f;
         int enemyCount = loopEnemies.transform.childCount;
 
@@ -74,6 +70,7 @@ public class LoopInteraction : MonoBehaviour
     void HandleLanterns()
     {
         int lanternGroupCount = lanterns.transform.childCount;
+
         for (int i = 0; i < lanternGroupCount; i++)
         {
             HandleLanternGroup(lanterns.transform.GetChild(i).gameObject);
@@ -85,8 +82,9 @@ public class LoopInteraction : MonoBehaviour
         int lanternCount = lanternGroup.transform.childCount;
         int activeLanterns = lanternCount; //to ensure one lantern is at least active in every group
 
-        float lv1Threshold = (10f - 2*loopCount) / 10f;
-        float lv2Threshold = (10f - loopCount) / 10f;
+        float lv1Threshold = (10f - 2.2f*loopCount) / 10f;
+        float lv2Threshold = (10f - 1.1f*loopCount) / 10f;
+
         for (int i = 0; i < lanternCount; i++)
         {
             float randomeFloat = UnityEngine.Random.Range(0.0f, 1.0f);
@@ -94,27 +92,15 @@ public class LoopInteraction : MonoBehaviour
 
             if(randomeFloat > lv2Threshold && activeLanterns > 1)
             {
-                Debug.Log("setting lantern to 2");
                 lanternUtil = lanternGroup.transform.GetChild(i).gameObject.GetComponent<LightLoopingUtil>();
                 lanternUtil.SetLanternLv(2);
                 activeLanterns--;
             }
             else if(randomeFloat > lv1Threshold)
             {
-                Debug.Log("setting lantern to 1");
                 lanternUtil = lanternGroup.transform.GetChild(i).gameObject.GetComponent<LightLoopingUtil>();
                 lanternUtil.SetLanternLv(1);
             }
         }
     }
-    //void DeactivateAllLoopEnemies()
-    //{
-    //    int childCount = loopEnemies.transform.childCount;
-
-    //    for (int i = 0; i < childCount; i++)
-    //    {
-    //        GameObject enemy = loopEnemies.transform.GetChild(i).gameObject;
-    //        enemy.SetActive(false);
-    //    }
-    //}
 }

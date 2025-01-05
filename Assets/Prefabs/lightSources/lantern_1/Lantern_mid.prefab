@@ -145,7 +145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8915100342976601435}
-  - component: {fileID: 1808298200623158388}
+  - component: {fileID: -7751032094044664957}
   m_Layer: 21
   m_Name: Lantern_mid
   m_TagString: Untagged
@@ -171,7 +171,7 @@ Transform:
   - {fileID: 6227043792309528494}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1808298200623158388
+--- !u!114 &-7751032094044664957
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

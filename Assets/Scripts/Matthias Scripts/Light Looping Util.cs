@@ -8,15 +8,12 @@ using UnityEngine.Rendering.Universal;
 
 public class LightLoopingUtil : MonoBehaviour
 {
-    private int lv = 0;
-
     private Light2D outerLight;
-
     private List<GameObject> lanterns;
 
     private CircleCollider2D lightCollider;
 
-    //multiplier for transitioning to lv1
+    //light multipliers for transitioning to lv1
     const float LANTERN_INNER_MULTIPLIER = 0.85f;
     const float LANTERN_OUTER_MULTIPLIER = 0.7f;
     const float OUTER_MULTIPLIER = 0.6f;
@@ -25,6 +22,7 @@ public class LightLoopingUtil : MonoBehaviour
     void Awake()
     {
         Transform outerLightTrans = transform.Find("outer light");
+
         if (outerLightTrans != null)
         {
             outerLight = outerLightTrans.GetComponent<Light2D>();
@@ -36,17 +34,10 @@ public class LightLoopingUtil : MonoBehaviour
         }
     }
 
-    //TODO CLEANUP
-    private void Start() //only for testing remove afterwards
-    {
-        //SetLanternLv(2);
-    }
-
-
     public List<GameObject> GetLanterns() //searches for all small lamps in the gameobject its direct childs
     {
-        Debug.Log("Get LAnterns executed");
         List<GameObject> outputLanterns = new List<GameObject>();
+
         if (gameObject.name.Contains("small"))
         {
             outputLanterns.Add(gameObject);
@@ -64,6 +55,7 @@ public class LightLoopingUtil : MonoBehaviour
     public void SetLanternLv(int lv)
     {
         lanterns = GetLanterns();
+
         if (lv == 1)
         {
             foreach (GameObject lantern in lanterns)
