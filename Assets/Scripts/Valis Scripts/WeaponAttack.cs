@@ -23,7 +23,7 @@ public class WeaponAttack : MonoBehaviour
         halo = GetComponent<HaloLogic>();
         inventory = GetComponent<CharacterWeaponInventory>();
         character = GetComponent<PlayerCharacter>();
-        stats = PlayerStats.GetPlayerStats(character.player_id);
+        stats = PlayerStats.GetPlayerStats(CharacterIdGenerator.GetCharacterId(gameObject, 0));
         characterAnim = GetComponent<CharacterAnim>();
         if (gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
@@ -47,7 +47,8 @@ public class WeaponAttack : MonoBehaviour
                 {
                     if (Time.time - lastUse > stats.attackSpeed)
                     {
-                        characterAnim.AnimateAttack(0, GetAttackSide());
+                        Vector2 attackDirection = (Vector2)(character.GetMousePos() - transform.position).normalized;
+                        characterAnim.AnimateAttack(0, GetAttackSide(attackDirection));
                         lastUse = Time.time;
                         Invoke("UseDistance", inventory.equippedWeapon.delay);
                         halo.OnMagicAttack();
@@ -57,9 +58,12 @@ public class WeaponAttack : MonoBehaviour
                 {
                     if (Time.time - lastUse > stats.attackSpeed)
                     {
-                        characterAnim.AnimateAttack(1, GetAttackSide());
+                        Vector2 attackDirection = (Vector2)(character.GetMousePos() - transform.position).normalized;
+                        characterAnim.AnimateAttack(1, GetAttackSide(attackDirection));
                         lastUse = Time.time;
                         Invoke("UseMelee", inventory.equippedWeapon.delay);
+                        print(inventory.equippedWeapon.delay);
+                        print(stats.attackSpeed);
                         halo.OnMeleeAttack();
                     }
                 }
@@ -94,11 +98,11 @@ public class WeaponAttack : MonoBehaviour
 
        // LayerMask enemies = LayerMask.NameToLayer("Enemy");
         Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(transform.position, stats.attackRange); // , enemies); // the layer filtering here does not work for some reason
-        print(enemiesToDamage.Length);
 
         MeleePrefab melee = Instantiate(inventory.equippedWeapon.projectilePrefab, attackPos, transform.rotation)
             .GetComponent<MeleePrefab>();
         melee.Attack(direction, gameObject, stats.attackRange);
+        melee.PlaySwingSound();
 
         bool hitEnemy = false;
         for (int i = 0; i < enemiesToDamage.Length; i++)
@@ -115,29 +119,20 @@ public class WeaponAttack : MonoBehaviour
             Vector2 enemyDirection = (e.transform.position - transform.position).normalized;
             bool withinAngle = Math.Abs(Vector2.Angle(direction, enemyDirection)) < 20;
 
-            if (eCollider.gameObject.layer == enemies && withinAngle)
+            if (eCollider.gameObject.layer == enemies && eCollider.isTrigger is false && withinAngle)
             {
-                e.TakeDamage(damage, (e.transform.position - transform.position).normalized);
+                e.TakeDamage(damage, (e.transform.position - transform.position).normalized, 1);
                 hitEnemy = true;
             }
             
         }
         
-        if (hitEnemy is true)
-        {
-            melee.PlayHitSound();
-        }
-        else
-        {
-            melee.PlaySwingSound();
-        }
 
         Debug.Log("Attacked with "+ inventory.equippedWeapon.weaponName +" on position: " + attackPos + " with damage: " + stats.damage);
     }
 
-    private int GetAttackSide()
+    public int GetAttackSide(Vector2 direction)
     {
-        Vector2 direction = (Vector2)(character.GetMousePos() - transform.position).normalized;
         float angle = Vector2.Angle(Vector2.up, direction);
         int attackSide = 1;
 

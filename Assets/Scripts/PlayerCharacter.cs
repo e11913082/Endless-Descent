@@ -33,6 +33,7 @@ namespace EndlessDescent
         public UnityAction onHit;
         public GameObject coinPrefab;
         public List<AudioClip> damageGrunts;
+        public List<AudioClip> meleeDamageSounds;
         public AudioClip stepSound;
         public AudioClip dashSound;
         private Rigidbody2D rigid;
@@ -85,9 +86,6 @@ namespace EndlessDescent
             buildup_manager = GetComponentInChildren<PlayerBuildupManager>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             audioSource = GetComponent<AudioSource>();
-            player_id = CharacterIdGenerator.GetCharacterId(gameObject, 0);
-            character_list[player_id] = this;
-            stats = PlayerStats.GetPlayerStats(player_id);
             halo = gameObject.GetComponent<HaloLogic>();
         }
 
@@ -98,12 +96,14 @@ namespace EndlessDescent
 
         void Start()
         {
-            max_hp = stats.MaxHealth;
             if (PlayerPrefs.GetFloat("EffectVolume") == null || PlayerPrefs.GetFloat("EffectVolume")==0f)
             {
                 PlayerPrefs.SetFloat("EffectVolume", 0.3f);
             }
             audioSource.volume = PlayerPrefs.GetFloat("EffectVolume");
+            player_id = CharacterIdGenerator.GetCharacterId(gameObject, 0);
+            character_list[player_id] = this;
+            stats = PlayerStats.GetPlayerStats(player_id);
         }
 
         private void Update()
@@ -147,13 +147,7 @@ namespace EndlessDescent
                 {
                     lastStepTime = Time.time;
                     audioSource.PlayOneShot(stepSound, 0.3f);
-                }
-
-                if (dashDown)
-                {
-                    Dash();
-                }
-                            
+                }         
             }
         }
 
@@ -172,29 +166,45 @@ namespace EndlessDescent
                 move_input = controls.GetMove();
                 attackDown = controls.GetAttackDown();
                 dashDown = controls.GetDashDown();
+                if (dashDown)
+                {
+                    Debug.Log("Dash");
+                }
                 mouse_pos = controls.GetMousePos();
                 action_down = controls.GetActionDown();
                 weaponSwitch = controls.GetWeaponSwitch();
                 weaponDrop = controls.GetWeaponDrop();
             }
 
-
+            if (dashDown)
+            {
+                Dash();
+            }
 
             //Update lookat side
-            //if (move.magnitude > 0.1f)
-            lookat = move.normalized;
-            float lookAngle = Vector2.Angle(Vector2.up, lookat);
-            if (Mathf.Abs(lookat.x) > 0.02)
-                side = Mathf.Sign(lookat.x);
-            if (lookAngle < 45)
-                {sideAnim = 4;}
-            else if (45 <= lookAngle && lookAngle <= 135 && lookat.x > 0)
-                {sideAnim = 1;}
-            else if (45 <= lookAngle && lookAngle <= 135 && lookat.x < 0)
-                {sideAnim = 3;}
-            else if (lookAngle > 135)
-                {sideAnim = 2;}
+            if (move.magnitude > 0.001f)
+                lookat = move.normalized;
+                if (Mathf.Abs(lookat.x) > 0.02)
+                    side = Mathf.Sign(lookat.x);
+                sideAnim = CalculateSide(lookat);
         }
+
+    public int CalculateSide(Vector2 direction)
+    {
+        float angle = Vector2.Angle(Vector2.up, direction);
+        int lookSide = 1;
+
+        if (angle < 45)
+            {lookSide = 4;}
+        else if (45 <= angle && angle <= 135 && direction.x > 0)
+            {lookSide = 1;}
+        else if (45 <= angle && angle <= 135 && direction.x < 0)
+            {lookSide = 3;}
+        else if (angle > 135)
+            {lookSide = 2;}
+
+        return lookSide;
+    }
 
         public void HealDamage(float heal)
         {
@@ -205,15 +215,20 @@ namespace EndlessDescent
             }
         }
         
-        
-        
-        public void TakeDamage(float damage, Vector2 hitDirection)
+        public void TakeDamage(float damage, Vector2 hitDirection, int weaponType)
         {
             if (!is_dead && !invulnerable) // && hit_timer > 0f)
             {
                 spriteRenderer.color = Color.red;
                 DamageSetBack(hitDirection);
                 Invoke("ResetRenderColor", 0.1f);
+                if (weaponType == 0)
+                {
+                }
+                else if (weaponType == 1)
+                {
+                    audioSource.PlayOneShot(meleeDamageSounds[UnityEngine.Random.Range(0, meleeDamageSounds.Count)]);
+                }
 
                 hit_timer = -1f;
                 if (gameObject.layer == LayerMask.NameToLayer("Enemy"))
@@ -278,6 +293,7 @@ namespace EndlessDescent
         {
             invulnerable = false;
         }
+        
         private void ResetForceLayers()
         {
             List<CapsuleCollider2D> capsules = GetComponentsInChildren<CapsuleCollider2D>().Where(go => go.gameObject != this.gameObject).ToList();
@@ -303,10 +319,10 @@ namespace EndlessDescent
                 capsule.forceReceiveLayers = ~LayerMask.GetMask("Enemy");
                 capsule.forceSendLayers = ~LayerMask.GetMask("Enemy");
                 Vector2 direction = move.magnitude > 0 ? move.normalized: Vector2.up; 
-                rigid.AddForce(direction * 70f, ForceMode2D.Impulse);
+                rigid.AddForce(direction * 90f, ForceMode2D.Impulse);
                 Invoke("EnableMovement", 0.1f);
                 Invoke("ResetRenderColor", 0.1f);
-                Invoke("SetVulnerable", 0.1f);
+                Invoke("SetVulnerable", 0.3f);
                 Invoke("ResetForceLayers", 0.1f);
             }
         }

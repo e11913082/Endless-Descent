@@ -17,6 +17,7 @@ public class EnemyCharacter : MonoBehaviour
     public float shootDistance = 3f;
     public float returnIdleTime = 5f;
     public Weapon weapon;
+    public bool disableEnemyBehaviour = false;
     private enum State{
         Idle,
         Attack,
@@ -29,7 +30,7 @@ public class EnemyCharacter : MonoBehaviour
     private PlayerCharacter playerCharacter;
     private bool outsidePreviously;
     private bool enemyEnabled;
-    private GameObject targetCharacter;
+    public GameObject targetCharacter {get; set;}
     private ContactFilter2D contactFilter;
     private float originalMoveSpeed;
     private float idleMoveSpeed;
@@ -39,30 +40,33 @@ public class EnemyCharacter : MonoBehaviour
     private bool withinDetectionTrigger;
     private PlayerControls controls;
     private CharacterWeaponInventory weaponInventory;
+    private HaloLogic halo;
+    private float lastUse;
+    private float nextAttackTime;
 
     void Awake()
     {
-        playerId = CharacterIdGenerator.GetCharacterId(gameObject, 0);
-        if (gameObject.layer != LayerMask.NameToLayer("Enemy"))
+        enemyEnabled = true;
+        if (gameObject.layer != LayerMask.NameToLayer("Enemy") || disableEnemyBehaviour)
         {
             enemyEnabled = false;
-            return;
         }
-        enemyEnabled = true;
         rigid = GetComponent<Rigidbody2D> ();
         state = State.Idle;
         playerCharacter = GetComponent<PlayerCharacter> ();
         gameObject.AddComponent<PathFinder> ();
         pathFinder = gameObject.GetComponent<PathFinder> ();
         weaponInventory = GetComponent<CharacterWeaponInventory> ();
+        halo = GetComponent<HaloLogic>();
 
     }
     // Start is called before the first frame update
     void Start()
     {
-        if (!enemyEnabled)
-            return;
+        //if (!enemyEnabled)
+        //    return;
 
+        playerId = CharacterIdGenerator.GetCharacterId(gameObject, 0);
         controls = PlayerControls.Get(playerId);
         //playerCharacter.DisableControls(); 
         ResetMovementDirection();
@@ -78,6 +82,8 @@ public class EnemyCharacter : MonoBehaviour
         pathFinder.SetReturnPoint(transform.position);
         weaponInventory.pickupWeapon(weapon);
         weaponInventory.EquipWeapon(0);
+        lastUse = 0f;
+        nextAttackTime = stats.attackSpeed;
     }
 
     // Update is called once per frame
@@ -140,9 +146,8 @@ public class EnemyCharacter : MonoBehaviour
         if (playerDirection.magnitude < combatDistance && targetVisible)
         {
             controls.SetMove(Vector2.zero);
-
+            Attack();
             controls.SetMousePos(targetCharacter.transform.position);
-            controls.SetAttack(true);
             return;
         }
         else
@@ -192,6 +197,7 @@ public class EnemyCharacter : MonoBehaviour
             return;
         }
     }
+
     private void CalculateMovementDirection()
     {
         if ((transform.position - idlePosition).magnitude > idleRadius)
@@ -237,6 +243,22 @@ public class EnemyCharacter : MonoBehaviour
         }  
     }
 
+    private void Attack()
+    {
+        if (Time.time - lastUse > nextAttackTime)
+        {
+            halo.BeforeEnemyMeleeAttack();
+            lastUse = Time.time;
+            Invoke("AttackInvoke", 0.4f);
+            nextAttackTime = UnityEngine.Random.Range(stats.attackSpeed, 2f * stats.attackSpeed);
+        }
+    }
+
+    private void AttackInvoke()
+    {
+        controls.SetAttack(true);
+    }
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!enemyEnabled)
@@ -260,5 +282,23 @@ public class EnemyCharacter : MonoBehaviour
             ResetMovementDirection();
         } 
            
+    }
+
+    public void activateEnemyBehaviour()
+    {
+        disableEnemyBehaviour = false;
+        enemyEnabled = true;
+    }
+
+    public void deactivateEnemyBehaviour()
+    {
+        disableEnemyBehaviour = true;
+        enemyEnabled = false;
+    }
+
+    public void SetTarget(GameObject target)
+    {
+        targetCharacter = target;
+        state = State.Attack;
     }
 }

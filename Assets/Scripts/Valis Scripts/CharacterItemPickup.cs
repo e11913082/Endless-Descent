@@ -24,6 +24,11 @@ public class CharacterItemPickup : MonoBehaviour
             {
                 stats.AddCoins(other.gameObject.GetComponent<Coin>().amount);   
             }
+            else if (other.CompareTag("Armor"))
+            {
+                gameObject.GetComponent<Animator>().runtimeAnimatorController = other.gameObject.GetComponent<Armor>().armorAnimator;
+                stats.PickupItem(other.gameObject.GetComponent<ItemPickup>().getItemData());
+            }
             else
             {
                 stats.PickupItem(other.gameObject.GetComponent<ItemPickup>().getItemData());

@@ -28,8 +28,9 @@ GameObject:
   - component: {fileID: 6670824074277398997}
   - component: {fileID: 7804264739737691017}
   - component: {fileID: 2689710000002698}
-  - component: {fileID: 8049980247576472279}
   - component: {fileID: 4504246121553324020}
+  - component: {fileID: 5596722964878612626}
+  - component: {fileID: 1786674091510932326}
   m_Layer: 22
   m_Name: Main Character
   m_TagString: Player
@@ -120,7 +121,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 7ff77aac75ca00c41bfc68396aed3f3f, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -208,6 +209,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 15b5cdc3c6903f84586c012a375842b3, type: 3}
   - {fileID: 8300000, guid: 31be20262058ee048b170c0652eca48d, type: 3}
   - {fileID: 8300000, guid: d9d08ecea4468974387347fb4be0b6c4, type: 3}
+  meleeDamageSounds:
+  - {fileID: 8300000, guid: 70da1eeec76a97f4598ea233493f0026, type: 3}
+  - {fileID: 8300000, guid: ee888647a8825c24b84836cfcd9807f7, type: 3}
   stepSound: {fileID: 8300000, guid: a03a96c5d1e99b4409ddd79098abd9ab, type: 3}
   dashSound: {fileID: 8300000, guid: 4e22d35e0fc60024fa02ecd0f9a62296, type: 3}
 --- !u!114 &7564183154885829875
@@ -228,6 +232,7 @@ MonoBehaviour:
   shootDistance: 3
   returnIdleTime: 2
   weapon: {fileID: 11400000, guid: 57583a8ed9bd23aa095e2a6ca50721f1, type: 2}
+  disableEnemyBehaviour: 0
 --- !u!114 &3702767706727041646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,7 +540,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.15}
   m_Size: {x: 0.4, y: 0.8}
   m_Direction: 0
---- !u!114 &8049980247576472279
+--- !u!114 &4504246121553324020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173577608035208917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 972556ead4edf4d46a72f52bb81b3f9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5596722964878612626
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -585,7 +602,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!114 &4504246121553324020
+--- !u!114 &1786674091510932326
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -683,7 +700,7 @@ MonoBehaviour:
   attackKey: 32
   switchKey: 9
   dropKey: 113
-  dashKey: 304
+  dashKey: 120
 --- !u!114 &4484567655778861406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -710,12 +727,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_id: 1
-  maxHealth: 1000000
+  maxHealth: 100
   healthRegen: 0.5
   currentHealth: 50
   moveSpeed: 3
   damage: 20
-  attackRange: 0.8
+  attackRange: 1.3
   attackSpeed: 0.5
   dashCoolDown: 0.5
   attackAnimationSpeed: 3
@@ -723,7 +740,7 @@ MonoBehaviour:
   fearIncrease: 1
   fearDecrease: 1
   currentFear: 0
-  maxFear: 1000000
+  maxFear: 100000
   coins: 30
   equippedItems: []
   lastItem: {fileID: 0}

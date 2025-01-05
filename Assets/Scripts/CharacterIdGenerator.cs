@@ -11,7 +11,6 @@ public class CharacterIdGenerator : MonoBehaviour
     void Awake()
     {
         characterCount = 0;
-        Debug.Log("awake");
     }
     
     // Start is called before the first frame update

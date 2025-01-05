@@ -69,7 +69,7 @@ namespace EndlessDescent
 
                 if (collision.gameObject.layer == targetLayer)
                 {
-                    collision.gameObject.GetComponent<PlayerCharacter>().TakeDamage(damage, shootDirection);
+                    collision.gameObject.GetComponent<PlayerCharacter>().TakeDamage(damage, shootDirection, 0);
                 }
                 Debug.Log("test");
                 Rigid.velocity = Vector2.zero;
