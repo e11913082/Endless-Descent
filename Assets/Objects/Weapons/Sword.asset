@@ -19,6 +19,6 @@ MonoBehaviour:
   delay: 0
   projectilePrefab: {fileID: 5873806722197866145, guid: ce6b3376b68bf9a5f8bf760a543ac183,
     type: 3}
-  sprite: {fileID: 1405838288, guid: e66bee38a184cc7659af46699fb5f2a3, type: 3}
+  sprite: {fileID: 21300000, guid: 0a98b2cb043edc846b05b593a376cb66, type: 3}
   projectileOffsetX: 0
   projectileOffsetY: 0
