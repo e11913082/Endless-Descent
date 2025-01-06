@@ -167,7 +167,9 @@ public class BossBehaviour : MonoBehaviour
         {
             spawnAngle = UnityEngine.Random.Range(0, 360);
             Vector2 spawnPos = transform.position + Quaternion.Euler(0, 0, spawnAngle) * Vector2.up * spawnRadius;
-            instantiatedEnemies.Add(Instantiate(enemy, spawnPos, transform.rotation));
+            GameObject enemyGameObject = Instantiate(enemy, spawnPos, transform.rotation);
+            instantiatedEnemies.Add(enemyGameObject);
+            enemyGameObject.GetComponent<EnemyCharacter>().SetTarget(targetCharacter);
         }
         invokingSpawnEnemies = false;
     }
@@ -180,18 +182,20 @@ public class BossBehaviour : MonoBehaviour
 
     private void InvulnerableHalo()
     {
-        light2D.intensity = 10f;
-        light2D.pointLightInnerRadius = 0.5f;
-        light2D.pointLightOuterRadius = 1f;
-        light2D.color = Color.blue;
+        halo.origIntensity = 10f;
+        halo.origInnerRadius = 0.5f;
+        halo.origOuterRadius = 1f;
+        halo.originalCol = Color.blue;
+        halo.Reset();
     }
 
     private void ResetDefaultHalo()
     {
-        light2D.intensity = defaultHaloIntensity;
-        light2D.pointLightInnerRadius = defaultHaloInnerRadius;
-        light2D.pointLightOuterRadius = defaultHaloOuterRadius;
-        light2D.color = defaultHaloColor;
+        halo.origIntensity = defaultHaloIntensity;
+        halo.origInnerRadius = defaultHaloInnerRadius;
+        halo.origOuterRadius = defaultHaloOuterRadius;
+        halo.originalCol = defaultHaloColor;
+        halo.Reset();
     }
 
     private IEnumerator Levitate()
