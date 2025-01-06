@@ -38,6 +38,7 @@ public class inventoryRefresher : MonoBehaviour
 
             slots.Insert(0, nextSlot);
         }
+        initDone = true;
         Refresh();
     }
 
@@ -55,6 +56,8 @@ public class inventoryRefresher : MonoBehaviour
 
     void Refresh()
     {
+        if (initDone)
+        {
             curWeaponOverlay.color = new Color(curWeaponOverlay.color.r, curWeaponOverlay.color.g, curWeaponOverlay.color.b, 0);//in case no weapon is there anymore the currentweapon-icon gets blended out
             int weaponIndex = 0;
 
@@ -75,7 +78,7 @@ public class inventoryRefresher : MonoBehaviour
             }
 
             RefreshOverlay();
-        
+        }
     }
 
     void RefreshOverlay()
