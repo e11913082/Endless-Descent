@@ -10,7 +10,6 @@ public class CharacterIdGenerator : MonoBehaviour
     
     void Awake()
     {
-        characterCount = 0;
     }
     
     // Start is called before the first frame update

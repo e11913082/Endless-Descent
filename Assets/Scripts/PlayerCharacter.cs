@@ -87,6 +87,7 @@ namespace EndlessDescent
             spriteRenderer = GetComponent<SpriteRenderer>();
             audioSource = GetComponent<AudioSource>();
             halo = gameObject.GetComponent<HaloLogic>();
+            player_id = CharacterIdGenerator.GetCharacterId(gameObject, 0);
         }
 
         void OnDestroy()
@@ -101,7 +102,6 @@ namespace EndlessDescent
                 PlayerPrefs.SetFloat("EffectVolume", 0.3f);
             }
             audioSource.volume = PlayerPrefs.GetFloat("EffectVolume");
-            player_id = CharacterIdGenerator.GetCharacterId(gameObject, 0);
             character_list[player_id] = this;
             stats = PlayerStats.GetPlayerStats(player_id);
         }
