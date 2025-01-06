@@ -42,7 +42,12 @@ public class CharacterWeaponInventory : MonoBehaviour
             stats.Damage += weapon.damageBonus;
             EquipWeapon(0);
         }
-
+        Debug.Log("--");
+        foreach (Weapon w in weapons)
+        {
+           Debug.Log(w.description);
+        }
+        Debug.Log("--");
         EventManager.TriggerEvent("InventoryChange");
         return true;
     }
