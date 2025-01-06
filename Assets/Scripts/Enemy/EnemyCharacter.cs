@@ -58,7 +58,7 @@ public class EnemyCharacter : MonoBehaviour
         pathFinder = gameObject.GetComponent<PathFinder> ();
         weaponInventory = GetComponent<CharacterWeaponInventory> ();
         halo = GetComponent<HaloLogic>();
-
+        playerId = CharacterIdGenerator.GetCharacterId(gameObject, 0);
     }
     // Start is called before the first frame update
     void Start()
@@ -66,7 +66,6 @@ public class EnemyCharacter : MonoBehaviour
         //if (!enemyEnabled)
         //    return;
 
-        playerId = CharacterIdGenerator.GetCharacterId(gameObject, 0);
         controls = PlayerControls.Get(playerId);
         //playerCharacter.DisableControls(); 
         ResetMovementDirection();

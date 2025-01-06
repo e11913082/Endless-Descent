@@ -11,14 +11,10 @@ public class HaloLogic : MonoBehaviour
     private readonly Color enemyBeforeMeleeCol = new Color(255f, 95f, 31f);
     private readonly Color summonEnemiesCol = new Color(102f, 0f, 102f);
     private Light2D halo;
-    private float origIntensity;
-    private float origInnerRadius;
-    private float origOuterRadius;
-    private Color originalCol;
-    private float lastIntensity;
-    private float lastInnerRadius;
-    private float lastOuterRadius;
-    private Color lastCol;
+    public float origIntensity;
+    public float origInnerRadius;
+    public float origOuterRadius;
+    public Color originalCol;
     public Coroutine currentFlickerCoroutine;
 
     void Start()
@@ -45,35 +41,30 @@ public class HaloLogic : MonoBehaviour
 
     public void OnMagicAttack()
     {
-        SaveLast();
         StopCurCoroutine();
         currentFlickerCoroutine = StartCoroutine(Flicker(0.5f, 0.8f, 4.55f, 1.35f, magicAttackCol));
     }
 
     public void OnMeleeAttack()
     {
-        SaveLast();
         StopCurCoroutine();
         currentFlickerCoroutine = StartCoroutine(Flicker(0.5f, 0.2f, 1.5f, 1f, meleeAttackCol));
     }
 
     public void BeforeEnemyMeleeAttack()
     {
-        SaveLast();
         StopCurCoroutine();
         currentFlickerCoroutine = StartCoroutine(Flicker(0.5f, 0.1f, 0.3f, 0.5f, enemyBeforeMeleeCol));
     }
 
     public void OnSummonEnemies()
     {
-        SaveLast();
         StopCurCoroutine();
         currentFlickerCoroutine = StartCoroutine(Flicker(0.5f, 0.16f, 0.5f, 0.5f, summonEnemiesCol));
     }
 
     public void OnPlayerDamage()
     {
-        SaveLast();
         StopCurCoroutine();
         currentFlickerCoroutine = StartCoroutine(Flicker(0.02f,0.17f, 4.5f, 0.75f, hitCol));
     }
@@ -107,32 +98,16 @@ public class HaloLogic : MonoBehaviour
             yield return new WaitForSeconds(DELTA);
         }
         
-        ResetToLast();
+        Reset();
     }
 
-    private void Reset()
+    public void Reset()
     {
 
         halo.intensity = origIntensity;
         halo.pointLightInnerRadius = origInnerRadius;
         halo.pointLightOuterRadius = origOuterRadius;
         halo.color = originalCol;
-    }
-
-    private void SaveLast()
-    {
-        lastIntensity = halo.intensity;
-        lastInnerRadius = halo.pointLightInnerRadius;
-        lastOuterRadius = halo.pointLightOuterRadius;
-        lastCol = halo.color;        
-    }
-    private void ResetToLast()
-    {
-
-        halo.intensity = lastIntensity;
-        halo.pointLightInnerRadius = lastInnerRadius;
-        halo.pointLightOuterRadius = lastOuterRadius;
-        halo.color = lastCol;
     }
 
     public void StopCurCoroutine()

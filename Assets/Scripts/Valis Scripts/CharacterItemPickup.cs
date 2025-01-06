@@ -12,7 +12,7 @@ public class CharacterItemPickup : MonoBehaviour
     void Start()
     {
         player = GetComponent<PlayerCharacter>();
-        stats = PlayerStats.GetPlayerStats(player.player_id);
+        stats = PlayerStats.GetPlayerStats(CharacterIdGenerator.GetCharacterId(gameObject, 0));
     }
     
     // Item pickup logic
