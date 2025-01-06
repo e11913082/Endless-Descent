@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 5683566125212896721}
   - component: {fileID: 5115993556724404259}
   - component: {fileID: -2399355347108700535}
+  - component: {fileID: 395858383247507360}
   m_Layer: 19
-  m_Name: sampleLantern_small
+  m_Name: Lantern_6_small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,7 +55,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 64
+  m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
@@ -78,12 +79,12 @@ SpriteRenderer:
   m_SortingLayerID: 1502599955
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1272735443, guid: dbb33576a865a4943a6a83c46125a770, type: 3}
+  m_Sprite: {fileID: 704224829, guid: 4051b0b5a9e60814d918869c066f38f8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.4, y: 0.56}
+  m_Size: {x: 0.34, y: 0.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -109,7 +110,7 @@ MonoBehaviour:
   m_Intensity: 0.5
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 0000000003819490b391b5f9e4317d4c13db8f59
+  m_ApplyToSortingLayers: 0000000003819490b391b5f90f87d50ae4317d4c13db8f5913db8f59
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -149,7 +150,7 @@ Animator:
   m_GameObject: {fileID: 5169383726756719340}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ab7611197f667dc4fb9ba2f1c6c202bf, type: 2}
+  m_Controller: {fileID: 9100000, guid: cdb6b3cce6636c041845c47f6dd23af6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -196,8 +197,8 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.4, y: 0.56}
-    newSize: {x: 0.4, y: 0.56}
+    oldSize: {x: 0.34, y: 0.4}
+    newSize: {x: 0.34, y: 0.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -251,6 +252,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.4
+--- !u!114 &395858383247507360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5169383726756719340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e69a45862d06f448f9823d5052437b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8176450339229989646
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,7 +275,7 @@ GameObject:
   - component: {fileID: 8277806065296627061}
   - component: {fileID: 894833733510703234}
   m_Layer: 19
-  m_Name: innerLight (optional)
+  m_Name: inner light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -303,7 +316,7 @@ MonoBehaviour:
   m_Intensity: 1.5
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 0000000003819490c93960fdb391b5f9e4317d4c13db8f59
+  m_ApplyToSortingLayers: 0000000003819490b391b5f90f87d50ae4317d4c13db8f5913db8f59
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0

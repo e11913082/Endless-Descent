@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: lamp_1_idle
+  m_Name: lantern_1_idle
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0

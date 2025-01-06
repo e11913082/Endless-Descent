@@ -10,14 +10,12 @@ public class inventoryRefresher : MonoBehaviour
 {
     public float paddingBetweenSlots = 0.01f; //padding between slots, gets multiplied by the screen width
 
-
     private CharacterWeaponInventory playerInv;
     private GameObject baseInvSlot;
     private List<GameObject> slots;
 
     private Image curWeaponOverlay;
     private bool initDone = false; //needed to avoid refresh on playercreation
-
 
     void Start()
     {
@@ -39,13 +37,9 @@ public class inventoryRefresher : MonoBehaviour
             nextSlot.transform.position = curPos;
 
             slots.Insert(0, nextSlot);
-            Refresh();
+            
         }
-        initDone = true;
-    }
-
-    void Update()
-    {
+        Refresh();
     }
 
     private void OnEnable()
@@ -62,8 +56,6 @@ public class inventoryRefresher : MonoBehaviour
 
     void Refresh()
     {
-        if (initDone)
-        {
             curWeaponOverlay.color = new Color(curWeaponOverlay.color.r, curWeaponOverlay.color.g, curWeaponOverlay.color.b, 0);//in case no weapon is there anymore the currentweapon-icon gets blended out
             int weaponIndex = 0;
 
@@ -82,8 +74,9 @@ public class inventoryRefresher : MonoBehaviour
                 }
                 weaponIndex++;
             }
+
             RefreshOverlay();
-        }
+        
     }
 
     void RefreshOverlay()
@@ -95,8 +88,11 @@ public class inventoryRefresher : MonoBehaviour
             {
                 curWeaponOverlay.transform.position = slots[i].transform.position;
                 curWeaponOverlay.color = new Color(curWeaponOverlay.color.r, curWeaponOverlay.color.g, curWeaponOverlay.color.b, 1);
+                //Debug.Log("switched to Weapon at slot " + i);
                 return;
             }
+
+
         }
     }
 }

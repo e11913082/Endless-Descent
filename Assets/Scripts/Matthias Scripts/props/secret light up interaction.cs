@@ -24,7 +24,6 @@ public class LightUpOnEnter : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.gameObject.tag);
         //TODO play secret sound
         if ((playerLayer.value & (1 << other.gameObject.layer)) != 0)
         {
