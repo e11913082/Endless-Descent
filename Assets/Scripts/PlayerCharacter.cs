@@ -78,8 +78,26 @@ namespace EndlessDescent
         // Other
         private HaloLogic halo;
 
+        //needed for player persistence over loops
+        private LayerMask playerLayer;
+        private static PlayerCharacter instance;
+
         void Awake()
         {
+            playerLayer = LayerMask.GetMask("Player");
+            if ((playerLayer & (1 << gameObject.layer)) != 0)
+            {
+                if (instance == null)
+                {
+                    instance = this;
+                    DontDestroyOnLoad(gameObject);
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
+            }
+
             rigid = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
             auto_order = GetComponent<AutoOrderLayer>();

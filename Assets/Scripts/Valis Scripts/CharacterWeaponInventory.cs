@@ -69,8 +69,6 @@ public class CharacterWeaponInventory : MonoBehaviour
     public void DropWeapon()
     {
         weapons.Remove(equippedWeapon);
-        EventManager.TriggerEvent("InventoryChange"); //currently here bacause bug in InitializeDropped (Row 76)
-
         WeaponPickup wp = Instantiate(droppedWeaponPrefab, transform.position, Quaternion.identity).GetComponent<WeaponPickup>();
         wp.InitializeDropped(equippedWeapon);
         
@@ -85,5 +83,6 @@ public class CharacterWeaponInventory : MonoBehaviour
             stats.damage -= equippedWeapon.damageBonus;
             equippedWeapon = null;
         }
+        EventManager.TriggerEvent("InventoryChange");
     }
 }

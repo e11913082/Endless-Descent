@@ -37,7 +37,6 @@ public class inventoryRefresher : MonoBehaviour
             nextSlot.transform.position = curPos;
 
             slots.Insert(0, nextSlot);
-            
         }
         Refresh();
     }
@@ -91,8 +90,6 @@ public class inventoryRefresher : MonoBehaviour
                 //Debug.Log("switched to Weapon at slot " + i);
                 return;
             }
-
-
         }
     }
 }
