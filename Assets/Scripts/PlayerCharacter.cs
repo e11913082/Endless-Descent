@@ -81,6 +81,7 @@ namespace EndlessDescent
         //needed for player persistence over loops
         private LayerMask playerLayer;
         private static PlayerCharacter instance;
+        private Vector3 spawnPos;
 
         void Awake()
         {
@@ -90,10 +91,12 @@ namespace EndlessDescent
                 if (instance == null)
                 {
                     instance = this;
+                    spawnPos = instance.gameObject.transform.position;
                     DontDestroyOnLoad(gameObject);
                 }
                 else
                 {
+                    instance.gameObject.transform.position = spawnPos;
                     Destroy(gameObject);
                 }
             }
