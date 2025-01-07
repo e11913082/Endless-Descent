@@ -156,7 +156,7 @@ public class PlayerStats : MonoBehaviour
             case 2:
             case 4:
             case 6:
-                return "You won a common Item!";
+                return "You won a common Item: " + rewardItem.itemName;
             case 3:
             case 7:
                 coins = Mathf.Max(coins - 20, 0);
@@ -169,7 +169,7 @@ public class PlayerStats : MonoBehaviour
                 coins += 20;
                 return "You won a bottle of lantern oil!";
             case 5:
-                return "You won a rare item!";
+                return "You won a rare item: " + rewardItem.itemName;
             default:
                 return "MISSING SEGMENT!";
         }

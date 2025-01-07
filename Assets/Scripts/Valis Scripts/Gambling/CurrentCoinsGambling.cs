@@ -40,7 +40,7 @@ public class CurrentCoinsGambling : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        textMesh.text = playerStats.coins.ToString("0.0") + "\n Lantern Oil";
+        textMesh.text = playerStats.coins.ToString("0.0") + "\n Lantern Oil in Possession";
         
         if (playerStats.coins > 30f)
         {

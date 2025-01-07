@@ -28,7 +28,7 @@ public class WheelOfFortuneHandler : MonoBehaviour
 
     private void Awake()
     {   
-        buttonText.text = "Spin = 10 Oil ("+(maxSpinCount-spinCount)+" left)";
+        buttonText.text = "Spin = 10 Oil ("+(maxSpinCount-spinCount)+" spins left)";
         outText.text = "";
         stats = oilText.GetComponent<CurrentCoinsGambling>().playerStats;
     }
@@ -45,7 +45,7 @@ public class WheelOfFortuneHandler : MonoBehaviour
 
     private IEnumerator FadeOut(int wait)
     {
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(wait);
         for(float alpha = outText.alpha; alpha >= -1f; alpha -= 0.2f)
         {
             outText.alpha = alpha;
@@ -59,7 +59,7 @@ public class WheelOfFortuneHandler : MonoBehaviour
         {
             StopCoroutine(fadeCoroutine);
         }
-        fadeCoroutine = StartCoroutine(FadeOut(1));
+        fadeCoroutine = StartCoroutine(FadeOut(2));
     }
     
     public void StartSpin()

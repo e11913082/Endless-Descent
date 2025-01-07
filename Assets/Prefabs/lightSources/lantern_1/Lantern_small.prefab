@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5115993556724404259}
   - component: {fileID: -2399355347108700535}
   - component: {fileID: 353001643706080160}
+  - component: {fileID: 6750403939594485694}
   m_Layer: 19
   m_Name: Lantern_small
   m_TagString: Untagged
@@ -264,6 +265,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e69a45862d06f448f9823d5052437b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6750403939594485694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5169383726756719340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43478abf9b5ed9d4a834065471fc4607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  auto_sort: 1
+  offset: -0.2
+  sort_refresh_rate: 0.1
+  auto_rotate: 0
+  rotate_offset: 0
 --- !u!1 &8176450339229989646
 GameObject:
   m_ObjectHideFlags: 0

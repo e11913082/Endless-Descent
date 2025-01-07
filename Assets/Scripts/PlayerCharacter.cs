@@ -258,7 +258,7 @@ namespace EndlessDescent
 
                     if (stats.CurrentHealth <= 0f)
                     {
-                        Instantiate(coinPrefab, transform.position, Quaternion.identity);
+                        GameObject coin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
                         Kill();
                     }
                     else
