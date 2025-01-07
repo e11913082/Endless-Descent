@@ -49,15 +49,15 @@ public class KeybindManager : MonoBehaviour
             return;
         }
         
-        keybinds["up"] = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("up", KeyCode.W.ToString()));
-        keybinds["down"] = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("down", KeyCode.S.ToString()));
-        keybinds["right"] = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("right", KeyCode.D.ToString()));
-        keybinds["left"] = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("left", KeyCode.A.ToString()));
-        keybinds["attack"] = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("attack", KeyCode.Space.ToString()));
-        keybinds["interact"] = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("interact", KeyCode.E.ToString()));
-        keybinds["switch"] = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("switch", KeyCode.Tab.ToString()));
-        keybinds["drop"] = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("drop", KeyCode.Q.ToString()));
-        keybinds["drop"] = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("drop", KeyCode.LeftShift.ToString()));
+        keybinds["up"] = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("up", KeyCode.W.ToString()));
+        keybinds["down"] = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("down", KeyCode.S.ToString()));
+        keybinds["right"] = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("right", KeyCode.D.ToString()));
+        keybinds["left"] = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("left", KeyCode.A.ToString()));
+        keybinds["attack"] = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("attack", KeyCode.Space.ToString()));
+        keybinds["interact"] = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("interact", KeyCode.E.ToString()));
+        keybinds["switch"] = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("switch", KeyCode.Tab.ToString()));
+        keybinds["drop"] = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("drop", KeyCode.Q.ToString()));
+        keybinds["dash"] = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("dash", KeyCode.LeftShift.ToString()));
         
         keybindTexts["up"] = upText;
         keybindTexts["down"] = downText;
@@ -67,7 +67,7 @@ public class KeybindManager : MonoBehaviour
         keybindTexts["interact"] = interactText;
         keybindTexts["switch"] = switchText;
         keybindTexts["drop"] = dropText;
-        keybindTexts["drop"] = dashText;
+        keybindTexts["dash"] = dashText;
     }
 
     // Start is called before the first frame update
@@ -84,7 +84,7 @@ public class KeybindManager : MonoBehaviour
         interactButton.onClick.AddListener(() => StartRebinding("interact", interactText));
         switchButton.onClick.AddListener(() => StartRebinding("switch", switchText));
         dropButton.onClick.AddListener(() => StartRebinding("drop", dropText));
-        dashButton.onClick.AddListener(() => StartRebinding("dash", dropText));
+        dashButton.onClick.AddListener(() => StartRebinding("dash", dashText));
     }
 
     // Update is called once per frame
