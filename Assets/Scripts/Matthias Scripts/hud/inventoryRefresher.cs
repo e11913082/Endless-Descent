@@ -90,7 +90,6 @@ public class inventoryRefresher : MonoBehaviour
             {
                 curWeaponOverlay.transform.position = slots[i].transform.position;
                 curWeaponOverlay.color = new Color(curWeaponOverlay.color.r, curWeaponOverlay.color.g, curWeaponOverlay.color.b, 1);
-                //Debug.Log("switched to Weapon at slot " + i);
                 return;
             }
         }

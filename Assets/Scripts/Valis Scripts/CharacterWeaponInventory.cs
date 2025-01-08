@@ -5,9 +5,12 @@ using EndlessDescent;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.EventSystems;
 
 public class CharacterWeaponInventory : MonoBehaviour
 {
+    private LayerMask playerLayer;
+
     public List<Weapon> weapons;
     public Weapon equippedWeapon;
     private int currentIndex;
@@ -15,7 +18,7 @@ public class CharacterWeaponInventory : MonoBehaviour
     public int maxInventorySize;
 
     public GameObject droppedWeaponPrefab;
-    
+
 
     private void Awake()
     {
@@ -25,11 +28,22 @@ public class CharacterWeaponInventory : MonoBehaviour
 
     private void Start()
     {
-        stats = PlayerStats.GetPlayerStats(CharacterIdGenerator.GetCharacterId(gameObject, 0)); 
+        playerLayer = LayerMask.GetMask("Player");
+        stats = PlayerStats.GetPlayerStats(CharacterIdGenerator.GetCharacterId(gameObject, 0));
         if (equippedWeapon != null)
         {
             stats.damage += equippedWeapon.damageBonus;
         }
+    }
+
+    private void OnEnable()
+    {
+        EventManager.StartListening("WeaponslotClick", OnWeaponslotClick);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.StopListening("WeaponslotClick", OnWeaponslotClick);
     }
 
     public bool pickupWeapon(Weapon weapon)
@@ -48,7 +62,7 @@ public class CharacterWeaponInventory : MonoBehaviour
 
 
     public void EquipWeapon(int weaponIndex)
-    {   
+    {
         equippedWeapon = weapons[weaponIndex];
     }
 
@@ -65,12 +79,32 @@ public class CharacterWeaponInventory : MonoBehaviour
         EventManager.TriggerEvent("WeaponSwitch");
     }
 
+    public void SwitchWeapon(int slotId)
+    {
+        if (slotId >= weapons.Count) //case: slot is empty 
+        {
+            Debug.Log("Clicked weaponslot is empty " + "slotId: " + slotId + "weaponscount: " + weapons.Count);
+            return;
+        }
+        if(currentIndex == slotId) //case: slot already equipped
+        {
+            Debug.Log("Clicked weaponslot is already chosen");
+            return;
+        }
+
+        float previousDamage = weapons[currentIndex].damageBonus;
+        currentIndex = slotId;
+        EquipWeapon(currentIndex);
+        stats.damage = stats.damage - previousDamage + weapons[currentIndex].damageBonus;
+        EventManager.TriggerEvent("WeaponSwitch");
+    }
+
     public void DropWeapon()
     {
         weapons.Remove(equippedWeapon);
         WeaponPickup wp = Instantiate(droppedWeaponPrefab, transform.position, Quaternion.identity).GetComponent<WeaponPickup>();
         wp.InitializeDropped(equippedWeapon);
-        
+
         if (weapons.Count > 0)
         {
             float previousDamage = equippedWeapon.damageBonus;
@@ -83,5 +117,15 @@ public class CharacterWeaponInventory : MonoBehaviour
             equippedWeapon = null;
         }
         EventManager.TriggerEvent("InventoryChange");
+    }
+
+    public void OnWeaponslotClick()
+    {
+        if ((playerLayer.value & (1 << gameObject.layer)) == 0) //case: gameobject is not the maincharacter
+        {
+            return;
+        }
+        int slotId = InventoryButtonListener.lastClicked;
+        SwitchWeapon(slotId);
     }
 }
