@@ -83,7 +83,7 @@ public class CharacterWeaponInventory : MonoBehaviour
     {
         if (slotId >= weapons.Count) //case: slot is empty 
         {
-            Debug.Log("Clicked weaponslot is empty " + "slotId: " + slotId + "weaponscount: " + weapons.Count);
+            Debug.Log("Clicked weaponslot is empty");
             return;
         }
         if(currentIndex == slotId) //case: slot already equipped

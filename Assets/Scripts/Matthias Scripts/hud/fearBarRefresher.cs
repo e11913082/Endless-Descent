@@ -13,8 +13,6 @@ public class FearbarRefresher : MonoBehaviour
     private PlayerStats stats;
     private TextMeshProUGUI fearIncTmp;
     private TextMeshProUGUI fearDecTmp;
-    private float maxFear;//extra field to avoid trivial object-fieldacceses
-    private UnityAction onItemPickup;
 
     private GameObject upArrow;
     private GameObject downArrow;

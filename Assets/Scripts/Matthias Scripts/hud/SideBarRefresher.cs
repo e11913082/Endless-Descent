@@ -15,20 +15,18 @@ public class SidebarRefresher : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public Sprite upArrowGreen;
     public Sprite downArrowGreen;
     public Sprite downArrowRed;
+    public Sprite upArrowRed;
 
     private const string LF = "\n";
     private readonly float VERTSTATPADDING = 0.08f * Screen.height; //vertical distance between statChanges | measured in proportion to the screenheigth
     
     private string stringMask; //used for limiting the decimal places without rounding
 
-    private StringBuilder statChangeStrB; //displays stat adjustment on itempickup
-
     private PlayerStats stats;
     private UnityAction onItemPickup;
     
     private GameObject sampleStatChange;
-
-    private Collider2D hoverCollider;
+    private StringBuilder statChangeStrB;
 
     private static Vector2 statPosition;
 
@@ -99,16 +97,26 @@ public class SidebarRefresher : MonoBehaviour, IPointerEnterHandler, IPointerExi
         TextMeshProUGUI statsText = outputObj.transform.Find("Text").GetComponent<TextMeshProUGUI>();
         StringBuilder textSb = new StringBuilder();
 
-        if (value > 0)
+        if (name == "fearIncrease") //special case for fearincrease
+        {
+            if (value <= 0)
+            {
+                textSb.Append("<color=green>");
+                outputObj.transform.Find("Image").GetComponent<Image>().sprite = downArrowGreen;
+            }
+            else
+            {
+                textSb.Append("<color=red>");
+                outputObj.transform.Find("Image").GetComponent<Image>().sprite = upArrowRed;
+            }
+
+        }
+        else if (value > 0)
         {
             textSb.Append("<color=green>+");
             outputObj.transform.Find("Image").GetComponent<Image>().sprite = upArrowGreen;
         }
-        else if (name == "fearIncrease") // value <= 0
-        {
-            textSb.Append("<color=green>");
-            outputObj.transform.Find("Image").GetComponent<Image>().sprite = downArrowGreen;
-        }
+        
         else
         {
             textSb.Append("<color=red>");
