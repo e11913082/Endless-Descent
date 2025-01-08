@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class goboss : MonoBehaviour
+public class Goboss : MonoBehaviour
 {
     private LayerMask playerLayer;
 

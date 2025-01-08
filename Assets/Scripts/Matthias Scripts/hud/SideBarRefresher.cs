@@ -6,9 +6,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System.Runtime.CompilerServices;
 
-
-public class SidebarRefresher : MonoBehaviour
+public class SidebarRefresher : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public int maximumDecimalPlaces = 1;
     public Sprite upArrowGreen;
@@ -16,8 +17,7 @@ public class SidebarRefresher : MonoBehaviour
     public Sprite downArrowRed;
 
     private const string LF = "\n";
-    private const float DELTA = 0.01667f; //frame delta
-    private readonly float VERTSTATPADDING = 0.08f * Screen.height; //vetical distance between statChanges | measured in proportion to the screenheigth
+    private readonly float VERTSTATPADDING = 0.08f * Screen.height; //vertical distance between statChanges | measured in proportion to the screenheigth
     
     private string stringMask; //used for limiting the decimal places without rounding
 
@@ -28,10 +28,11 @@ public class SidebarRefresher : MonoBehaviour
     
     private GameObject sampleStatChange;
 
-    
-
+    private Collider2D hoverCollider;
 
     private static Vector2 statPosition;
+
+    private bool hovering = false;
 
     private void Awake()
     {
@@ -61,6 +62,18 @@ public class SidebarRefresher : MonoBehaviour
         EventManager.StopListening("ItemPickup", onItemPickup);
     }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        hovering = true;
+        Debug.Log("Hover start");
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        hovering = false;
+        Debug.Log("Hover stop");
+    }
+
     void ChangeAlphaOfStatChange(GameObject parentObj, float alpha)
     {
         Image image = parentObj.GetComponentInChildren<Image>();
@@ -77,6 +90,7 @@ public class SidebarRefresher : MonoBehaviour
             GameObject newStatChange = CreateStatChange(statChange.Key, statChange.Value);
             StartCoroutine(DisplayStatChange(newStatChange));
         }
+
     }
 
     GameObject CreateStatChange(string name, float value)
@@ -122,13 +136,18 @@ public class SidebarRefresher : MonoBehaviour
         for (float alpha = 0; alpha <= 1; alpha += 0.15f)
         {
             ChangeAlphaOfStatChange(statChange, alpha);
-            yield return new WaitForSeconds(DELTA);
+            yield return new WaitForSeconds(Time.deltaTime);
         }
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
+        while (hovering)
+        {
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        yield return new WaitForSeconds(1f);
         for(float alpha = 1; alpha >= 0; alpha -= 0.05f)
         {
             ChangeAlphaOfStatChange(statChange, alpha);
-            yield return new WaitForSeconds(DELTA);
+            yield return new WaitForSeconds(Time.deltaTime);
         }
         Destroy(statChange);
         statPosition.y += VERTSTATPADDING;
