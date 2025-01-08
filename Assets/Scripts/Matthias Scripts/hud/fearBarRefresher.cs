@@ -16,20 +16,21 @@ public class FearbarRefresher : MonoBehaviour
     private float maxFear;//extra field to avoid trivial object-fieldacceses
     private UnityAction onItemPickup;
 
-    private void Awake()
-    {
-        onItemPickup = new UnityAction(RefreshBuildUpText);
-    }
+    private GameObject upArrow;
+    private GameObject downArrow;
 
     void Start()
     {
+        upArrow = GameObject.Find("Hud V2/FearBar/Arrows/UpArrow");
+        downArrow = GameObject.Find("Hud V2/FearBar/Arrows/DownArrow");
+
         slider = transform.Find("Bar").GetComponent<Slider>();
 
         stats = PlayerStats.GetPlayerStats(Hud.GetPlayerId());
         stringMask = Hud.CreateStringMask(maximumDecimalPlaces);
 
-        fearDecTmp = GameObject.Find("Hud V2/FearBar/Arrows/DownArrow/Text").GetComponent<TextMeshProUGUI>();
-        fearIncTmp = GameObject.Find("Hud V2/FearBar/Arrows/UpArrow/Text").GetComponent<TextMeshProUGUI>();
+        fearDecTmp = downArrow.transform.Find("Text").GetComponent<TextMeshProUGUI>(); //GameObject.Find("Hud V2/FearBar/Arrows/DownArrow/Text").GetComponent<TextMeshProUGUI>();
+        fearIncTmp = upArrow.transform.Find("Text").GetComponent<TextMeshProUGUI>();
         RefreshBuildUpText();
     }
 
@@ -37,30 +38,22 @@ public class FearbarRefresher : MonoBehaviour
     {
         RefreshCurFear();
     }
-    private void OnEnable()
-    {
-        EventManager.StartListening("ItemPickup", onItemPickup);
-    }
-
-    private void OnDisable()
-    {
-        EventManager.StopListening("ItemPickup", onItemPickup);
-    }
-
 
     private void RefreshCurFear()
     {
+        float oldVal = slider.value;
         slider.value = Math.Clamp(stats.currentFear / stats.maxFear, 0, stats.maxFear);
-        //curFearTmp.text = stats.currentFear.ToString(stringMask);
+        if(slider.value > oldVal)
+        {
+            upArrow.SetActive(true);
+            downArrow.SetActive(false);
+        }
+        else if(slider.value < oldVal)
+        {
+            downArrow.SetActive(true);
+            upArrow.SetActive(false);
+        }
     }
-
-
-    //private void RefreshMaxFear()
-    //{
-    //    maxFear = stats.MaxFear;
-    //    maxFearTmp.text = stats.maxFear.ToString(stringMask);
-    //}
-
     private void RefreshBuildUpText()
     {
         fearDecTmp.text = stats.fearDecrease.ToString(stringMask);

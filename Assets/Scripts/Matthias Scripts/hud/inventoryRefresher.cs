@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class inventoryRefresher : MonoBehaviour
+public class InventoryRefresher : MonoBehaviour
 {
     public float paddingBetweenSlots = 0.01f; //padding between slots, gets multiplied by the screen width
 
