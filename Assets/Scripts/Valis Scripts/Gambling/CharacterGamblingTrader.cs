@@ -23,7 +23,6 @@ public class CharacterGamblingTrader : MonoBehaviour
     void Start()
     {
         canvas = GameObject.Find("/GamblingCanvas");
-        canvas.gameObject.SetActive(false);
         hintText = GameObject.Find("/HintCanvas").GetComponentInChildren<TextMeshProUGUI>(true);
         panelImage = hintText.gameObject.transform.parent.gameObject.GetComponent<Image>();
         hintText.gameObject.transform.parent.gameObject.SetActive(false);
