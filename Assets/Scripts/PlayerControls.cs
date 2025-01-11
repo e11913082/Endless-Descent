@@ -14,6 +14,10 @@ namespace EndlessDescent
     public class PlayerControls : MonoBehaviour
     {
         public int player_id;
+
+        [Header("Tick if inspector values should be used instead of PlayerPrefs")]
+        public bool useInspectorValues;
+        
         public KeyCode left_key;
         public KeyCode right_key;
         public KeyCode up_key;
@@ -23,7 +27,7 @@ namespace EndlessDescent
         public KeyCode switchKey;
         public KeyCode dropKey;
         public KeyCode dashKey;
-
+        
         private Vector2 move = Vector2.zero;
         private bool action_press = false;
         private bool action_hold = false;
@@ -43,33 +47,34 @@ namespace EndlessDescent
             player_id = CharacterIdGenerator.GetCharacterId(gameObject, 1);
             controls[player_id] = this;
             mainCamera = Camera.main;
-
-            if (KeybindManager.instance != null)
+            if (!useInspectorValues)
             {
-                up_key = KeybindManager.instance.keybinds["up"];
-                down_key = KeybindManager.instance.keybinds["down"];
-                right_key = KeybindManager.instance.keybinds["right"];
-                left_key = KeybindManager.instance.keybinds["left"];
-                attackKey = KeybindManager.instance.keybinds["attack"];
-                action_key = KeybindManager.instance.keybinds["interact"];
-                switchKey = KeybindManager.instance.keybinds["switch"];
-                dropKey = KeybindManager.instance.keybinds["drop"];
-                dashKey = KeybindManager.instance.keybinds["dash"];
-            }
-            else
-            {
-                up_key = KeyCode.W;
-                down_key = KeyCode.S;
-                right_key = KeyCode.D;
-                left_key = KeyCode.A;
-                attackKey = KeyCode.Space;
-                action_key = KeyCode.E;
-                switchKey = KeyCode.Tab;
-                dropKey = KeyCode.Q;
-                dashKey = KeyCode.LeftShift;
-            }
+                if (KeybindManager.instance != null)
+                {
+                    up_key = KeybindManager.instance.keybinds["up"];
+                    down_key = KeybindManager.instance.keybinds["down"];
+                    right_key = KeybindManager.instance.keybinds["right"];
+                    left_key = KeybindManager.instance.keybinds["left"];
+                    attackKey = KeybindManager.instance.keybinds["attack"];
+                    action_key = KeybindManager.instance.keybinds["interact"];
+                    switchKey = KeybindManager.instance.keybinds["switch"];
+                    dropKey = KeybindManager.instance.keybinds["drop"];
+                    dashKey = KeybindManager.instance.keybinds["dash"];
+                }
+                else
+                {
+                    up_key = KeyCode.W;
+                    down_key = KeyCode.S;
+                    right_key = KeyCode.D;
+                    left_key = KeyCode.A;
+                    attackKey = KeyCode.Space;
+                    action_key = KeyCode.E;
+                    switchKey = KeyCode.Tab;
+                    dropKey = KeyCode.Q;
+                    dashKey = KeyCode.LeftShift;
+                }
 
-            
+            }
         }
 
         void Start()
