@@ -67,11 +67,11 @@ namespace EndlessDescent
                     down_key = KeyCode.S;
                     right_key = KeyCode.D;
                     left_key = KeyCode.A;
-                    attackKey = KeyCode.Space;
+                    attackKey = KeyCode.Mouse0;
                     action_key = KeyCode.E;
                     switchKey = KeyCode.Tab;
                     dropKey = KeyCode.Q;
-                    dashKey = KeyCode.LeftShift;
+                    dashKey = KeyCode.Space;
                 }
 
             }

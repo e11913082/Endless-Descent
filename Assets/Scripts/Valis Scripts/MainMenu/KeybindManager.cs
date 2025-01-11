@@ -53,11 +53,11 @@ public class KeybindManager : MonoBehaviour
         keybinds["down"] = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("down", KeyCode.S.ToString()));
         keybinds["right"] = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("right", KeyCode.D.ToString()));
         keybinds["left"] = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("left", KeyCode.A.ToString()));
-        keybinds["attack"] = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("attack", KeyCode.Space.ToString()));
+        keybinds["attack"] = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("attack", KeyCode.Mouse0.ToString()));
         keybinds["interact"] = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("interact", KeyCode.E.ToString()));
         keybinds["switch"] = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("switch", KeyCode.Tab.ToString()));
         keybinds["drop"] = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("drop", KeyCode.Q.ToString()));
-        keybinds["dash"] = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("dash", KeyCode.LeftShift.ToString()));
+        keybinds["dash"] = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("dash", KeyCode.Space.ToString()));
         
         keybindTexts["up"] = upText;
         keybindTexts["down"] = downText;

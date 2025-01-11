@@ -30,8 +30,18 @@ public class CharacterItemPickup : MonoBehaviour
                 stats.PickupItem(other.gameObject.GetComponent<ItemPickup>().getItemData());
             }
             else
-            {
-                stats.PickupItem(other.gameObject.GetComponent<ItemPickup>().getItemData());
+            {   
+                ItemPickup pickup = other.gameObject.GetComponent<ItemPickup>();
+                if (!pickup.isChestItem())
+                {
+                    stats.PickupItem(other.gameObject.GetComponent<ItemPickup>().getItemData());
+                }
+                else
+                {   
+                    // Do not destroy the item
+                    return;
+                }
+                
             }
             Destroy(other.gameObject);
         }

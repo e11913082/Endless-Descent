@@ -8,6 +8,9 @@ public class WeaponPickup : MonoBehaviour
     
     public Weapon weapon;
     private TextMeshProUGUI textGUI;
+    public Texture2D defaultCursor;
+    public Texture2D cursor;
+    private CursorMode cursorMode = CursorMode.Auto;
     private GameObject canvas;
     private SpriteRenderer spriteRenderer;
 
@@ -64,7 +67,9 @@ public class WeaponPickup : MonoBehaviour
     private void OnMouseEnter()
     {
         if (textGUI != null)
-        {
+        {   
+            Cursor.SetCursor(cursor, Vector2.zero, cursorMode);
+            
             textGUI.gameObject.transform.parent.parent.position = new Vector3(transform.position.x, transform.position.y+1, 0);
             textGUI.gameObject.transform.parent.gameObject.SetActive(true);
             textGUI.text = "Weapon:\n" + weapon.description;
@@ -75,7 +80,9 @@ public class WeaponPickup : MonoBehaviour
     private void OnMouseExit()
     {
         if (textGUI != null)
-        {
+        {   
+            Cursor.SetCursor(defaultCursor, Vector2.zero, cursorMode);
+            
             textGUI.gameObject.transform.parent.gameObject.SetActive(false);
         }
         

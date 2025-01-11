@@ -134,4 +134,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
-  textGUI: {fileID: 0}
+  defaultCursor: {fileID: 2800000, guid: 9ba2c4d09f55dc6be9311f739855a655, type: 3}
+  cursor: {fileID: 2800000, guid: 0b0ac8908260f555db61ee99e410d81a, type: 3}

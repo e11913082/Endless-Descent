@@ -23,6 +23,11 @@ namespace EndlessDescent
         // can be private or removed
         
         private float max_hp;
+
+        public Texture2D cursor;
+        private CursorMode cursorMode = CursorMode.Auto;
+        private Vector2 hotSpot = Vector2.zero;
+        
         
         
         // can be moved to playerstats
@@ -109,6 +114,11 @@ namespace EndlessDescent
             audioSource = GetComponent<AudioSource>();
             halo = gameObject.GetComponent<HaloLogic>();
             player_id = CharacterIdGenerator.GetCharacterId(gameObject, 0);
+            if (cursor != null)
+            {
+                UnityEngine.Cursor.SetCursor(cursor, hotSpot, CursorMode.Auto);
+            }
+            
         }
 
         void OnDestroy()

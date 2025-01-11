@@ -94,8 +94,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -105541197
-  m_SortingLayer: 2
+  m_SortingLayerID: 1502599955
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 462434960, guid: 90c7332c857b6b043bad30766e14a946, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   auto_sort: 1
   offset: 0
-  sort_refresh_rate: 0
+  sort_refresh_rate: 0.1
   auto_rotate: 0
   rotate_offset: 0.2
 --- !u!114 &4903427270120146476
@@ -477,6 +477,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 972556ead4edf4d46a72f52bb81b3f9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  origIntensity: 0
+  origInnerRadius: 0
+  origOuterRadius: 0
+  originalCol: {r: 0, g: 0, b: 0, a: 0}
 --- !u!82 &1796908376651022554
 AudioSource:
   m_ObjectHideFlags: 0
@@ -718,6 +722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_id: 0
+  useInspectorValues: 0
   left_key: 97
   right_key: 100
   up_key: 119

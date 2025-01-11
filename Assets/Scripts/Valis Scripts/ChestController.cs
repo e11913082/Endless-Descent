@@ -46,10 +46,11 @@ public class ChestController : MonoBehaviour
         {   
             audioSource.Play();
             Debug.Log($"You received: {droppedItem.itemName}");
-            ItemPickup pickup = Instantiate(itemPrefab, new Vector3(transform.position.x, transform.position.y-0.5f, transform.position.z), Quaternion.identity).GetComponent<ItemPickup>();
+            ItemPickup pickup = Instantiate(itemPrefab, new Vector3(transform.position.x, transform.position.y + 0.7f, transform.position.z), Quaternion.identity).GetComponent<ItemPickup>();
             pickup.Initialize(droppedItem);
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.sprite = openChestSprite;
+            GetComponent<CircleCollider2D>().radius = 1.55f;
         }
         else
         {
