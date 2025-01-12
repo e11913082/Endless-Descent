@@ -16,9 +16,6 @@ public class Coin : MonoBehaviour
         canvas = GameObject.Find("/HoverCanvas");
         text = canvas.GetComponentInChildren<TextMeshProUGUI>(true);
         
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sortingLayerName = "Ground";
-        spriteRenderer.sortingOrder = 5;
         text.gameObject.transform.parent.gameObject.SetActive(false);
 
         if (amount > 0)

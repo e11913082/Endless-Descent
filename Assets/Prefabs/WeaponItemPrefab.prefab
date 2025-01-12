@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8742429808660526519}
   - component: {fileID: 8407409318437513755}
   - component: {fileID: 8195027628384802616}
+  - component: {fileID: 4027983879144896596}
   m_Layer: 0
   m_Name: WeaponItemPrefab
   m_TagString: Untagged
@@ -136,3 +137,25 @@ MonoBehaviour:
   weapon: {fileID: 0}
   defaultCursor: {fileID: 2800000, guid: 9ba2c4d09f55dc6be9311f739855a655, type: 3}
   cursor: {fileID: 2800000, guid: 0b0ac8908260f555db61ee99e410d81a, type: 3}
+  hudTarget: {fileID: 0}
+  particleSystem: {fileID: 6060117753759679862, guid: e3bd76deb705cf1d18f9478ec0fc9929,
+    type: 3}
+  hopHeight: 1
+  animationDuration: 1
+--- !u!114 &4027983879144896596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7442463993698038990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43478abf9b5ed9d4a834065471fc4607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  auto_sort: 1
+  offset: 0
+  sort_refresh_rate: 0.1
+  auto_rotate: 0
+  rotate_offset: 0

@@ -73,7 +73,6 @@ namespace EndlessDescent
                     dropKey = KeyCode.Q;
                     dashKey = KeyCode.Space;
                 }
-
             }
         }
 

@@ -18,7 +18,6 @@ GameObject:
   - component: {fileID: 3702767706727041646}
   - component: {fileID: 4903427270120146476}
   - component: {fileID: 315604755546}
-  - component: {fileID: 3768158010330934186}
   - component: {fileID: 4694262215316790272}
   - component: {fileID: 5237827880173265806}
   - component: {fileID: 7445903141468337987}
@@ -96,8 +95,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -105541197
-  m_SortingLayer: 2
+  m_SortingLayerID: 1502599955
+  m_SortingLayer: 5
   m_SortingOrder: 1
   m_Sprite: {fileID: -1743406223, guid: 0f95c1d905ee2604b8287360ecc1da7d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -184,6 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_id: 1
+  cursor: {fileID: 0}
   invulnerable: 0
   coinPrefab: {fileID: 5255464759237831223, guid: 7e788f68e9ff0c24694ca442fb68fed6,
     type: 3}
@@ -241,7 +241,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1173577608035208917}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43478abf9b5ed9d4a834065471fc4607, type: 3}
   m_Name: 
@@ -299,18 +299,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.5
---- !u!114 &3768158010330934186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173577608035208917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d71f8a8db34ced146a06b84f2a78bb4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4694262215316790272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,7 +390,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1173577608035208917}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94d6e5bba83d22b4c9b08682d184731e, type: 3}
   m_Name: 
@@ -538,8 +526,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.15}
-  m_Size: {x: 0.4, y: 0.8}
+  m_Offset: {x: 0, y: 0.09404919}
+  m_Size: {x: 0.4, y: 0.6480984}
   m_Direction: 0
 --- !u!114 &4504246121553324020
 MonoBehaviour:
@@ -553,6 +541,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 972556ead4edf4d46a72f52bb81b3f9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  origIntensity: 0
+  origInnerRadius: 0
+  origOuterRadius: 0
+  originalCol: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &5596722964878612626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -615,6 +607,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 972556ead4edf4d46a72f52bb81b3f9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  origIntensity: 0
+  origInnerRadius: 0
+  origOuterRadius: 0
+  originalCol: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &-2005525376953931855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -714,6 +710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_id: 1
+  useInspectorValues: 0
   left_key: 97
   right_key: 100
   up_key: 119
@@ -876,7 +873,7 @@ Transform:
   m_GameObject: {fileID: 8316338247653569732}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.345, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

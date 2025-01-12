@@ -5277,7 +5277,7 @@ PrefabInstance:
     - target: {fileID: 7150642369894865946, guid: b281043a8b94e764884d945c3f9a71d9,
         type: 3}
       propertyPath: maxFear
-      value: 100
+      value: 2160.6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -7262,8 +7262,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.4783001, y: 1.4415, z: 0}
-    m_Extent: {x: 9.1105, y: 9.3757, z: 0}
+    m_Center: {x: 0.47800016, y: 1.4413502, z: 0}
+    m_Extent: {x: 9.1105995, y: 9.37565, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -7712,11 +7712,6 @@ PrefabInstance:
     - target: {fileID: 2902257392719249671, guid: 17c6e825580c2884eb8ee6808cff8181,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6670824074277398997, guid: 17c6e825580c2884eb8ee6808cff8181,
-        type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

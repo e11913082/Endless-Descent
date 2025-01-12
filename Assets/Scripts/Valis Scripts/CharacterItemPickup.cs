@@ -19,7 +19,7 @@ public class CharacterItemPickup : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Item"))
-        {
+        {   
             if (other.CompareTag("Coin"))
             {
                 stats.AddCoins(other.gameObject.GetComponent<Coin>().amount);   

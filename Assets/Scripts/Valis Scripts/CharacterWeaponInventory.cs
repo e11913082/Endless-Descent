@@ -56,7 +56,7 @@ public class CharacterWeaponInventory : MonoBehaviour
             stats.Damage += weapon.damageBonus;
             EquipWeapon(0);
         }
-        EventManager.TriggerEvent("InventoryChange");
+        //EventManager.TriggerEvent("InventoryChange");
         return true;
     }
 

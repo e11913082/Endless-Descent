@@ -268,7 +268,11 @@ namespace EndlessDescent
 
                     if (stats.CurrentHealth <= 0f)
                     {
-                        GameObject coin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
+                        GameObject coin = Instantiate(coinPrefab, gameObject.transform.position, transform.rotation);
+                        SpriteRenderer coinRenderer = coin.GetComponent<SpriteRenderer>();
+                        Debug.Log("LocalScale Coin: " + coin.transform.localScale);
+                        coin.transform.localScale /= 2;
+                        coinRenderer.sortingLayerName = "Props";
                         Kill();
                     }
                     else

@@ -16,9 +16,18 @@ public class ItemPickup : MonoBehaviour
     private GameObject canvas;
 
     public bool chestItem = false;
+    
+    
+    // pickup "animation"
+    private Transform playerTransform;
+    private bool isBeingCollected = false;
+    private Vector3 originalScale;
 
+    [SerializeField] private float hopHeight = 1.0f;
+    [SerializeField] private float animationDuration = 0.5f;
     private void Start()
     {   
+        originalScale = transform.localScale;
         canvas = GameObject.Find("/HoverCanvas");
         textGUI = canvas.GetComponentInChildren<TextMeshProUGUI>(true);
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
@@ -29,6 +38,56 @@ public class ItemPickup : MonoBehaviour
         }
         
     }
+
+    private void StartPickupAnimation()
+    {
+        if (!isBeingCollected)
+        {
+            GameObject player = GameObject.Find("/Main Character");
+            if (player != null)
+            {
+                playerTransform = player.transform;
+                StartCoroutine(PickupAnimation());
+            }
+            else
+            {
+                Debug.LogWarning("Player is not found");
+            }
+        }
+    }
+
+    private IEnumerator PickupAnimation()
+    {
+        isBeingCollected = true;
+        float elapsedTime = 0f;
+        Vector3 startPosition = transform.position;
+        Vector3 peakPosition = startPosition + Vector3.up * hopHeight;
+        Debug.Log("Pickup Animation");
+        while (elapsedTime < animationDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            
+            float normalizedTime = elapsedTime / animationDuration;
+
+            if (normalizedTime <= 0.5f)
+            {
+                transform.position = Vector3.Lerp(startPosition, peakPosition, normalizedTime * 2f);
+            }
+            else
+            {
+                Vector3 endPosition = playerTransform.position;
+                transform.position = Vector3.Lerp(peakPosition, endPosition, (normalizedTime - 0.5f) * 2f);
+            }
+            
+            transform.localScale = Vector3.Lerp(originalScale, originalScale / 2, normalizedTime);
+            
+            yield return null;
+        }
+        
+        transform.position = playerTransform.position;
+        Destroy(gameObject);
+    }
+    
 
     public bool isChestItem()
     {
@@ -63,11 +122,13 @@ public class ItemPickup : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             if (chestItem)
-            {
+            {   
+                StartPickupAnimation();
+                
                 PlayerStats stats = GameObject.Find("/Main Character").GetComponent<PlayerCharacter>().GetStats();
                 stats.PickupItem(itemData);
                 Cursor.SetCursor(defaultCursor, Vector2.zero, cursorMode);
-                Destroy(gameObject);
+                
             }
             else
             {

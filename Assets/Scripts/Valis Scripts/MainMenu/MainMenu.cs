@@ -8,8 +8,16 @@ public class MainMenu : MonoBehaviour
     private Canvas settingsCanvas;
     private Canvas introCanvas;
 
+    public Texture2D cursor;
+    private CursorMode cursorMode = CursorMode.Auto;
+
     void Start()
     {
+        if (cursor != null)
+        {
+            Cursor.SetCursor(cursor, Vector2.zero, cursorMode);
+        }
+        
         settingsCanvas = GameObject.Find("SettingsCanvas").GetComponent<Canvas>();
         settingsCanvas.enabled = false;
         introCanvas = GameObject.Find("IntroCanvas").GetComponent<Canvas>();

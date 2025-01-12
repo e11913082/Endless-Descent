@@ -55,11 +55,12 @@ public class CharacterWeaponPickup : MonoBehaviour
         {
             if (character.GetActionDown())
             {
-                Weapon weapon = weaponObject.GetComponent<WeaponPickup>().GetWeapon();
+                WeaponPickup pickup = weaponObject.GetComponent<WeaponPickup>();
+                Weapon weapon = pickup.GetWeapon();
                 if (inventory.pickupWeapon(weapon))
                 {
                     Debug.Log("Picked up weapon: " + weapon.name);
-                    Destroy(weaponObject);
+                    pickup.StartPickupAnimation();
                 }
                 else
                 {
