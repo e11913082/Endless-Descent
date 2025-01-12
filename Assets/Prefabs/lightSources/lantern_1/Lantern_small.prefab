@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -2399355347108700535}
   - component: {fileID: 353001643706080160}
   - component: {fileID: 6750403939594485694}
+  - component: {fileID: -4598296615394544526}
   m_Layer: 19
   m_Name: Lantern_small
   m_TagString: Untagged
@@ -282,6 +283,23 @@ MonoBehaviour:
   sort_refresh_rate: 0.1
   auto_rotate: 0
   rotate_offset: 0
+--- !u!114 &-4598296615394544526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5169383726756719340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb8c5fb6b67c8ed7b6a4b54ab47d2aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDifference: 0.5
+  radiusAmplitude: 0.07
+  radiusFrequency: 0.15
+  intensityAmplitude: 0.12
+  intensityFrequency: 0.2
 --- !u!1 &8176450339229989646
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,6 +310,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8277806065296627061}
   - component: {fileID: 894833733510703234}
+  - component: {fileID: 3038992078887671313}
   m_Layer: 19
   m_Name: inner light
   m_TagString: Untagged
@@ -364,3 +383,20 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &3038992078887671313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8176450339229989646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb8c5fb6b67c8ed7b6a4b54ab47d2aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDifference: 0.5
+  radiusAmplitude: 0.07
+  radiusFrequency: 0.15
+  intensityAmplitude: 0.12
+  intensityFrequency: 0.2
