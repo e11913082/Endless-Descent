@@ -59,11 +59,13 @@ namespace EndlessDescent
                 switch (type) {
                     case 0:
                         animator.SetInteger("AttackSide", attackSide);
+                        animator.SetInteger("Side", attackSide);
                         animator.SetTrigger("AttackDistance");
                         break;
 
                     case 1:
                         animator.SetInteger("AttackSide", attackSide);
+                        animator.SetInteger("Side", attackSide);
                         animator.SetTrigger("AttackMelee");
                         break;
                 }
