@@ -12,10 +12,19 @@ public class ChestController : MonoBehaviour
     [Range(0, 1)] public float rareDropChance = 0.2f; // 20% chance for a rare item
     public GameObject itemPrefab;
     public Sprite openChestSprite;
-
+    
+    public float hoverAmplitude = 0.1f;
+    public float hoverFrequency = 0.2f;
+    public bool isOpen;
+    private bool itemCollectable = false;
+    private float itemStartPosition;
+    
+    private ItemPickup itemPickup;
+    private GameObject item;
     void Start()
-    {
+    {   
         audioSource = GetComponent<AudioSource>();
+        isOpen = false;
     }
     
     
@@ -40,21 +49,50 @@ public class ChestController : MonoBehaviour
     }
 
     public void OpenChest()
-    {
+    {   
+        isOpen = true;
+        
         ItemData droppedItem = GetRandomItem();
         if (droppedItem != null)
         {   
             audioSource.Play();
             Debug.Log($"You received: {droppedItem.itemName}");
-            ItemPickup pickup = Instantiate(itemPrefab, new Vector3(transform.position.x, transform.position.y + 0.7f, transform.position.z), Quaternion.identity).GetComponent<ItemPickup>();
-            pickup.Initialize(droppedItem);
+            item = Instantiate(itemPrefab, new Vector3(transform.position.x, transform.position.y + 1.2f, transform.position.z), Quaternion.identity);
+            itemPickup = item.GetComponent<ItemPickup>();
+            itemPickup.Initialize(droppedItem);
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.sprite = openChestSprite;
             GetComponent<CircleCollider2D>().radius = 1.55f;
+            itemStartPosition = item.transform.position.y;
+            itemCollectable = true;
+            
         }
         else
         {
             Debug.Log("The chest was empty!");
+        }
+    }
+
+    void Update()
+    {
+        if (itemCollectable)
+        {
+            float time = Time.time;
+            float hoverOffset = Mathf.Sin(time * hoverFrequency * 2 * Mathf.PI) * hoverAmplitude;
+            item.transform.position = new Vector3(item.transform.position.x, itemStartPosition + hoverOffset, item.transform.position.z); ;
+        }
+    }
+
+    public void ReceiveItem()
+    {
+        if (isOpen)
+        {
+            itemCollectable = false;
+            itemPickup.CollectItem();
+        }
+        else
+        {
+            Debug.LogWarning("The chest was not opened");
         }
     }
 }

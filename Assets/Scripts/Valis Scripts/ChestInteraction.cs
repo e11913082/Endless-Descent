@@ -36,8 +36,16 @@ public class ChestInteraction : MonoBehaviour
             if (playerCharacter.GetActionDown())
             {
               ChestController chestController = chest.GetComponent<ChestController>();
-              chestController.OpenChest(); 
-              chest.GetComponent<CircleCollider2D>().enabled = false;  
+
+              if (chestController.isOpen)
+              {
+                  chestController.ReceiveItem();
+                  chest.GetComponent<CircleCollider2D>().enabled = false;  
+              }
+              else
+              {
+                  chestController.OpenChest();
+              }
             }
             if (chestHintCounter < chestHintMaxCounter && !hintActive)
             {   

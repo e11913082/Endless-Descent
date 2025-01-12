@@ -103,7 +103,8 @@ public class ItemPickup : MonoBehaviour
         // setup sprite
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = itemData.itemIcon;
-       
+        AutoOrderLayer orderLayer = gameObject.GetComponent<AutoOrderLayer>();
+        orderLayer.offset = -3f;
         // different pickupLogic if item is from chest
         chestItem = true;
         
@@ -117,26 +118,15 @@ public class ItemPickup : MonoBehaviour
         return itemData;
     }
 
-    public void OnMouseOver()
+    public void CollectItem()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (chestItem)
-            {   
-                StartPickupAnimation();
+        StartPickupAnimation();
                 
-                PlayerStats stats = GameObject.Find("/Main Character").GetComponent<PlayerCharacter>().GetStats();
-                stats.PickupItem(itemData);
-                Cursor.SetCursor(defaultCursor, Vector2.zero, cursorMode);
-                
-            }
-            else
-            {
-                Debug.Log("Item is no chestItem");
-            }
-        }
+        PlayerStats stats = GameObject.Find("/Main Character").GetComponent<PlayerCharacter>().GetStats();
+        stats.PickupItem(itemData);
+        Cursor.SetCursor(defaultCursor, Vector2.zero, cursorMode);
     }
-
+    
 
     private void OnMouseEnter()
     {   
@@ -149,7 +139,7 @@ public class ItemPickup : MonoBehaviour
             textGUI.gameObject.transform.parent.gameObject.SetActive(true);
             if (chestItem)
             {
-                textGUI.text = "Item:\n" + itemData.itemName + " \n >(Right click to pick up)<";
+                textGUI.text = "Item:\n" + itemData.itemName + " \n\n >(Interact to pick up)<";
             }
             else
             {

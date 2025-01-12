@@ -71,7 +71,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_ApplyToSortingLayers.Array.size
-    value: 7
+    value: 8
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_ApplyToSortingLayers.Array.data[0]
@@ -100,6 +100,10 @@ Preset:
   - target: {fileID: 0}
     propertyPath: m_ApplyToSortingLayers.Array.data[6]
     value: 443109637
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_ApplyToSortingLayers.Array.data[7]
+    value: -90073511
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_LightCookieSprite

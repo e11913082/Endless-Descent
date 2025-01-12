@@ -141,6 +141,8 @@ MonoBehaviour:
   defaultCursor: {fileID: 2800000, guid: 9ba2c4d09f55dc6be9311f739855a655, type: 3}
   cursor: {fileID: 2800000, guid: 0b0ac8908260f555db61ee99e410d81a, type: 3}
   chestItem: 0
+  hopHeight: 1
+  animationDuration: 0.5
 --- !u!114 &-3648317972345302213
 MonoBehaviour:
   m_ObjectHideFlags: 0
