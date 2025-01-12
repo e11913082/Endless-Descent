@@ -120,6 +120,7 @@ public class PathFinder : MonoBehaviour
 
         for (int i = 0; i < directionNumber; i++)
         {
+            if (interest[i] < 0.01f) {danger[i] = 0f;}
             float directionWeight = interest[i] - danger[i];
             //if (directionWeight < -1.2f) {directionWeight = -1.2f;}
             //else if (directionWeight > 1.2f) {directionWeight = 1.2f;}
