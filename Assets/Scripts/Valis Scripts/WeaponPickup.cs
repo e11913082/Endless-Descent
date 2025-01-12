@@ -33,7 +33,8 @@ public class WeaponPickup : MonoBehaviour
         mainCamera = Camera.main;
         originalScale = transform.localScale;
         //particleSystem = GetComponentInChildren<ParticleSystem>();
-        
+
+        hudTarget = GameObject.FindGameObjectWithTag("Hud").transform.Find("Inventory").transform.Find("SampleInvSlot");
         spriteRenderer = GetComponent<SpriteRenderer>();
         canvas = GameObject.Find("/HoverCanvas");
         textGUI = canvas.GetComponentInChildren<TextMeshProUGUI>(true);
@@ -67,9 +68,8 @@ public class WeaponPickup : MonoBehaviour
         canvas = GameObject.Find("/HoverCanvas");
         textGUI = canvas.GetComponentInChildren<TextMeshProUGUI>(true);
         gameObject.layer = LayerMask.NameToLayer("Weapon");
-        
         hudTarget = GameObject.FindGameObjectWithTag("Hud").transform.Find("Inventory").transform.Find("SampleInvSlot");
-        
+
         // initialize sprite renderer
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sortingLayerName = "Props";

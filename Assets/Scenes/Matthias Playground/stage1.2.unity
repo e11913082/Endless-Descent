@@ -358,8 +358,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.03795001, y: -0.011350006, z: 0}
-    m_Extent: {x: 0.88845, y: 0.83375, z: 0}
+    m_Center: {x: 0.03825, y: -0.011299998, z: 0}
+    m_Extent: {x: 0.88874996, y: 0.8342, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -3560,8 +3560,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.038000017, y: -0.011699975, z: 0}
-    m_Extent: {x: 0.88890004, y: 0.8344, z: 0}
+    m_Center: {x: 0.038399994, y: -0.011649996, z: 0}
+    m_Extent: {x: 0.8886, y: 0.83425, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -3819,8 +3819,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.00025001168, y: -0.00020000339, z: 0}
-    m_Extent: {x: 0.85045004, y: 0.8504, z: 0}
+    m_Center: {x: -0.00020000339, y: -0.00030001998, z: 0}
+    m_Extent: {x: 0.8504, y: 0.8497, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -5330,16 +5330,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ItemChest Prefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 2403489925024034949, guid: 973b36ee5aadb7fd79632cb3d5d68be1,
-        type: 3}
-      propertyPath: m_Layer
-      value: 21
-      objectReference: {fileID: 0}
-    - target: {fileID: 2403489925212424270, guid: 973b36ee5aadb7fd79632cb3d5d68be1,
-        type: 3}
-      propertyPath: m_Layer
-      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14413,8 +14403,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -1.8382497, y: 7.0424004, z: 0}
-    m_Extent: {x: 7.57435, y: 11.0697, z: 0}
+    m_Center: {x: -1.8373501, y: 7.0429497, z: 0}
+    m_Extent: {x: 7.57495, y: 11.06925, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -15899,8 +15889,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.81690025, y: -0.42439997, z: 0}
-    m_Extent: {x: 9.5589, y: 1.4726, z: 0}
+    m_Center: {x: 0.8175001, y: -0.42404997, z: 0}
+    m_Extent: {x: 9.5581, y: 1.47305, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -16369,8 +16359,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 1.5001497, y: 5.9456506, z: 0}
-    m_Extent: {x: 15.65265, y: 15.996651, z: 0}
+    m_Center: {x: 1.5007997, y: 5.9457, z: 0}
+    m_Extent: {x: 15.6518, y: 15.9967, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -16760,8 +16750,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.15915012, y: 10.29345, z: 0}
-    m_Extent: {x: 15.44575, y: 21.40055, z: 0}
+    m_Center: {x: -0.15919971, y: 10.293051, z: 0}
+    m_Extent: {x: 15.4453, y: 21.39995, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -17856,7 +17846,7 @@ MonoBehaviour:
   weapon: {fileID: 11400000, guid: 272fe3940243b1c37adf222c7b81b78d, type: 2}
   defaultCursor: {fileID: 2800000, guid: 9ba2c4d09f55dc6be9311f739855a655, type: 3}
   cursor: {fileID: 2800000, guid: 0b0ac8908260f555db61ee99e410d81a, type: 3}
-  hudTarget: {fileID: 2034193198}
+  hudTarget: {fileID: 0}
   particleSystem: {fileID: 6060117753759679862, guid: e3bd76deb705cf1d18f9478ec0fc9929,
     type: 3}
   hopHeight: 1
@@ -18245,8 +18235,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.03825, y: -0.0123000145, z: 0}
-    m_Extent: {x: 0.88804996, y: 0.8337, z: 0}
+    m_Center: {x: 0.03795001, y: -0.0119999945, z: 0}
+    m_Extent: {x: 0.88885, y: 0.8334, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -21378,8 +21368,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 4.6498003, y: -3.9246497, z: 0}
-    m_Extent: {x: 9.5904, y: 7.95635, z: 0}
+    m_Center: {x: 4.6506996, y: -3.92425, z: 0}
+    m_Extent: {x: 9.5906, y: 7.95695, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -21586,8 +21576,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.03764999, y: -0.012199998, z: 0}
-    m_Extent: {x: 0.88855, y: 0.8336, z: 0}
+    m_Center: {x: 0.03854999, y: -0.012100011, z: 0}
+    m_Extent: {x: 0.88855004, y: 0.83309996, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -22002,8 +21992,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.00029999018, y: -0.00019997358, z: 0}
-    m_Extent: {x: 1.0004001, y: 1.0004001, z: 0}
+    m_Center: {x: -0.00029999018, y: 0.00020000339, z: 0}
+    m_Extent: {x: 1.0006001, y: 0.9999, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -86769,243 +86759,13 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: -16, y: 75, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -15, y: 75, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 8
-      m_TileSpriteIndex: 8
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -14, y: 75, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -13, y: 75, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 8
-      m_TileSpriteIndex: 8
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -12, y: 75, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -11, y: 75, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 8
-      m_TileSpriteIndex: 8
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 13, y: 75, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 8
-      m_TileSpriteIndex: 8
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 14, y: 75, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 15, y: 75, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 8
-      m_TileSpriteIndex: 8
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 16, y: 75, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 0, y: 82, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 1, y: 82, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 8
-      m_TileSpriteIndex: 8
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 2, y: 82, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 3, y: 82, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 8
-      m_TileSpriteIndex: 8
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 4, y: 82, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 5, y: 82, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 8
-      m_TileSpriteIndex: 8
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 6, y: 82, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 7, y: 82, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 8
-      m_TileSpriteIndex: 8
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 8, y: 82, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 9, y: 82, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 8
-      m_TileSpriteIndex: 8
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 10, y: 82, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 11, y: 82, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 8
-      m_TileSpriteIndex: 8
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 12, y: 82, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 3e71cd8fd02745948b1ad875522f5f72, type: 2}
-  - m_RefCount: 9
+  - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: f8a08cc7e1ef4bd41ad3d91c4ae0824a, type: 2}
-  - m_RefCount: 9
+  - m_RefCount: 4
     m_Data: {fileID: 11400000, guid: 6008c5e0b4430914e81e97e42cb887da, type: 2}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -87017,7 +86777,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 17
+  - m_RefCount: 6
     m_Data: {fileID: 11400000, guid: 5fe40d7b004adde4293bdf59101e1f97, type: 2}
   - m_RefCount: 4
     m_Data: {fileID: 11400000, guid: 74d33214d8663e14a9ff6f916f417124, type: 2}
@@ -87040,9 +86800,9 @@ Tilemap:
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 9
+  - m_RefCount: 2
     m_Data: {fileID: 21300064, guid: 9f8f114589864b6489859a58fbb6baf9, type: 3}
-  - m_RefCount: 9
+  - m_RefCount: 4
     m_Data: {fileID: 21300070, guid: 9f8f114589864b6489859a58fbb6baf9, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -87054,7 +86814,7 @@ Tilemap:
     m_Data: {fileID: 21300052, guid: 9f8f114589864b6489859a58fbb6baf9, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 17
+  - m_RefCount: 6
     m_Data: {fileID: 21300112, guid: 9f8f114589864b6489859a58fbb6baf9, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: 21300110, guid: 9f8f114589864b6489859a58fbb6baf9, type: 3}
@@ -87093,7 +86853,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 21300068, guid: 9f8f114589864b6489859a58fbb6baf9, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 48
+  - m_RefCount: 25
     m_Data:
       e00: 1
       e01: 0
@@ -87148,7 +86908,7 @@ Tilemap:
       e32: 1.18e-43
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 72
+  - m_RefCount: 49
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -87259,8 +87019,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00020000339, y: -0.000049978495, z: 0}
-    m_Extent: {x: 0.8498, y: 0.85074997, z: 0}
+    m_Center: {x: -0.00040000677, y: 0.000050008297, z: 0}
+    m_Extent: {x: 0.8506, y: 0.85065, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -90517,8 +90277,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.02214998, y: 5.97855, z: 0}
-    m_Extent: {x: 1.2369499, y: 6.4963503, z: 0}
+    m_Center: {x: -0.022249997, y: 5.9778, z: 0}
+    m_Extent: {x: 1.23705, y: 6.4953, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -91024,8 +90784,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.000100016594, y: -0.00024998188, z: 0}
-    m_Extent: {x: 1, y: 1.00025, z: 0}
+    m_Center: {x: 0.00024998188, y: -0.00039997697, z: 0}
+    m_Extent: {x: 1.00025, y: 1.0002, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -97896,8 +97656,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.00040000677, y: 0.00024998188, z: 0}
-    m_Extent: {x: 0.8502, y: 0.85015, z: 0}
+    m_Center: {x: -0.00020000339, y: -0.000049978495, z: 0}
+    m_Extent: {x: 0.8506, y: 0.85035, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -100809,12 +100569,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa92f26af4ea4145bc671238d88a342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &2034193198 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3142680203426618430, guid: 871a53a425c078548a8a7d5a8f81052a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1061812288}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2037489867
 GameObject:
   m_ObjectHideFlags: 0
@@ -100984,8 +100738,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00025001168, y: -0.00040000677, z: 0}
-    m_Extent: {x: 0.84994996, y: 0.8506, z: 0}
+    m_Center: {x: -0.00025001168, y: -0.00025001168, z: 0}
+    m_Extent: {x: 0.85074997, y: 0.85035, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -101250,8 +101004,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.014800012, y: 0.5986, z: 0}
-    m_Extent: {x: 0.6594, y: 0.9759, z: 0}
+    m_Center: {x: 0.015899986, y: 0.59865004, z: 0}
+    m_Extent: {x: 0.65970004, y: 0.97635, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -102777,8 +102531,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00020000339, y: -0.00014999509, z: 0}
-    m_Extent: {x: 0.9973, y: 0.99765, z: 0}
+    m_Center: {x: 0.000050008297, y: -0.00034999847, z: 0}
+    m_Extent: {x: 0.99795, y: 0.99795, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

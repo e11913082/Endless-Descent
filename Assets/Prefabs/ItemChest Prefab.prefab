@@ -30,6 +30,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2055102311959635369, guid: 99597c7b4aa47494fb2b6061505735da,
         type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055102311959635369, guid: 99597c7b4aa47494fb2b6061505735da,
+        type: 3}
       propertyPath: m_TagString
       value: Chest
       objectReference: {fileID: 0}
@@ -98,6 +103,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0c27ac3ebde03834085920058f140006, type: 2}
+    - target: {fileID: 2055102312182832482, guid: 99597c7b4aa47494fb2b6061505735da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -114,6 +124,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: -6160349440185749999}
+    - targetCorrespondingSourceObject: {fileID: 2055102311959635369, guid: 99597c7b4aa47494fb2b6061505735da,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2994753748340146968}
   m_SourcePrefab: {fileID: 100100000, guid: 99597c7b4aa47494fb2b6061505735da, type: 3}
 --- !u!1 &2403489925024034949 stripped
 GameObject:
@@ -290,3 +304,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2994753748340146968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2403489925024034949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7fe7ad6cf1798849849ec4f1a3f1fe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  auto_sort: 1
+  offset: 0
+  sort_refresh_rate: 0.1
+  auto_rotate: 0
+  rotate_offset: 0

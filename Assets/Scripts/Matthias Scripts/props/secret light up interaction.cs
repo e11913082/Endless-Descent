@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ public class LightUpOnEnter : MonoBehaviour
     private List<float> intensitySteps = new List<float>();
     private int numSteps = 10;
     private LayerMask playerLayer;
+    private bool inLight = false;
     void Start()
     {
         childLights = GetComponentsInChildren<Light2D>();
@@ -25,9 +27,9 @@ public class LightUpOnEnter : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         //TODO play secret sound
-        if ((playerLayer.value & (1 << other.gameObject.layer)) != 0)
+        if (!inLight && (playerLayer.value & (1 << other.gameObject.layer)) != 0)
         {
-            
+            inLight = true;
             for(int i = 0; i < childLights.Count(); i++)
             {
                 StartCoroutine(TurnUpLight(childLights[i], intensitySteps[i]));
