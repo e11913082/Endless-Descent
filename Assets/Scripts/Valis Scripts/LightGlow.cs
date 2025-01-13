@@ -15,7 +15,7 @@ public class LightGlow : MonoBehaviour
     
     public float intensityAmplitude = 0.3f;
     public float intensityFrequency = 1f;
-    void Awake()
+    void Start()
     {
         light2D = GetComponent<Light2D>();
         //StartCoroutine(LightGlowCoroutine());
@@ -26,15 +26,18 @@ public class LightGlow : MonoBehaviour
     
     void Update()
     {
-        float time = Time.time;
+        if(startIntensity != 0)
+        {
+            float time = Time.time;
 
-        // Calculate new radius
-        float radiusOffset = Mathf.Sin(time * radiusFrequency * 2 * Mathf.PI) * radiusAmplitude;
-        light2D.pointLightOuterRadius = startRadius + radiusOffset;
+            // Calculate new radius
+            float radiusOffset = Mathf.Sin(time * radiusFrequency * 2 * Mathf.PI) * radiusAmplitude;
+            light2D.pointLightOuterRadius = startRadius + radiusOffset;
 
-        // Calculate new intensity
-        float intensityOffset = Mathf.Sin(time * intensityFrequency * 2 * Mathf.PI) * intensityAmplitude;
-        light2D.intensity = startIntensity + intensityOffset;
+            // Calculate new intensity
+            float intensityOffset = Mathf.Sin(time * intensityFrequency * 2 * Mathf.PI) * intensityAmplitude;
+            light2D.intensity = startIntensity + intensityOffset;
+        }
     }
 
     private IEnumerator LightGlowCoroutine()

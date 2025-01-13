@@ -39,7 +39,6 @@ public class LoopInteraction : MonoBehaviour
             HandleLanterns();
             GameObject canvas = GameObject.Find("/GamblingCanvas");
             curPlayer.GetComponent<CharacterGamblingTrader>().canvas = canvas;
-            canvas.SetActive(false);
             Destroy(gameObject);
         }
         
@@ -86,7 +85,7 @@ public class LoopInteraction : MonoBehaviour
 
         float lv1Threshold = (10f - 2.2f*loopCount) / 10f;
         float lv2Threshold = (10f - 1.1f*loopCount) / 10f;
-
+        Debug.Log("New lantern threshold lv1: " + lv1Threshold + "lv2: " + lv2Threshold);
         for (int i = 0; i < lanternCount; i++)
         {
             float randomFloat = UnityEngine.Random.Range(0.0f, 1.0f);
@@ -95,11 +94,13 @@ public class LoopInteraction : MonoBehaviour
             if(randomFloat > lv2Threshold && activeLanterns > 1)
             {
                 lanternUtil = lanternGroup.transform.GetChild(i).gameObject.GetComponent<LightLoopingUtil>();
+                Debug.Log("Set lantern to lv2");
                 lanternUtil.SetLanternLv(2);
                 activeLanterns--;
             }
             else if(randomFloat > lv1Threshold)
             {
+                Debug.Log("Set lantern to lv1");
                 lanternUtil = lanternGroup.transform.GetChild(i).gameObject.GetComponent<LightLoopingUtil>();
                 lanternUtil.SetLanternLv(1);
             }
