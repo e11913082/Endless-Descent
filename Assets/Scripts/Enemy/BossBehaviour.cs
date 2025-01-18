@@ -15,8 +15,11 @@ public class BossBehaviour : MonoBehaviour
     public List<GameObject> InitialStageEnemies = new List<GameObject> ();
     public RuntimeAnimatorController finalStageAnimatorController;
     public List<AudioClip> spawnEnemiesSounds = new List<AudioClip> ();
+    public List<AudioClip> idleSounds = new List<AudioClip> ();
     public float vulnerableTimeSpan = 5f;
     private float vulnerableStartTime;
+    private bool audioSourcePlaying = false;
+    private AudioClip nextAudioClip;
 
     private enum Stage{
         IdleStage,
@@ -97,7 +100,11 @@ public class BossBehaviour : MonoBehaviour
 
     private void IdleStageBehaviour()
     {
-
+        if (!audioSource.isPlaying)
+        {
+            audioSource.clip = idleSounds[UnityEngine.Random.Range(0, idleSounds.Count)];
+            audioSource.PlayDelayed(UnityEngine.Random.Range(1f, 3f));
+        }
     }
     private void InitialStageBehaviour()
     {
@@ -146,6 +153,11 @@ public class BossBehaviour : MonoBehaviour
     private void FinalStageBehaviour()
     {
 
+    }
+
+    private void SetNextAudioSource()
+    {
+        audioSource.PlayDelayed
     }
 
     private void OnTriggerEnter2D(Collider2D other)
