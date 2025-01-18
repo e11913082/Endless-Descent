@@ -15,9 +15,10 @@ public class BossBehaviour : MonoBehaviour
     public List<GameObject> InitialStageEnemies = new List<GameObject> ();
     public RuntimeAnimatorController finalStageAnimatorController;
     public List<AudioClip> spawnEnemiesSounds = new List<AudioClip> ();
+    public List<AudioClip> idleSounds = new List<AudioClip> ();
+    public List<AudioClip> actionSounds = new List<AudioClip> ();
     public float vulnerableTimeSpan = 5f;
     private float vulnerableStartTime;
-
     private enum Stage{
         IdleStage,
         InitialStage,
@@ -44,7 +45,7 @@ public class BossBehaviour : MonoBehaviour
     private float defaultHaloOuterRadius;
     private Color defaultHaloColor;
     private bool levitate;
-
+    float originalAudioVolume;
     
     void Awake()
     {
@@ -73,6 +74,9 @@ public class BossBehaviour : MonoBehaviour
         defaultHaloColor = light2D.color;
         levitate = true;
         StartCoroutine(Levitate());
+        originalAudioVolume = audioSource.volume;
+        audioSource.volume = 0.2f * audioSource.volume;
+        audioSource.PlayOneShot(idleSounds[UnityEngine.Random.Range(0, idleSounds.Count)]);
     }
 
     // Update is called once per frame
@@ -97,7 +101,11 @@ public class BossBehaviour : MonoBehaviour
 
     private void IdleStageBehaviour()
     {
-
+        if (!audioSource.isPlaying)
+        {
+            audioSource.clip = idleSounds[UnityEngine.Random.Range(0, idleSounds.Count)];
+            audioSource.PlayDelayed(UnityEngine.Random.Range(1f, 5f));
+        }
     }
     private void InitialStageBehaviour()
     {
@@ -126,7 +134,7 @@ public class BossBehaviour : MonoBehaviour
                 vulnerableStartTime = Time.time;
                 rigid.isKinematic = false;
                 ResetDefaultHalo();
-                
+                audioSource.PlayOneShot(actionSounds[UnityEngine.Random.Range(0, actionSounds.Count)]);
             }    
             else if (Time.time - vulnerableStartTime > vulnerableTimeSpan || firstLoop)
             {
@@ -145,7 +153,11 @@ public class BossBehaviour : MonoBehaviour
 
     private void FinalStageBehaviour()
     {
-
+        if (!audioSource.isPlaying)
+        {
+            audioSource.clip = actionSounds[UnityEngine.Random.Range(0, actionSounds.Count)];
+            audioSource.PlayDelayed(UnityEngine.Random.Range(1f, 5f));
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -154,12 +166,15 @@ public class BossBehaviour : MonoBehaviour
         {
             currentStage = Stage.InitialStage;
             targetCharacter = other.gameObject;
+            audioSource.volume = originalAudioVolume;
         }  
     }
 
     private void SpawnEnemies()
     {
+        audioSource.PlayOneShot(actionSounds[UnityEngine.Random.Range(0, actionSounds.Count)]);
         audioSource.PlayOneShot(spawnEnemiesSounds[UnityEngine.Random.Range(0, spawnEnemiesSounds.Count)]);
+        //PlayActionAudio();
         instantiatedEnemies.Clear();
         float spawnRadius = 1.5f;
         float spawnAngle;

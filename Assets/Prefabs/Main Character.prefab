@@ -733,7 +733,7 @@ MonoBehaviour:
   fearIncrease: 1
   fearDecrease: 1
   currentFear: 0
-  maxFear: 100000
+  maxFear: 100
   coins: 50
   equippedItems: []
   lastItem: {fileID: 0}

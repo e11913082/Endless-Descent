@@ -5264,24 +5264,7 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 1677028615}
-    - target: {fileID: 7150642369894865946, guid: b281043a8b94e764884d945c3f9a71d9,
-        type: 3}
-      propertyPath: coins
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7150642369894865946, guid: b281043a8b94e764884d945c3f9a71d9,
-        type: 3}
-      propertyPath: damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7150642369894865946, guid: b281043a8b94e764884d945c3f9a71d9,
-        type: 3}
-      propertyPath: maxFear
-      value: 2160.6
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
-    - {fileID: 0}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -7262,8 +7245,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.47800016, y: 1.4413502, z: 0}
-    m_Extent: {x: 9.1105995, y: 9.37565, z: 0}
+    m_Center: {x: 0.47855043, y: 1.4404001, z: 0}
+    m_Extent: {x: 9.10955, y: 9.3765, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -7667,12 +7650,12 @@ PrefabInstance:
     - target: {fileID: 2902257392719249671, guid: 17c6e825580c2884eb8ee6808cff8181,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.48
+      value: 0.46
       objectReference: {fileID: 0}
     - target: {fileID: 2902257392719249671, guid: 17c6e825580c2884eb8ee6808cff8181,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.87
+      value: 5.92
       objectReference: {fileID: 0}
     - target: {fileID: 2902257392719249671, guid: 17c6e825580c2884eb8ee6808cff8181,
         type: 3}
