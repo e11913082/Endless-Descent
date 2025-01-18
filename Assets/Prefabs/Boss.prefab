@@ -214,6 +214,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ee888647a8825c24b84836cfcd9807f7, type: 3}
   stepSound: {fileID: 8300000, guid: a03a96c5d1e99b4409ddd79098abd9ab, type: 3}
   dashSound: {fileID: 8300000, guid: 4e22d35e0fc60024fa02ecd0f9a62296, type: 3}
+  deathSound: {fileID: 8300000, guid: 9f40385bcf04e804bb9e7ea2f425d02c, type: 3}
 --- !u!114 &7564183154885829875
 MonoBehaviour:
   m_ObjectHideFlags: 0
