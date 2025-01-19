@@ -26,6 +26,11 @@ public class CharacterGamblingTrader : MonoBehaviour
         panelImage = hintText.gameObject.transform.parent.gameObject.GetComponent<Image>();
         hintText.gameObject.transform.parent.gameObject.SetActive(false);
     }
+
+    public void SetCanvas(GameObject canvas)
+    {
+        this.canvas = canvas;
+    }
     
     public void OnTriggerEnter2D(Collider2D other)
     {

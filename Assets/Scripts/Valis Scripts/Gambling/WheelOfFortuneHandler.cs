@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using EndlessDescent;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -31,6 +32,8 @@ public class WheelOfFortuneHandler : MonoBehaviour
         buttonText.text = "Spin = 10 Oil ("+(maxSpinCount-spinCount)+" spins left)";
         outText.text = "";
         stats = oilText.GetComponent<CurrentCoinsGambling>().playerStats;
+        CharacterGamblingTrader player = GameObject.Find("/Main Character").GetComponent<CharacterGamblingTrader>();
+        player.SetCanvas(GameObject.Find("/GamblingCanvas"));
     }
 
     public void Update()
