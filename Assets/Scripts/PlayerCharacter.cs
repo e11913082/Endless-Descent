@@ -42,7 +42,7 @@ namespace EndlessDescent
         public AudioClip stepSound;
         public AudioClip dashSound;
         public AudioClip deathSound;
-	private GameObject pauseMenu;
+	    private GameObject pauseMenu;
         private Rigidbody2D rigid;
         private Animator animator;
         private AutoOrderLayer auto_order;
@@ -58,6 +58,7 @@ namespace EndlessDescent
         private Vector2 move_input;
         private bool attackDown;
         private bool dashDown;
+        private bool pausePress;
         
         private Vector2 lookat = Vector2.zero;
         private float side = 1f;
@@ -128,6 +129,22 @@ namespace EndlessDescent
             character_list.Remove(player_id);
         }
 
+        public void SetPauseMenu(GameObject pauseMenu)
+        {
+            this.pauseMenu = pauseMenu;
+        }
+
+        public void UpdateControls()
+        {
+            PlayerControls controls = PlayerControls.Get(player_id);
+            controls.UpdateControls();
+        }
+
+        public void ResetStats()
+        {
+            stats.resetStats();
+        }
+
         void Start()
         {
             if (PlayerPrefs.GetFloat("EffectVolume") == null || PlayerPrefs.GetFloat("EffectVolume")==0f)
@@ -137,6 +154,15 @@ namespace EndlessDescent
             audioSource.volume = PlayerPrefs.GetFloat("EffectVolume");
             character_list[player_id] = this;
             stats = PlayerStats.GetPlayerStats(player_id);
+            if (deathSound != null)
+            {
+                onDeath += PlayDeathSound;
+            }
+        }
+
+        private void PlayDeathSound()
+        {
+            AudioSource.PlayClipAtPoint(deathSound, transform.position);
         }
 
         private void Update()
@@ -207,11 +233,18 @@ namespace EndlessDescent
                 action_down = controls.GetActionDown();
                 weaponSwitch = controls.GetWeaponSwitch();
                 weaponDrop = controls.GetWeaponDrop();
+                pausePress = controls.GetPause();
             }
 
             if (dashDown)
             {
                 Dash();
+            }
+
+            if (pausePress && !pauseMenu.activeInHierarchy)
+            {
+                pauseMenu.SetActive(true);
+                Time.timeScale = 0f;
             }
 
             //Update lookat side
