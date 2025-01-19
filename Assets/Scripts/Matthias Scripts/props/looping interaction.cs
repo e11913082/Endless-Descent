@@ -17,6 +17,9 @@ public class LoopInteraction : MonoBehaviour
 
     public GameObject loopEnemies; //parentobj of all additional loop enemies
     public GameObject lanterns; //parentobj of all lantern groups
+    [SerializeField]
+    propSpawnDict[] spawnObjList;
+    
 
     private LayerMask playerLayer;
  
@@ -37,6 +40,7 @@ public class LoopInteraction : MonoBehaviour
             curPlayer.transform.position = spawnPos;
             HandleEnemies();
             HandleLanterns();
+            HandlePropSpawns();
             GameObject canvas = GameObject.Find("/GamblingCanvas");
             curPlayer.GetComponent<CharacterGamblingTrader>().canvas = canvas;
             Destroy(gameObject);
@@ -49,6 +53,17 @@ public class LoopInteraction : MonoBehaviour
         if ((playerLayer.value & (1 << other.gameObject.layer)) != 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
+    void HandlePropSpawns()
+    {
+        foreach(propSpawnDict spawnData in spawnObjList)
+        {
+            if (spawnData.loopCount == loopCount)
+            {
+                spawnData.obj.SetActive(true);
+            }
         }
     }
 
@@ -106,4 +121,13 @@ public class LoopInteraction : MonoBehaviour
             }
         }
     }
+}
+
+[Serializable]
+public class propSpawnDict
+{
+    [SerializeField]
+    public GameObject obj;
+    [SerializeField]
+    public int loopCount; //loopCount that has to be active at awake for the item to be spawned
 }

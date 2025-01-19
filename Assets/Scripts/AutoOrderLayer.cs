@@ -111,7 +111,7 @@ namespace EndlessDescent
         {
             Camera cam = FollowCamera.GetCamera();
             float current_angle = transform.rotation.eulerAngles.z;
-            if (!cam.orthographic)
+            if (cam != null && !cam.orthographic)
             {
                 //Projection
                 transform.rotation = Quaternion.Euler(cam.transform.rotation.eulerAngles.x, 0f, current_angle);
