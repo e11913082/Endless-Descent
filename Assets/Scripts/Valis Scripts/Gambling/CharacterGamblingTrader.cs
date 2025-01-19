@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class CharacterGamblingTrader : MonoBehaviour
 {
-    public GameObject canvas;
+    [SerializeField] public GameObject canvas;
     private bool inTrigger = false;
     private PlayerCharacter playerCharacter;
 
@@ -22,8 +22,6 @@ public class CharacterGamblingTrader : MonoBehaviour
     private Image panelImage;
     void Start()
     {
-        canvas = GameObject.Find("/GamblingCanvas");
-        canvas.SetActive(false);
         hintText = GameObject.Find("/HintCanvas").GetComponentInChildren<TextMeshProUGUI>(true);
         panelImage = hintText.gameObject.transform.parent.gameObject.GetComponent<Image>();
         hintText.gameObject.transform.parent.gameObject.SetActive(false);
