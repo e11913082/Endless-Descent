@@ -167,12 +167,12 @@ public class PlayerStats : MonoBehaviour
                 return "You won a common Item: " + rewardItem.itemName;
             case 3:
             case 7:
-                coins = Mathf.Max(coins - 20, 0);
+                coins = Mathf.Max(coins - 10, 0);
                 if (coins == 0)
                 {
                     return "You lose the rest of your lantern oil!";
                 }
-                return "You lose 20 lantern oil!";
+                return "You lose 10 lantern oil!";
             case 1:
                 coins += 20;
                 return "You won a bottle of lantern oil!";
@@ -188,16 +188,18 @@ public class PlayerStats : MonoBehaviour
     
     public void resetStats()
     {
-        maxHealth = 1f;
+        maxHealth = 100f;
         healthRegen = 0.5f;
         currentHealth = maxHealth;
-        moveSpeed = 2f;
-        damage = 2f;
-        attackRange = 1.5f;
+        moveSpeed = 3f;
+        damage = 5f;
+        attackRange = 1.3f;
         fearIncrease = 1f;
-        fearDecrease = 0.5f;
+        fearDecrease = 1f;
         currentFear = 0f;
-        maxFear = 6f;
+        maxFear = 100f;
+        
+        equippedItems.Clear();
     }
     
     public static PlayerStats GetPlayerStats(int player_id)

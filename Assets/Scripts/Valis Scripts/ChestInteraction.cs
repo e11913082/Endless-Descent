@@ -15,6 +15,10 @@ public class ChestInteraction : MonoBehaviour
     public int chestHintCounter = 0;
     public int chestHintMaxCounter = 3;
     private TextMeshProUGUI hintText;
+
+    public float hintDelay = 1f;
+    private float timeInTrigger = 0f;
+    
     
     private Coroutine hintCoroutine = null;
     private bool hintActive = false;
@@ -47,7 +51,23 @@ public class ChestInteraction : MonoBehaviour
                   chestController.OpenChest();
               }
             }
-            if (chestHintCounter < chestHintMaxCounter && !hintActive)
+            timeInTrigger += Time.deltaTime;
+            if (timeInTrigger >= hintDelay)
+            {
+                Debug.Log("Hint triggered");
+                hintText.gameObject.transform.parent.gameObject.SetActive(true);
+                // readjust alpha
+                hintText.alpha = 1f;
+                Color color = panelImage.color;
+                color.a = 1f;
+                panelImage.color = color;
+            
+                string inputKey = PlayerPrefs.GetString("interact", "E");
+                hintText.text = "Press " + inputKey + " to open the chest!";
+                
+            }
+            
+            /*if (chestHintCounter < chestHintMaxCounter && !hintActive)
             {   
                 hintActive = true;
                 if (hintCoroutine != null)
@@ -55,12 +75,13 @@ public class ChestInteraction : MonoBehaviour
                     StopCoroutine(hintCoroutine);
                 }
                 hintCoroutine = StartCoroutine(Hint());
-            }
+            }*/
         }
     }
     
     private IEnumerator Hint()
     {
+        
         yield return new WaitForSeconds(4f);
         if (inChestCollider)
         {   
@@ -74,9 +95,8 @@ public class ChestInteraction : MonoBehaviour
             
             string inputKey = PlayerPrefs.GetString("interact", "E");
             hintText.text = "Press " + inputKey + " to open the chest!";
-            FadeOut();
+            //FadeOut();
         }
-        
     }
     
     private Coroutine fadeCoroutine = null;
@@ -120,7 +140,6 @@ public class ChestInteraction : MonoBehaviour
         hintActive = false;
         chestHintCounter++;
         hintText.gameObject.transform.parent.gameObject.SetActive(false);
-        
     }
     
     
@@ -128,6 +147,10 @@ public class ChestInteraction : MonoBehaviour
     {
         if (other.CompareTag("Chest"))
         {
+            if (fadeCoroutine != null)
+            {
+                StopCoroutine(fadeCoroutine);
+            }
             inChestCollider = true;
             chest = other.gameObject;
         }
@@ -137,7 +160,12 @@ public class ChestInteraction : MonoBehaviour
     {
         if (other.CompareTag("Chest"))
         {
+            if (hintText.gameObject.activeSelf)
+            {
+                FadeOut();
+            }
             inChestCollider = false;
+            timeInTrigger = 0f;
             chest = null;
         }
     }

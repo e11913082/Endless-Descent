@@ -378,11 +378,11 @@ RectTransform:
   - {fileID: 259849683185678965}
   - {fileID: 5279178440032409529}
   - {fileID: 7532866638781159816}
-  - {fileID: 6556663542940919576}
   - {fileID: 4337774539124231339}
   - {fileID: 684120252043304789}
   - {fileID: 1300648293077955391}
   - {fileID: 6712362767559084831}
+  - {fileID: 6556663542940919576}
   m_Father: {fileID: 4407238590866644420}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -569,7 +569,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 319b292c4d650ff48bcaa85fc3629104, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 597591e7082ad4c639686547e45e7eb6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -823,10 +823,7 @@ MonoBehaviour:
   m_text: Step forth, traveler, and test your fate with the <color=green>Wheel of
     Fortune</color>. Offer your precious <color=red>lantern oil</color> to spin the
     wheel and uncover treasures that may shift the tides of your journey through
-    the shadows. Will the wheel grant you light, riches, or perhaps a rare boon to
-    keep the darkness at bay? But remember, every spin comes with a price, and your
-    oil can become the only sanctuary against the creeping fear. Dare you risk it,
-    or will you guard your sanity and tread carefully into the unknown?
+    the shadows. You may try your luck at most <color=red>three</color> times.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 74119a463b07aa7169002337f733ce21, type: 2}
   m_sharedMaterial: {fileID: 6870105668394284239, guid: 74119a463b07aa7169002337f733ce21,
@@ -932,8 +929,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.131}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 407, y: -304.30005}
-  m_SizeDelta: {x: 264.894, y: 104.581}
+  m_AnchoredPosition: {x: 393, y: 39.627}
+  m_SizeDelta: {x: 512.01, y: 810.746}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6870836341386652435
 CanvasRenderer:

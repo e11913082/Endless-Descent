@@ -5,9 +5,30 @@ public class MenuMusicManager : MonoBehaviour
 {
     public AudioSource backgroundMusicSource;  // Reference to the Audio Source for background music
     public Slider volumeSlider;                // Reference to the Slider
+    
+    private static MenuMusicManager instance;
 
-    void Start()
+    void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void SetSlider(GameObject slider)
+    {
+        volumeSlider = slider.GetComponent<Slider>();
+    }
+    
+    void Start()
+    {   
+        
         // Ensure the AudioSource reference is assigned
         if (backgroundMusicSource == null)
         {

@@ -135,7 +135,7 @@ public class ItemPickup : MonoBehaviour
         {   
             Cursor.SetCursor(cursor, Vector2.zero, cursorMode);
             
-            textGUI.gameObject.transform.parent.parent.position = new Vector3(transform.position.x, transform.position.y+1, 0);
+            textGUI.gameObject.transform.parent.parent.position = new Vector3(transform.position.x, transform.position.y + 1.5f, 0);
             textGUI.gameObject.transform.parent.gameObject.SetActive(true);
             if (chestItem)
             {

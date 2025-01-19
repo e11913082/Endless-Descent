@@ -42,6 +42,7 @@ namespace EndlessDescent
         public AudioClip stepSound;
         public AudioClip dashSound;
         public AudioClip deathSound;
+	private GameObject pauseMenu;
         private Rigidbody2D rigid;
         private Animator animator;
         private AutoOrderLayer auto_order;
@@ -136,10 +137,6 @@ namespace EndlessDescent
             audioSource.volume = PlayerPrefs.GetFloat("EffectVolume");
             character_list[player_id] = this;
             stats = PlayerStats.GetPlayerStats(player_id);
-            if (deathSound != null)
-            {
-                onDeath += PlayDeathSound;
-            }
         }
 
         private void Update()
@@ -448,11 +445,7 @@ namespace EndlessDescent
             return stats;
         }
         
-        private void PlayDeathSound()
-        {
-            AudioSource.PlayClipAtPoint(deathSound, transform.position);
-        }        
-
+        
         public void DisableControls() { disable_controls = true; }
         public void EnableControls() { disable_controls = false; }
         
@@ -493,6 +486,5 @@ namespace EndlessDescent
             character_list.Values.CopyTo(list, 0);
             return list;
         }
-
     }
 }

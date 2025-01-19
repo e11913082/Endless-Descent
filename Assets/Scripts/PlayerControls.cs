@@ -27,6 +27,7 @@ namespace EndlessDescent
         public KeyCode switchKey;
         public KeyCode dropKey;
         public KeyCode dashKey;
+        public KeyCode pauseKey;
         
         private Vector2 move = Vector2.zero;
         private bool action_press = false;
@@ -35,6 +36,7 @@ namespace EndlessDescent
         private bool weaponSwitch = false;
         private bool weaponDrop = false;
         private bool dashPress = false;
+        private bool pausePress = false;
         
         // mouse logic
         private Vector3 mouse_pos = Vector3.zero;
@@ -49,33 +51,32 @@ namespace EndlessDescent
             mainCamera = Camera.main;
             if (!useInspectorValues)
             {
-                if (KeybindManager.instance != null)
-                {
-                    up_key = KeybindManager.instance.keybinds["up"];
-                    down_key = KeybindManager.instance.keybinds["down"];
-                    right_key = KeybindManager.instance.keybinds["right"];
-                    left_key = KeybindManager.instance.keybinds["left"];
-                    attackKey = KeybindManager.instance.keybinds["attack"];
-                    action_key = KeybindManager.instance.keybinds["interact"];
-                    switchKey = KeybindManager.instance.keybinds["switch"];
-                    dropKey = KeybindManager.instance.keybinds["drop"];
-                    dashKey = KeybindManager.instance.keybinds["dash"];
-                }
-                else
-                {
-                    up_key = KeyCode.W;
-                    down_key = KeyCode.S;
-                    right_key = KeyCode.D;
-                    left_key = KeyCode.A;
-                    attackKey = KeyCode.Mouse0;
-                    action_key = KeyCode.E;
-                    switchKey = KeyCode.Tab;
-                    dropKey = KeyCode.Q;
-                    dashKey = KeyCode.Space;
-                }
+                up_key = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("up", KeyCode.W.ToString()));
+                down_key = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("down", KeyCode.S.ToString()));
+                right_key = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("right", KeyCode.D.ToString()));
+                left_key = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("left", KeyCode.A.ToString()));
+                attackKey = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("attack", KeyCode.Mouse0.ToString()));
+                action_key = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("interact", KeyCode.E.ToString()));
+                switchKey = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("switch", KeyCode.Tab.ToString()));
+                dropKey = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("drop", KeyCode.Q.ToString()));
+                dashKey = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("dash", KeyCode.Space.ToString()));
+                pauseKey = KeyCode.Escape;
             }
         }
 
+        public void UpdateControls()
+        {
+            up_key = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("up", KeyCode.W.ToString()));
+            down_key = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("down", KeyCode.S.ToString()));
+            right_key = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("right", KeyCode.D.ToString()));
+            left_key = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("left", KeyCode.A.ToString()));
+            attackKey = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("attack", KeyCode.Mouse0.ToString()));
+            action_key = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("interact", KeyCode.E.ToString()));
+            switchKey = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("switch", KeyCode.Tab.ToString()));
+            dropKey = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("drop", KeyCode.Q.ToString()));
+            dashKey = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("dash", KeyCode.Space.ToString()));
+        }
+        
         void Start()
         {
 
@@ -104,6 +105,7 @@ namespace EndlessDescent
             dashPress = false;
             weaponSwitch = false;
             weaponDrop = false;
+            pausePress = false;
             
             if (Input.GetKey(left_key))
                 move += -Vector2.right;
@@ -125,6 +127,8 @@ namespace EndlessDescent
                 weaponSwitch = true;
             if (Input.GetKeyDown(dropKey))
                 weaponDrop = true;
+            if (Input.GetKeyDown(pauseKey))
+                pausePress = true;
             float move_length = Mathf.Min(move.magnitude, 1f);
             move = move.normalized * move_length;
         }
@@ -146,6 +150,11 @@ namespace EndlessDescent
             return action_press;
         }
 
+        public bool GetPause()
+        {
+            return pausePress;
+        }
+        
         public bool GetAttackDown()
         {
             return attackPress;

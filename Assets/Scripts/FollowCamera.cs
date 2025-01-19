@@ -32,12 +32,19 @@ namespace EndlessDescent
         {
             _instance = this;
             cam = GetComponent<Camera>();
+            target = GameObject.Find("/Main Character");
         }
 
+        public void SetTarget(GameObject target)
+        {
+            this.target = target;
+        }
+        
         void LateUpdate()
         {
+           
             GameObject cam_target = target;
-
+            
             if (lock_target != null)
                 cam_target = lock_target;
 
