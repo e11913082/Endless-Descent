@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class CharacterGamblingTrader : MonoBehaviour
 {
-    [SerializeField] public GameObject canvas;
+    public GameObject canvas;
     private bool inTrigger = false;
     private PlayerCharacter playerCharacter;
 
