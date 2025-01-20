@@ -108,7 +108,8 @@ namespace EndlessDescent
                     Destroy(gameObject);
                 }
             }
-
+            
+            
             rigid = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
             auto_order = GetComponent<AutoOrderLayer>();
@@ -151,6 +152,7 @@ namespace EndlessDescent
             {
                 PlayerPrefs.SetFloat("EffectVolume", 0.3f);
             }
+             
             audioSource.volume = PlayerPrefs.GetFloat("EffectVolume");
             character_list[player_id] = this;
             stats = PlayerStats.GetPlayerStats(player_id);
@@ -244,6 +246,10 @@ namespace EndlessDescent
             if (pausePress && !pauseMenu.activeInHierarchy)
             {
                 pauseMenu.SetActive(true);
+                if (gameObject.GetComponent<CharacterGamblingTrader>().canvas.activeInHierarchy)
+                {
+                    gameObject.GetComponent<CharacterGamblingTrader>().canvas.SetActive(false);
+                }
                 Time.timeScale = 0f;
             }
 

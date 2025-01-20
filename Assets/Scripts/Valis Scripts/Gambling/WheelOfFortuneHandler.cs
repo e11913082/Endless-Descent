@@ -26,23 +26,27 @@ public class WheelOfFortuneHandler : MonoBehaviour
 
     private PlayerStats stats;
     public Coroutine fadeCoroutine;
+    
+    private PlayerCharacter playerCharacter;
 
     private void Awake()
     {   
         buttonText.text = "Spin = 10 Oil ("+(maxSpinCount-spinCount)+" spins left)";
         outText.text = "";
         stats = oilText.GetComponent<CurrentCoinsGambling>().playerStats;
+        playerCharacter = GameObject.Find("/Main Character").GetComponent<PlayerCharacter>();
         CharacterGamblingTrader player = GameObject.Find("/Main Character").GetComponent<CharacterGamblingTrader>();
         player.SetCanvas(GameObject.Find("/GamblingCanvas"));
     }
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (playerCharacter.GetActionDown())
         {
             if(fadeCoroutine != null) StopCoroutine(fadeCoroutine);
             Time.timeScale = 1f;
             GameObject.Find("/GamblingCanvas").gameObject.SetActive(false);
+            
         }
     }
 

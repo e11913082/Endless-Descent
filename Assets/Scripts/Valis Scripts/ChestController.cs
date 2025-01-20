@@ -95,4 +95,14 @@ public class ChestController : MonoBehaviour
             Debug.LogWarning("The chest was not opened");
         }
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        
+    }
 }

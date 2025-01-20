@@ -35,9 +35,9 @@ namespace EndlessDescent
             target = GameObject.Find("/Main Character");
         }
 
-        public void SetTarget(GameObject target)
+        public void SetTarget(GameObject camTarget)
         {
-            this.target = target;
+            target = camTarget;
         }
         
         void LateUpdate()

@@ -52,7 +52,7 @@ public class ChestInteraction : MonoBehaviour
               }
             }
             timeInTrigger += Time.deltaTime;
-            if (timeInTrigger >= hintDelay)
+            /*if (timeInTrigger >= hintDelay)
             {
                 Debug.Log("Hint triggered");
                 hintText.gameObject.transform.parent.gameObject.SetActive(true);
@@ -67,7 +67,7 @@ public class ChestInteraction : MonoBehaviour
                 
             }
             
-            /*if (chestHintCounter < chestHintMaxCounter && !hintActive)
+            if (chestHintCounter < chestHintMaxCounter && !hintActive)
             {   
                 hintActive = true;
                 if (hintCoroutine != null)
@@ -82,7 +82,7 @@ public class ChestInteraction : MonoBehaviour
     private IEnumerator Hint()
     {
         
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(hintDelay);
         if (inChestCollider)
         {   
             Debug.Log("Hint triggered");
