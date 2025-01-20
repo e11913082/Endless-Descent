@@ -36,7 +36,6 @@ public class WheelOfFortuneHandler : MonoBehaviour
         stats = oilText.GetComponent<CurrentCoinsGambling>().playerStats;
         playerCharacter = GameObject.Find("/Main Character").GetComponent<PlayerCharacter>();
         CharacterGamblingTrader player = GameObject.Find("/Main Character").GetComponent<CharacterGamblingTrader>();
-        player.SetCanvas(GameObject.Find("/GamblingCanvas"));
     }
 
     public void Update()
@@ -67,6 +66,11 @@ public class WheelOfFortuneHandler : MonoBehaviour
             StopCoroutine(fadeCoroutine);
         }
         fadeCoroutine = StartCoroutine(FadeOut(2));
+    }
+
+    public void ResetSpin()
+    {
+        Debug.Log("Delete me");
     }
     
     public void StartSpin()
@@ -189,9 +193,7 @@ public class WheelOfFortuneHandler : MonoBehaviour
             transform.Rotate(0, 0, rotationStep);
             currentAngle = transform.eulerAngles.z % 360;
             angleDifference = Mathf.DeltaAngle(currentAngle, targetAngle);
-            
-            
-
+          
             
             yield return null;
         }

@@ -41,11 +41,8 @@ public class LoopInteraction : MonoBehaviour
             HandleEnemies();
             HandleLanterns();
             HandlePropSpawns();
-            GameObject canvas = GameObject.Find("/GamblingCanvas");
-            curPlayer.GetComponent<CharacterGamblingTrader>().canvas = canvas;
             Destroy(gameObject);
-        }
-        
+        }   
     }
 
     void OnTriggerEnter2D(Collider2D other) //reload scene when player enters

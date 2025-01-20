@@ -53,8 +53,6 @@ public class CharacterGamblingTrader : MonoBehaviour
     {
         if (inTrigger) 
         {
-            
-           // canvas = GameObject.Find("/GamblingCanvas");
            if (playerCharacter.GetActionDown())
            {
               canvas.gameObject.SetActive(true);
