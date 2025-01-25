@@ -42,6 +42,11 @@ public class MenuMusicManager : MonoBehaviour
             backgroundMusicSource.volume = 1f;
         }
 
+        InitializeSliders();
+    }
+
+    public void InitializeSliders()
+    {
         // Initialize the slider value with the AudioSource's current volume
         if (volumeSlider != null)
         {
@@ -50,7 +55,7 @@ public class MenuMusicManager : MonoBehaviour
         }
         if (effectVolumeSlider != null)
         {
-            effectVolumeSlider.value = 1f;
+            effectVolumeSlider.value = PlayerPrefs.GetFloat("EffectVolume", 0.5f);
             effectVolumeSlider.onValueChanged.AddListener(SetEffectVolume);
         }
 
@@ -58,7 +63,6 @@ public class MenuMusicManager : MonoBehaviour
         {
             backgroundMusicSource.Play();
         }
-        
     }
 
     public void SetVolume(float volume)
@@ -79,8 +83,8 @@ public class MenuMusicManager : MonoBehaviour
     void OnEnable()
     {
         // Load volume from PlayerPrefs when the scene starts
-        float savedVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);  // Default value is 0.5 if not set
-        float savedEffectVolume = PlayerPrefs.GetFloat("EffectVolume", 1f);  // Default value is 0.5 if not set
+        float savedVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f);  // Default value is 0.5 if not set
+        float savedEffectVolume = PlayerPrefs.GetFloat("EffectVolume", 0.5f);  // Default value is 0.5 if not set
         if (backgroundMusicSource != null)
         {
             backgroundMusicSource.volume = savedVolume;

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VersionControl.Git.Json;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
@@ -23,10 +24,13 @@ namespace EndlessDescent
         private LayerMask destructionLayer; 
         private Vector2 shootDirection;
         private Vector2 origin;
+        private float effectVolume;
         // Start is called before the first frame update
         void Start()
         {
-
+            effectVolume = PlayerPrefs.GetFloat("EffectVolume", 0.5f);
+            audioSource.volume = effectVolume;
+            audioSource.PlayOneShot(CreationSound);
         }
 
         void Awake()
@@ -34,9 +38,7 @@ namespace EndlessDescent
             Rigid = GetComponent<Rigidbody2D> ();
             Animator = GetComponent<Animator>();
             audioSource = GetComponent<AudioSource>();
-            audioSource.PlayOneShot(CreationSound);
             origin = transform.position;
-
             destructionLayer = LayerMask.GetMask("Props");
         }
 
@@ -74,7 +76,7 @@ namespace EndlessDescent
                 Rigid.velocity = Vector2.zero;
                 Animator.SetBool("Hit", true);
                 audioSource.Stop();
-                AudioSource.PlayClipAtPoint(DestructionSound, transform.position, 1000);
+                AudioSource.PlayClipAtPoint(DestructionSound, transform.position, effectVolume);
                 Invoke("DestroyProjectile", DestructionDelay); 
             }
             //destroys projectile on collision "Props" layer
@@ -83,7 +85,7 @@ namespace EndlessDescent
                 Rigid.velocity = Vector2.zero;
                 Animator.SetBool("Hit", true);
                 audioSource.Stop();
-                AudioSource.PlayClipAtPoint(DestructionSound, transform.position, 1000);
+                AudioSource.PlayClipAtPoint(DestructionSound, transform.position, effectVolume);
                 Invoke("DestroyProjectile", DestructionDelay);
             }
            

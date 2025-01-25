@@ -45,7 +45,7 @@ public class BossBehaviour : MonoBehaviour
     private float defaultHaloOuterRadius;
     private Color defaultHaloColor;
     private bool levitate;
-    float originalAudioVolume;
+    float effectVolume;
     
     void Awake()
     {
@@ -66,7 +66,8 @@ public class BossBehaviour : MonoBehaviour
         playerId = CharacterIdGenerator.GetCharacterId(gameObject, 0);
         stats = PlayerStats.GetPlayerStats(playerId);
         character.invulnerable = true;
-        audioSource.volume = PlayerPrefs.GetFloat("EffectVolume");
+        effectVolume = PlayerPrefs.GetFloat("EffectVolume", 0.5f);
+        audioSource.volume = 0.2f * effectVolume;
         rigid.isKinematic = true;
         defaultHaloIntensity = light2D.intensity;
         defaultHaloInnerRadius = light2D.pointLightInnerRadius;
@@ -74,8 +75,6 @@ public class BossBehaviour : MonoBehaviour
         defaultHaloColor = light2D.color;
         levitate = true;
         StartCoroutine(Levitate());
-        originalAudioVolume = audioSource.volume;
-        audioSource.volume = 0.2f * audioSource.volume;
         audioSource.PlayOneShot(idleSounds[UnityEngine.Random.Range(0, idleSounds.Count)]);
     }
 
@@ -99,11 +98,18 @@ public class BossBehaviour : MonoBehaviour
         }
     }
 
+    void FixedUpdate()
+    {
+        effectVolume = PlayerPrefs.GetFloat("EffectVolume");
+        print(effectVolume);
+    }
+
     private void IdleStageBehaviour()
     {
         if (!audioSource.isPlaying)
         {
             audioSource.clip = idleSounds[UnityEngine.Random.Range(0, idleSounds.Count)];
+            audioSource.volume = 0.2f * effectVolume;
             audioSource.PlayDelayed(UnityEngine.Random.Range(1f, 5f));
         }
     }
@@ -134,6 +140,7 @@ public class BossBehaviour : MonoBehaviour
                 vulnerableStartTime = Time.time;
                 rigid.isKinematic = false;
                 ResetDefaultHalo();
+                audioSource.volume = effectVolume;
                 audioSource.PlayOneShot(actionSounds[UnityEngine.Random.Range(0, actionSounds.Count)]);
             }    
             else if (Time.time - vulnerableStartTime > vulnerableTimeSpan || firstLoop)
@@ -156,6 +163,7 @@ public class BossBehaviour : MonoBehaviour
         if (!audioSource.isPlaying)
         {
             audioSource.clip = actionSounds[UnityEngine.Random.Range(0, actionSounds.Count)];
+            audioSource.volume = effectVolume;
             audioSource.PlayDelayed(UnityEngine.Random.Range(1f, 5f));
         }
     }
@@ -166,12 +174,13 @@ public class BossBehaviour : MonoBehaviour
         {
             currentStage = Stage.InitialStage;
             targetCharacter = other.gameObject;
-            audioSource.volume = originalAudioVolume;
+            audioSource.volume = effectVolume;
         }  
     }
 
     private void SpawnEnemies()
     {
+        audioSource.volume = effectVolume;
         audioSource.PlayOneShot(actionSounds[UnityEngine.Random.Range(0, actionSounds.Count)]);
         audioSource.PlayOneShot(spawnEnemiesSounds[UnityEngine.Random.Range(0, spawnEnemiesSounds.Count)]);
         //PlayActionAudio();

@@ -15,6 +15,8 @@ public class PauseMenu : MonoBehaviour
         player.SetPauseMenu(gameObject.transform.parent.gameObject.gameObject);
         MenuMusicManager musicManager = GameObject.Find("/BackgroundMusic").GetComponent<MenuMusicManager>();
         musicManager.SetSlider(GameObject.Find("/PauseMenu/PauseCanvas/PausePanel/SettingsCanvas/Slider"));
+        musicManager.SetEffectSlider(GameObject.Find("/PauseMenu/PauseCanvas/PausePanel/SettingsCanvas/EffectSlider"));
+        musicManager.InitializeSliders();
         settingsCanvas = GameObject.Find("SettingsCanvas").GetComponent<Canvas>();
         settingsCanvas.enabled = false;
         pauseMenu.SetActive(false);

@@ -16,6 +16,7 @@ public class WeaponAttack : MonoBehaviour
 
     private float lastUse;
     private LayerMask enemies;
+    private float effectVolume;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,7 @@ public class WeaponAttack : MonoBehaviour
         {
             enemies = LayerMask.NameToLayer("Enemy");
         }
+        effectVolume = PlayerPrefs.GetFloat("EffectVolume", 0.5f);
     }
 
     // Update is called once per frame
@@ -102,7 +104,7 @@ public class WeaponAttack : MonoBehaviour
         MeleePrefab melee = Instantiate(inventory.equippedWeapon.projectilePrefab, attackPos, transform.rotation)
             .GetComponent<MeleePrefab>();
         melee.Attack(direction, gameObject, stats.attackRange);
-        melee.PlaySwingSound();
+        melee.PlaySwingSound(effectVolume);
 
         bool hitEnemy = false;
         for (int i = 0; i < enemiesToDamage.Length; i++)
