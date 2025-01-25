@@ -12,11 +12,13 @@ public class MeleePrefab : MonoBehaviour
     private Vector2 attackDirection;
     private float attackRange;
     private GameObject weaponBearer;
+    private float effectVolume;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        effectVolume = PlayerPrefs.GetFloat("EffectVolume", 0.5f);
+        audioSource.volume = effectVolume;
     }
 
     void Awake()
@@ -28,11 +30,16 @@ public class MeleePrefab : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        audioSource.volume = PlayerPrefs.GetFloat("EffectVolume");
         if (attackDirection != null)
         {
             transform.position = weaponBearer.transform.position + (Vector3) attackDirection * 0.5f * attackRange;
         }
+    }
+
+    void FixedUpdate()
+    {
+        effectVolume = PlayerPrefs.GetFloat("EffectVolume", 0.5f);
+        audioSource.volume = effectVolume;
     }
 
     public void Attack(Vector2 direction, GameObject bearer, float range)
@@ -44,17 +51,10 @@ public class MeleePrefab : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, (float) Math.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
     }
 
-    public void PlaySwingSound()
+    public void PlaySwingSound(float volume)
     {
-        //audioSource.PlayOneShot(swingSounds[UnityEngine.Random.Range(0, swingSounds.Count)]);
-        AudioSource.PlayClipAtPoint(swingSounds[UnityEngine.Random.Range(0, swingSounds.Count)], transform.position, PlayerPrefs.GetFloat("EffectVolume"));
+        AudioSource.PlayClipAtPoint(swingSounds[UnityEngine.Random.Range(0, swingSounds.Count)], transform.position, volume);
     }
-
-    //public void PlayHitSound()
-    //{
-    //    //audioSource.PlayOneShot(hitSounds[UnityEngine.Random.Range(0, hitSounds.Count)]);
-    //    AudioSource.PlayClipAtPoint(hitSounds[UnityEngine.Random.Range(0, hitSounds.Count)], transform.position, PlayerPrefs.GetFloat("EffectVolume"));
-    //}
 
     public void DestroySelf()
     {

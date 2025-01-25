@@ -90,6 +90,7 @@ namespace EndlessDescent
         private LayerMask playerLayer;
         private static PlayerCharacter instance;
         private Vector3 spawnPos;
+        private float effectVolume;
 
         void Awake()
         {
@@ -148,12 +149,9 @@ namespace EndlessDescent
 
         void Start()
         {
-            if (PlayerPrefs.GetFloat("EffectVolume") == null || PlayerPrefs.GetFloat("EffectVolume")==0f)
-            {
-                PlayerPrefs.SetFloat("EffectVolume", 0.3f);
-            }
-             
-            audioSource.volume = PlayerPrefs.GetFloat("EffectVolume");
+            effectVolume = PlayerPrefs.GetFloat("EffectVolume", 0.5f);
+            audioSource.volume = effectVolume;
+
             character_list[player_id] = this;
             stats = PlayerStats.GetPlayerStats(player_id);
             if (deathSound != null)
@@ -164,7 +162,7 @@ namespace EndlessDescent
 
         private void PlayDeathSound()
         {
-            AudioSource.PlayClipAtPoint(deathSound, transform.position);
+            AudioSource.PlayClipAtPoint(deathSound, transform.position, effectVolume);
         }
 
         private void Update()
@@ -180,6 +178,9 @@ namespace EndlessDescent
         //Handle physics
         void FixedUpdate()
         {   
+            effectVolume = PlayerPrefs.GetFloat("EffectVolume", 0.5f);
+            audioSource.volume = effectVolume;
+
             // Set MoveSpeed and change accel and deccel accordingly
             if (!is_dead)
             {
@@ -207,7 +208,8 @@ namespace EndlessDescent
                 if (move.magnitude > 0.001 && Time.time - lastStepTime > stepTime / stats.moveSpeed && stepSound!=null)
                 {
                     lastStepTime = Time.time;
-                    audioSource.PlayOneShot(stepSound, 0.3f);
+                    audioSource.volume = effectVolume;
+                    audioSource.PlayOneShot(stepSound, 0.5f);
                 }         
             }
         }
@@ -299,6 +301,7 @@ namespace EndlessDescent
                 }
                 else if (weaponType == 1)
                 {
+                    audioSource.volume = effectVolume;
                     audioSource.PlayOneShot(meleeDamageSounds[UnityEngine.Random.Range(0, meleeDamageSounds.Count)]);
                 }
 
@@ -324,6 +327,7 @@ namespace EndlessDescent
                 }
                 else if (gameObject.layer == LayerMask.NameToLayer("Player"))
                 {   
+                    audioSource.volume = effectVolume;
                     audioSource.PlayOneShot(damageGrunts[UnityEngine.Random.Range(0, damageGrunts.Count)]);
                     LightTouch light_touch = GetComponent<LightTouch>();
                     
@@ -382,6 +386,7 @@ namespace EndlessDescent
             if (Time.time - lastDashTime > stats.dashCoolDown)
             {
                 lastDashTime = Time.time;
+                audioSource.volume = effectVolume;
                 audioSource.PlayOneShot(dashSound);
                 Color newColor = Color.white;
                 newColor.a = 0.5f;

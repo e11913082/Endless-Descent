@@ -136,6 +136,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 3458e346281af3140941bd1e07031285, type: 2}
   textGUI: {fileID: 0}
+  defaultCursor: {fileID: 0}
+  cursor: {fileID: 0}
+  chestItem: 0
+  hopHeight: 1
+  animationDuration: 0.5
 --- !u!114 &-5049243689802349000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,4 +153,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e46014022ad9fa14589f8d53e8830553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  armorAnimator: {fileID: 9100000, guid: e5f66dc061e30964c8b18b8a4e6c0a7e, type: 2}
+  armorAnimator: {fileID: 22100000, guid: bb05323103ad7ad44868e149809616c7, type: 2}
