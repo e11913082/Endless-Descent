@@ -18,12 +18,10 @@ GameObject:
   - component: {fileID: 3702767706727041646}
   - component: {fileID: 4903427270120146476}
   - component: {fileID: 315604755546}
-  - component: {fileID: 4694262215316790272}
   - component: {fileID: 7445903141468337987}
   - component: {fileID: 8108686635482222492}
   - component: {fileID: 9126783904486958396}
   - component: {fileID: 1491575795168080706}
-  - component: {fileID: 349256660469757217}
   - component: {fileID: 3476324244270177632}
   - component: {fileID: 8024133836288877911}
   - component: {fileID: 3450134252658263966}
@@ -191,6 +189,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ee888647a8825c24b84836cfcd9807f7, type: 3}
   stepSound: {fileID: 0}
   dashSound: {fileID: 0}
+  deathSound: {fileID: 0}
 --- !u!114 &7564183154885829875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,19 +274,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.5
---- !u!114 &4694262215316790272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173577608035208917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9102c88022309b79d8384e0d2c3b25d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inLight: 0
 --- !u!114 &7445903141468337987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,19 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chestHintCounter: 0
   chestHintMaxCounter: 3
---- !u!114 &349256660469757217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173577608035208917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9102c88022309b79d8384e0d2c3b25d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inLight: 0
+  hintDelay: 1
 --- !u!114 &3476324244270177632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -673,7 +647,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6278054667809725440}
   - component: {fileID: 874905840186940785}
-  - component: {fileID: 4484567655778861406}
   - component: {fileID: 7150642369894865946}
   m_Layer: 25
   m_Name: Managers
@@ -720,19 +693,7 @@ MonoBehaviour:
   switchKey: 9
   dropKey: 113
   dashKey: 0
---- !u!114 &4484567655778861406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6272700452186087243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f65774da85e1733a0b885d84735f8b86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player_id: 0
+  pauseKey: 0
 --- !u!114 &7150642369894865946
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -32,23 +32,34 @@ public class FearbarRefresher : MonoBehaviour
         RefreshBuildUpText();
     }
 
-    void Update()
+    private void OnEnable()
     {
-        RefreshCurFear();
+        EventManager.StartListening("FearRefresh", RefreshCurFear);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.StopListening("FearRefresh", RefreshCurFear);
     }
 
     private void RefreshCurFear()
     {
+        Debug.Log("FearRefresh");
         float oldVal = slider.value;
         slider.value = Math.Clamp(stats.currentFear / stats.maxFear, 0, stats.maxFear);
-        if(slider.value > oldVal)
+        if (slider.value > oldVal)
         {
             upArrow.SetActive(true);
             downArrow.SetActive(false);
         }
-        else if(slider.value < oldVal)
+        else if (slider.value < oldVal)
         {
             downArrow.SetActive(true);
+            upArrow.SetActive(false);
+        }
+        else
+        {
+            downArrow.SetActive(false);
             upArrow.SetActive(false);
         }
     }

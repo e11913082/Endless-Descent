@@ -19,17 +19,17 @@ namespace EndlessDescent
     public class PlayerCharacter : MonoBehaviour
     {
         public int player_id;
-        
+
         // can be private or removed
-        
+
         private float max_hp;
 
         public Texture2D cursor;
         private CursorMode cursorMode = CursorMode.Auto;
         private Vector2 hotSpot = Vector2.zero;
-        
-        
-        
+
+
+
         // can be moved to playerstats
         [Header("Status")]
         public bool invulnerable = false;
@@ -42,24 +42,24 @@ namespace EndlessDescent
         public AudioClip stepSound;
         public AudioClip dashSound;
         public AudioClip deathSound;
-	    private GameObject pauseMenu;
+        private GameObject pauseMenu;
         private Rigidbody2D rigid;
         private Animator animator;
         private AutoOrderLayer auto_order;
         private ContactFilter2D contact_filter;
-            
+
         //Weapons
         private bool weaponSwitch;
         private bool action_down;
         private bool weaponDrop;
-        
+
         private bool is_dead = false;
         private Vector2 move;
         private Vector2 move_input;
         private bool attackDown;
         private bool dashDown;
         private bool pausePress;
-        
+
         private Vector2 lookat = Vector2.zero;
         private float side = 1f;
         private int sideAnim = 0;
@@ -105,12 +105,13 @@ namespace EndlessDescent
                 }
                 else
                 {
+                    instance.stats.currentFear = 0;
                     instance.gameObject.transform.position = spawnPos;
                     Destroy(gameObject);
                 }
             }
-            
-            
+
+
             rigid = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
             auto_order = GetComponent<AutoOrderLayer>();
@@ -123,7 +124,7 @@ namespace EndlessDescent
             {
                 UnityEngine.Cursor.SetCursor(cursor, hotSpot, CursorMode.Auto);
             }
-            
+
         }
 
         void OnDestroy()
@@ -177,7 +178,7 @@ namespace EndlessDescent
 
         //Handle physics
         void FixedUpdate()
-        {   
+        {
             effectVolume = PlayerPrefs.GetFloat("EffectVolume", 0.5f);
             audioSource.volume = effectVolume;
 
@@ -205,12 +206,12 @@ namespace EndlessDescent
                     rigid.velocity = move;
                 }
 
-                if (move.magnitude > 0.001 && Time.time - lastStepTime > stepTime / stats.moveSpeed && stepSound!=null)
+                if (move.magnitude > 0.001 && Time.time - lastStepTime > stepTime / stats.moveSpeed && stepSound != null)
                 {
                     lastStepTime = Time.time;
                     audioSource.volume = effectVolume;
                     audioSource.PlayOneShot(stepSound, 0.5f);
-                }         
+                }
             }
         }
 
@@ -258,27 +259,27 @@ namespace EndlessDescent
             //Update lookat side
             if (move.magnitude > 0.001f)
                 lookat = move.normalized;
-                if (Mathf.Abs(lookat.x) > 0.02)
-                    side = Mathf.Sign(lookat.x);
-                sideAnim = CalculateSide(lookat);
+            if (Mathf.Abs(lookat.x) > 0.02)
+                side = Mathf.Sign(lookat.x);
+            sideAnim = CalculateSide(lookat);
         }
 
-    public int CalculateSide(Vector2 direction)
-    {
-        float angle = Vector2.Angle(Vector2.up, direction);
-        int lookSide = 1;
+        public int CalculateSide(Vector2 direction)
+        {
+            float angle = Vector2.Angle(Vector2.up, direction);
+            int lookSide = 1;
 
-        if (angle < 45)
-            {lookSide = 4;}
-        else if (45 <= angle && angle <= 135 && direction.x > 0)
-            {lookSide = 1;}
-        else if (45 <= angle && angle <= 135 && direction.x < 0)
-            {lookSide = 3;}
-        else if (angle > 135)
-            {lookSide = 2;}
+            if (angle < 45)
+            { lookSide = 4; }
+            else if (45 <= angle && angle <= 135 && direction.x > 0)
+            { lookSide = 1; }
+            else if (45 <= angle && angle <= 135 && direction.x < 0)
+            { lookSide = 3; }
+            else if (angle > 135)
+            { lookSide = 2; }
 
-        return lookSide;
-    }
+            return lookSide;
+        }
 
         public void HealDamage(float heal)
         {
@@ -288,7 +289,7 @@ namespace EndlessDescent
                 stats.CurrentHealth = Mathf.Min(stats.CurrentHealth, max_hp);
             }
         }
-        
+
         public void TakeDamage(float damage, Vector2 hitDirection, int weaponType)
         {
             if (!is_dead && !invulnerable) // && hit_timer > 0f)
@@ -326,14 +327,14 @@ namespace EndlessDescent
                     }
                 }
                 else if (gameObject.layer == LayerMask.NameToLayer("Player"))
-                {   
+                {
                     audioSource.volume = effectVolume;
                     audioSource.PlayOneShot(damageGrunts[UnityEngine.Random.Range(0, damageGrunts.Count)]);
                     LightTouch light_touch = GetComponent<LightTouch>();
-                    
+
                     float damageToPlayer = damage * ((100f - stats.defense) / 100f);
-                    
-                    
+
+
                     stats.CurrentFear += damageToPlayer;
                     if (stats.currentFear >= stats.MaxFear)
                     {
@@ -343,7 +344,7 @@ namespace EndlessDescent
                     {
                         buildup_manager.PauseBuildup();
                     }
-                    
+
                     else
                     {
                         if (onHit != null)
@@ -373,7 +374,7 @@ namespace EndlessDescent
         {
             invulnerable = false;
         }
-        
+
         private void ResetForceLayers()
         {
             List<CapsuleCollider2D> capsules = GetComponentsInChildren<CapsuleCollider2D>().Where(go => go.gameObject != this.gameObject).ToList();
@@ -399,7 +400,7 @@ namespace EndlessDescent
                 tmpForceSendLayers = capsule.forceSendLayers;
                 capsule.forceReceiveLayers = ~LayerMask.GetMask("Enemy");
                 capsule.forceSendLayers = ~LayerMask.GetMask("Enemy");
-                Vector2 direction = move.magnitude > 0 ? move.normalized: Vector2.up; 
+                Vector2 direction = move.magnitude > 0 ? move.normalized : Vector2.up;
                 rigid.AddForce(direction * 90f, ForceMode2D.Impulse);
                 Invoke("EnableMovement", 0.1f);
                 Invoke("ResetRenderColor", 0.1f);
@@ -421,7 +422,7 @@ namespace EndlessDescent
                     onDeath.Invoke();
             }
         }
-        
+
         public void Teleport(Vector3 pos)
         {
             transform.position = pos;
@@ -488,12 +489,12 @@ namespace EndlessDescent
         {
             return stats;
         }
-        
-        
+
+
         public void DisableControls() { disable_controls = true; }
         public void EnableControls() { disable_controls = false; }
-        
-        public static PlayerCharacter GetNearest(Vector3 pos, float range = 999f, bool alive_only=true)
+
+        public static PlayerCharacter GetNearest(Vector3 pos, float range = 999f, bool alive_only = true)
         {
             PlayerCharacter nearest = null;
             float min_dist = range;

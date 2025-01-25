@@ -1,19 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerBuildupManager : MonoBehaviour
 {
     public int player_id;
-    
+
+    public float fearChangeSpeed = 1.18f;
+    public float fearChangeDelay = 1f;
+
     private PlayerStats stats;
-    
+
     private Coroutine buildupCoroutine;
 
     private static Dictionary<int, PlayerBuildupManager> buildupManagers = new Dictionary<int, PlayerBuildupManager>();
 
-    
-    
+
     void Awake()
     {
         player_id = CharacterIdGenerator.GetCharacterId(gameObject, 1);
@@ -32,29 +35,22 @@ public class PlayerBuildupManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {   
-        StartBuildup();
-    }
-
-    // Update is called once per frame
-    void Update()
     {
-        if (stats.CurrentFear >= stats.MaxFear)
-        {
-            // ? handling somewhere else ?
-        }
+        EventManager.TriggerEvent("FearRefresh");
+        StartBuildup();
     }
 
     public bool IsEmpty()
     {
         return buildupCoroutine == null;
     }
-    
+
     public void StartBuildup()
     {
         if (buildupCoroutine != null)
         {
             StopCoroutine(buildupCoroutine);
+            EventManager.TriggerEvent("FearRefresh");
         }
         buildupCoroutine = StartCoroutine(BuildupCoroutine());
     }
@@ -64,24 +60,35 @@ public class PlayerBuildupManager : MonoBehaviour
         if (buildupCoroutine != null)
         {
             StopCoroutine(buildupCoroutine);
+            EventManager.TriggerEvent("FearRefresh");
         }
         buildupCoroutine = StartCoroutine(DecreaseCoroutine());
     }
 
     private IEnumerator BuildupCoroutine()
     {
+        EventManager.TriggerEvent("FearRefresh");
+        yield return new WaitForSeconds(fearChangeDelay);
+        float curFearInc = 1;
         while (stats.CurrentFear < stats.MaxFear)
         {
-            stats.CurrentFear = Mathf.Min(stats.CurrentFear + stats.fearIncrease, stats.MaxFear);
+            stats.CurrentFear = Mathf.Min(stats.CurrentFear + (stats.fearIncrease * curFearInc), stats.MaxFear);
+            curFearInc = curFearInc * fearChangeSpeed;
+            EventManager.TriggerEvent("FearRefresh");
             yield return new WaitForSeconds(1);
-        }    
+        }
     }
 
     private IEnumerator DecreaseCoroutine()
     {
+        EventManager.TriggerEvent("FearRefresh");
+        yield return new WaitForSeconds(fearChangeDelay);
+        float curFearDec = 1;
         while (stats.CurrentFear > 0)
         {
-            stats.CurrentFear = Mathf.Max(stats.CurrentFear - (stats.fearDecrease), 0);
+            stats.CurrentFear = Mathf.Max(stats.CurrentFear - (stats.fearDecrease * curFearDec), 0);
+            curFearDec = curFearDec * fearChangeSpeed;
+            EventManager.TriggerEvent("FearRefresh");
             yield return new WaitForSeconds(1);
         }
     }
@@ -105,7 +112,7 @@ public class PlayerBuildupManager : MonoBehaviour
         buildupManagers.Values.CopyTo(list, 0);
         return list;
     }
-    
-    
-    
+
+
+
 }
