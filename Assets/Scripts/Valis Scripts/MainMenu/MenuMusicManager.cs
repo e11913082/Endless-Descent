@@ -5,6 +5,7 @@ public class MenuMusicManager : MonoBehaviour
 {
     public AudioSource backgroundMusicSource;  // Reference to the Audio Source for background music
     public Slider volumeSlider;                // Reference to the Slider
+    public Slider effectVolumeSlider;                // Reference to the Slider
     
     private static MenuMusicManager instance;
 
@@ -25,6 +26,11 @@ public class MenuMusicManager : MonoBehaviour
     {
         volumeSlider = slider.GetComponent<Slider>();
     }
+
+    public void SetEffectSlider(GameObject effectSlider)
+    {
+        effectVolumeSlider = effectSlider.GetComponent<Slider>();
+    }
     
     void Start()
     {   
@@ -42,6 +48,11 @@ public class MenuMusicManager : MonoBehaviour
             volumeSlider.value = backgroundMusicSource.volume;
             volumeSlider.onValueChanged.AddListener(SetVolume);
         }
+        if (effectVolumeSlider != null)
+        {
+            effectVolumeSlider.value = 1f;
+            effectVolumeSlider.onValueChanged.AddListener(SetEffectVolume);
+        }
 
         if (!backgroundMusicSource.isPlaying)
         {
@@ -55,21 +66,34 @@ public class MenuMusicManager : MonoBehaviour
         backgroundMusicSource.volume = volume;
         PlayerPrefs.SetFloat("MusicVolume", volume);  // Save volume setting for persistence
         
-        Debug.Log("Volume set: " + backgroundMusicSource.volume);
+        Debug.Log("Music Volume set: " + backgroundMusicSource.volume);
+    }
+
+    public void SetEffectVolume(float effectVolume)
+    {
+        PlayerPrefs.SetFloat("EffectVolume", effectVolume);  // Save volume setting for persistence
+        
+        Debug.Log("Effect Volume set: " + effectVolume);
     }
 
     void OnEnable()
     {
         // Load volume from PlayerPrefs when the scene starts
         float savedVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);  // Default value is 0.5 if not set
+        float savedEffectVolume = PlayerPrefs.GetFloat("EffectVolume", 1f);  // Default value is 0.5 if not set
         if (backgroundMusicSource != null)
         {
             backgroundMusicSource.volume = savedVolume;
         }
-        Debug.Log("Volume set: " + backgroundMusicSource.volume);
+        Debug.Log("Music Volume set: " + backgroundMusicSource.volume);
         if (volumeSlider != null)
         {
             volumeSlider.value = savedVolume;
+        }
+        if (effectVolumeSlider != null)
+        {
+            effectVolumeSlider.value = savedEffectVolume;
+            Debug.Log("Effect Volume set: " + savedEffectVolume);
         }
     }
 }
