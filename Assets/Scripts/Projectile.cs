@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
-using Unity.VersionControl.Git.Json;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
