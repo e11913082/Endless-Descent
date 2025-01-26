@@ -121,7 +121,7 @@ public class ItemPickup : MonoBehaviour
     public void CollectItem()
     {
         StartPickupAnimation();
-                
+        GetComponent<CircleCollider2D>().enabled = false;        
         PlayerStats stats = GameObject.Find("/Main Character").GetComponent<PlayerCharacter>().GetStats();
         stats.PickupItem(itemData);
         Cursor.SetCursor(defaultCursor, Vector2.zero, cursorMode);

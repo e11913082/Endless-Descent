@@ -32,6 +32,7 @@ public class CharacterWeaponInventory : MonoBehaviour
         stats = PlayerStats.GetPlayerStats(CharacterIdGenerator.GetCharacterId(gameObject, 0));
         if (equippedWeapon != null)
         {
+            Debug.Log("Start damageBonus: " + equippedWeapon.damageBonus);
             stats.damage += equippedWeapon.damageBonus;
         }
     }

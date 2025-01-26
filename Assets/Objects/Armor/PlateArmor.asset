@@ -16,6 +16,7 @@ MonoBehaviour:
   itemDescription: Increases Defense
   itemIcon: {fileID: 999834908, guid: 7517c652572dc0a44a5a45654c992062, type: 3}
   rarity: 1
+  isArmor: 1
   statModifiers:
   - statName: Defense
     value: 60

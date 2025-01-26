@@ -47,6 +47,8 @@ namespace EndlessDescent
         private Animator animator;
         private AutoOrderLayer auto_order;
         private ContactFilter2D contact_filter;
+        private GameObject gameOverScreen;
+        private GameOver gameOver;
 
         //Weapons
         private bool weaponSwitch;
@@ -137,6 +139,12 @@ namespace EndlessDescent
             this.pauseMenu = pauseMenu;
         }
 
+        public void SetGameOverScreen(GameObject gameOverScreen, GameOver gameOver)
+        {
+            this.gameOverScreen = gameOverScreen;
+            this.gameOver = gameOver;
+        }
+
         public void UpdateControls()
         {
             PlayerControls controls = PlayerControls.Get(player_id);
@@ -144,7 +152,9 @@ namespace EndlessDescent
         }
 
         public void ResetStats()
-        {
+        {   
+            is_dead = false;
+            onDeath = null;
             stats.resetStats();
         }
 
@@ -168,11 +178,10 @@ namespace EndlessDescent
 
         private void Update()
         {
-            Debug.DrawLine(transform.position, GetMousePos(), Color.red);
             if (stats.currentFear >= stats.maxFear)
             {
-                Debug.Log("Died from to much fear");
                 Kill();
+                
             }
         }
 
@@ -417,12 +426,19 @@ namespace EndlessDescent
                 rigid.velocity = Vector2.zero;
                 move = Vector2.zero;
                 move_input = Vector2.zero;
-
+                if (gameObject.layer == LayerMask.NameToLayer("Player"))
+                {
+                   gameOver.OpenGameOverScreen(); 
+                }
                 if (onDeath != null)
                     onDeath.Invoke();
+
+                
             }
         }
 
+        
+        
         public void Teleport(Vector3 pos)
         {
             transform.position = pos;

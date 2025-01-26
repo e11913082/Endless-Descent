@@ -55,6 +55,8 @@ public class PauseMenu : MonoBehaviour
     {
         //Time.timeScale = 1f;
         player.ResetStats();
+        Destroy(GameObject.Find("/Hud V2"));
+        Destroy(GameObject.Find("/Main Character"));
         Destroy(GameObject.Find("/BackgroundMusic"));
         Destroy(GameObject.Find("/Loop Entrance"));
         SceneManager.LoadScene("MainMenu");

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -12,7 +13,7 @@ public class PlayerStats : MonoBehaviour
     public float currentHealth = 50f;
     
     public float moveSpeed = 2f;
-    public float damage = 20f;
+    public float damage = 5f;
     public float attackRange = 1.5f;
     public float attackSpeed = 1f;
     public float dashCoolDown = 0.5f;
@@ -29,6 +30,8 @@ public class PlayerStats : MonoBehaviour
     private static Dictionary<int, PlayerStats> stats = new Dictionary<int, PlayerStats>();
     public List<ItemData> equippedItems = new List<ItemData>();
 
+    public AnimatorController armorController;
+    
     // Recently picked up item for displaying statchanges
     [HideInInspector]
     public ItemData lastItem;
@@ -78,6 +81,10 @@ public class PlayerStats : MonoBehaviour
             lastItem = newItem;
             EventManager.TriggerEvent("ItemPickup");
             Debug.Log("Itempickup event triggered");
+            if (newItem.isArmor)
+            {
+                GameObject.Find("/Main Character").GetComponent<Animator>().runtimeAnimatorController = armorController;
+            }
         }
         else
         {

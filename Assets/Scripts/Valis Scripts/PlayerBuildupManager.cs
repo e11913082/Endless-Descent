@@ -73,7 +73,7 @@ public class PlayerBuildupManager : MonoBehaviour
         while (stats.CurrentFear < stats.MaxFear)
         {
             stats.CurrentFear = Mathf.Min(stats.CurrentFear + (stats.fearIncrease * curFearInc), stats.MaxFear);
-            curFearInc = curFearInc * fearChangeSpeed;
+            //curFearInc = curFearInc * fearChangeSpeed;
             EventManager.TriggerEvent("FearRefresh");
             yield return new WaitForSeconds(1);
         }

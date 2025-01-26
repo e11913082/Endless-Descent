@@ -94,9 +94,13 @@ namespace EndlessDescent
                 return;
             }
 
-            mouse_pos = Input.mousePosition;
-            mouse_pos.z = Mathf.Abs(mainCamera.transform.position.z);
-            mouse_pos = mainCamera.ScreenToWorldPoint(mouse_pos);
+            if (mainCamera != null)
+            {
+                mouse_pos = Input.mousePosition;
+                mouse_pos.z = Mathf.Abs(mainCamera.transform.position.z);
+                mouse_pos = mainCamera.ScreenToWorldPoint(mouse_pos);
+            }
+            
             
             move = Vector2.zero;
             action_hold = false;

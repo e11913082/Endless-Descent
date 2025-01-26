@@ -5,7 +5,10 @@ using UnityEngine;
 public class ChestController : MonoBehaviour
 {
     public List<ItemData> commonItems; // List of common items
-    public List<ItemData> rareItems;   // List of rare items
+    public List<ItemData> rareItems;  // List of rare items    
+    public ItemData armor;
+    [Header("Tick to drop only armor")]
+    public bool useArmor = false;
     
     private AudioSource audioSource;
     
@@ -30,20 +33,25 @@ public class ChestController : MonoBehaviour
     
     public ItemData GetRandomItem()
     {
-        // Determine if the drop is rare or common
-        bool isRare = Random.value < rareDropChance;
-
-        // Select an item from the corresponding pool
-        if (isRare && rareItems.Count > 0)
+        if (useArmor)
         {
-            return rareItems[Random.Range(0, rareItems.Count)];
+            return armor;
         }
-        else if (commonItems.Count > 0)
+        else
         {
-            return commonItems[Random.Range(0, commonItems.Count)];
-        }
+            bool isRare = Random.value < rareDropChance;
 
-        // Fallback if no items are available
+            if (isRare && rareItems.Count > 0)
+            {
+                return rareItems[Random.Range(0, rareItems.Count)];
+            }
+            else if (commonItems.Count > 0)
+            {
+                return commonItems[Random.Range(0, commonItems.Count)];
+            }
+             
+        }
+        // Fallback
         Debug.LogWarning("No items available in the chest!");
         return null;
     }
@@ -62,10 +70,13 @@ public class ChestController : MonoBehaviour
             itemPickup.Initialize(droppedItem);
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.sprite = openChestSprite;
-            GetComponent<CircleCollider2D>().radius = 1.55f;
+            GetComponent<CircleCollider2D>().radius = 1.75f;
             itemStartPosition = item.transform.position.y;
             itemCollectable = true;
-            
+            if (droppedItem.isArmor)
+            {
+                item.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
+            }
         }
         else
         {
