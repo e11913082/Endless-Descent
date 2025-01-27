@@ -160,10 +160,10 @@ public class ChestInteraction : MonoBehaviour
     {
         if (other.CompareTag("Chest"))
         {
-            if (hintText.gameObject.activeSelf)
+            /*if (hintText.gameObject.activeSelf)
             {
                 FadeOut();
-            }
+            }*/
             inChestCollider = false;
             timeInTrigger = 0f;
             chest = null;

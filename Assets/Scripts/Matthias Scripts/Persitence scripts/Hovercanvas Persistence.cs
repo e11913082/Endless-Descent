@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hintcanvaspersistence : MonoBehaviour
+public class HovercanvasPersistence : MonoBehaviour
 {
-    private static Hintcanvaspersistence instance;
+    private static HovercanvasPersistence instance;
     private void Awake()
     {
         if (instance == null)
@@ -14,7 +14,6 @@ public class Hintcanvaspersistence : MonoBehaviour
         }
         else
         {
-            instance.gameObject.SetActive(false);
             Destroy(gameObject);
         }
     }

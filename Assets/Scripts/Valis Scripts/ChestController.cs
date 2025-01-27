@@ -96,14 +96,10 @@ public class ChestController : MonoBehaviour
 
     public void ReceiveItem()
     {
-        if (isOpen)
+        if (isOpen && itemCollectable)
         {
             itemCollectable = false;
             itemPickup.CollectItem();
-        }
-        else
-        {
-            Debug.LogWarning("The chest was not opened");
         }
     }
 

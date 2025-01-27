@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -30,7 +29,7 @@ public class PlayerStats : MonoBehaviour
     private static Dictionary<int, PlayerStats> stats = new Dictionary<int, PlayerStats>();
     public List<ItemData> equippedItems = new List<ItemData>();
 
-    public AnimatorController armorController;
+    public RuntimeAnimatorController armorController;
     
     // Recently picked up item for displaying statchanges
     [HideInInspector]

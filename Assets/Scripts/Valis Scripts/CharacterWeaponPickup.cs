@@ -68,7 +68,7 @@ public class CharacterWeaponPickup : MonoBehaviour
                 }
             }
 
-            if (weaponHintCounter < weaponHintMaxCounter && !hintActive)
+            /*if (weaponHintCounter < weaponHintMaxCounter && !hintActive)
             {   
                 hintActive = true;
                 if (hintCoroutine != null)
@@ -76,7 +76,7 @@ public class CharacterWeaponPickup : MonoBehaviour
                     StopCoroutine(hintCoroutine);
                 }
                 hintCoroutine = StartCoroutine(Hint());
-            }
+            }*/
         }
     }
 
