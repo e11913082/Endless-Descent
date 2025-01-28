@@ -171,6 +171,7 @@ MonoBehaviour:
   eventName: Win
   endText: {fileID: 1445419005}
   activationScreen: {fileID: 910296389}
+  gamblingCanvas: {fileID: 1677028615}
 --- !u!1 &24315741
 GameObject:
   m_ObjectHideFlags: 0
@@ -6151,7 +6152,6 @@ GameObject:
   - component: {fileID: 1185736968}
   - component: {fileID: 1185736967}
   - component: {fileID: 1185736966}
-  - component: {fileID: 1185736970}
   m_Layer: 5
   m_Name: HintCanvas
   m_TagString: Untagged
@@ -6242,18 +6242,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1185736970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1185736965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cdb7243134d70440a35e233cd5fb1c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1187962403
 GameObject:
   m_ObjectHideFlags: 0
@@ -8089,8 +8077,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.47870016, y: 1.4410498, z: 0}
-    m_Extent: {x: 9.109699, y: 9.37555, z: 0}
+    m_Center: {x: 0.47850037, y: 1.4404001, z: 0}
+    m_Extent: {x: 9.1095, y: 9.3758, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -13659,8 +13647,8 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 106550975}
   - {fileID: 1185736969}
+  - {fileID: 106550975}
   - {fileID: 1956868764}
   - {fileID: 1166305556}
   - {fileID: 1367130474}

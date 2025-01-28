@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {   
     private Canvas settingsCanvas;
+    public GameObject gamblingCanvas;
     public GameObject pauseMenu;
     private bool resume;
     private PlayerCharacter player;
@@ -57,6 +58,10 @@ public class PauseMenu : MonoBehaviour
         player.ResetStats();
         Destroy(GameObject.Find("/Hud V2"));
         Destroy(GameObject.Find("/Main Character"));
+        if(gamblingCanvas != null)
+        {
+            Destroy(gamblingCanvas);
+        }
         Destroy(GameObject.Find("/BackgroundMusic"));
         Destroy(GameObject.Find("/Loop Entrance"));
         SceneManager.LoadScene("MainMenu");

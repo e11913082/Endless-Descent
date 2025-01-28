@@ -12,6 +12,7 @@ public class GameOver : MonoBehaviour
     public string eventName;
     public TextMeshProUGUI endText;
     public GameObject activationScreen;
+    public GameObject gamblingCanvas;
     private PlayerCharacter player;
     
     // Start is called before the first frame update
@@ -67,10 +68,8 @@ public class GameOver : MonoBehaviour
         Destroy(GameObject.Find("/BackgroundMusic"));
         Destroy(GameObject.Find("/Loop Entrance"));
         GameObject playerObj = GameObject.Find("/Main Character");
-        if (playerObj != null) //Case: Win
-        {
-            Destroy(playerObj);
-        }
+        Destroy(playerObj);
+        Destroy(gamblingCanvas);
         SceneManager.LoadScene("MainMenu");
     }
 }
