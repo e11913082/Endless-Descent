@@ -66,6 +66,11 @@ public class GameOver : MonoBehaviour
         Destroy(GameObject.Find("/Hud V2"));
         Destroy(GameObject.Find("/BackgroundMusic"));
         Destroy(GameObject.Find("/Loop Entrance"));
+        GameObject playerObj = GameObject.Find("/Main Character");
+        if (playerObj != null) //Case: Win
+        {
+            Destroy(playerObj);
+        }
         SceneManager.LoadScene("MainMenu");
     }
 }

@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 using System.Reflection;
 using System;
 using System.Runtime.InteropServices;
+using UnityEngine.UI;
+using TMPro;
 
 public class LoopInteraction : MonoBehaviour
 {
@@ -38,6 +40,8 @@ public class LoopInteraction : MonoBehaviour
         {
             loopCount++;
             curPlayer.transform.position = spawnPos;
+            TextMeshProUGUI hintText = GameObject.Find("/HintCanvas").GetComponentInChildren<TextMeshProUGUI>(true);
+			hintText.gameObject.transform.parent.gameObject.SetActive(false);
             HandleEnemies();
             HandleLanterns();
             HandlePropSpawns();

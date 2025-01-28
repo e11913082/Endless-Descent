@@ -23,6 +23,9 @@ public class CharacterGamblingTrader : MonoBehaviour
     void Start()
     {
         hintText = GameObject.Find("/HintCanvas").GetComponentInChildren<TextMeshProUGUI>(true);
+		if(hintText == null) {
+			Debug.Log("Gamblingtrader no hinttext fetched");
+		}
         panelImage = hintText.gameObject.transform.parent.gameObject.GetComponent<Image>();
         hintText.gameObject.transform.parent.gameObject.SetActive(false);
     }
@@ -78,7 +81,7 @@ public class CharacterGamblingTrader : MonoBehaviour
     }
     private IEnumerator Hint()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(1.5f);
         if (inTrigger && hintText != null)
         {   
             Debug.Log("Hint triggered");
