@@ -17,7 +17,7 @@ public class GamblingcanvasPersistence : MonoBehaviour
         }
         else
         {
-            WheelOfFortuneHandler wheelHandler = fortuneWheel.GetComponent<WheelOfFortuneHandler>();
+            WheelOfFortuneHandler wheelHandler = instance.fortuneWheel.GetComponent<WheelOfFortuneHandler>();
             wheelHandler.ResetSpin();
             Destroy(gameObject);
         }

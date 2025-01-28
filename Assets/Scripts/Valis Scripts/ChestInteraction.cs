@@ -18,8 +18,8 @@ public class ChestInteraction : MonoBehaviour
 
     public float hintDelay = 1f;
     private float timeInTrigger = 0f;
-    
-    
+
+    private bool isOpen = false;
     private Coroutine hintCoroutine = null;
     private bool hintActive = false;
 
@@ -48,24 +48,11 @@ public class ChestInteraction : MonoBehaviour
               }
               else
               {
+                  isOpen = true;
                   chestController.OpenChest();
               }
             }
             timeInTrigger += Time.deltaTime;
-            /*if (timeInTrigger >= hintDelay)
-            {
-                Debug.Log("Hint triggered");
-                hintText.gameObject.transform.parent.gameObject.SetActive(true);
-                // readjust alpha
-                hintText.alpha = 1f;
-                Color color = panelImage.color;
-                color.a = 1f;
-                panelImage.color = color;
-            
-                string inputKey = PlayerPrefs.GetString("interact", "E");
-                hintText.text = "Press " + inputKey + " to open the chest!";
-                
-            }
             
             if (chestHintCounter < chestHintMaxCounter && !hintActive)
             {   
@@ -74,8 +61,10 @@ public class ChestInteraction : MonoBehaviour
                 {
                     StopCoroutine(hintCoroutine);
                 }
+                GetComponent<CharacterWeaponPickup>().StopAllCoroutines();
+                GetComponent<CharacterGamblingTrader>().StopAllCoroutines();
                 hintCoroutine = StartCoroutine(Hint());
-            }*/
+            }
         }
     }
     
@@ -94,8 +83,15 @@ public class ChestInteraction : MonoBehaviour
             panelImage.color = color;
             
             string inputKey = PlayerPrefs.GetString("interact", "E");
-            hintText.text = "Press " + inputKey + " to open the chest!";
-            //FadeOut();
+            if (!isOpen)
+            {
+                hintText.text = "Press " + inputKey + " to open the chest!";
+            }
+            else
+            {
+                hintText.text = "Press " + inputKey + " to collect the item!";
+            }
+            FadeOut();
         }
     }
     
@@ -160,10 +156,7 @@ public class ChestInteraction : MonoBehaviour
     {
         if (other.CompareTag("Chest"))
         {
-            /*if (hintText.gameObject.activeSelf)
-            {
-                FadeOut();
-            }*/
+            hintActive = false;
             inChestCollider = false;
             timeInTrigger = 0f;
             chest = null;

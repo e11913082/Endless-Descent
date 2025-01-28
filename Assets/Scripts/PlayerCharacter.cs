@@ -428,12 +428,13 @@ namespace EndlessDescent
                 move_input = Vector2.zero;
                 if (gameObject.layer == LayerMask.NameToLayer("Player"))
                 {
-                   gameOver.OpenGameOverScreen(); 
+                	EventManager.TriggerEvent("Lose");
                 }
+				else if(gameObject.name == "Boss") {
+					EventManager.TriggerEvent("Win");
+				}
                 if (onDeath != null)
                     onDeath.Invoke();
-
-                
             }
         }
 

@@ -45,6 +45,7 @@ public class CharacterGamblingTrader : MonoBehaviour
     {
         if (other.CompareTag("GamblingTrader"))
         {
+            hintActive = false;
             inTrigger = false;
             playerCharacter = GetComponent<PlayerCharacter>();
         }
@@ -56,7 +57,9 @@ public class CharacterGamblingTrader : MonoBehaviour
            if (playerCharacter.GetActionDown())
            {
               canvas.gameObject.SetActive(true);
+              Debug.Log("Canvas active");
               Time.timeScale = 0f; 
+              Debug.Log("timescale to 0");
            }
            if (traderHintCounter < traderHintMaxCounter && !hintActive)
            {   
@@ -65,6 +68,8 @@ public class CharacterGamblingTrader : MonoBehaviour
                {
                    StopCoroutine(hintCoroutine);
                }
+               GetComponent<CharacterWeaponPickup>().StopAllCoroutines();
+               GetComponent<CharacterGamblingTrader>().StopAllCoroutines();
                hintCoroutine = StartCoroutine(Hint());
            }
         }
@@ -74,7 +79,7 @@ public class CharacterGamblingTrader : MonoBehaviour
     private IEnumerator Hint()
     {
         yield return new WaitForSeconds(4f);
-        if (inTrigger)
+        if (inTrigger && hintText != null)
         {   
             Debug.Log("Hint triggered");
             hintText.gameObject.transform.parent.gameObject.SetActive(true);
@@ -88,7 +93,6 @@ public class CharacterGamblingTrader : MonoBehaviour
             hintText.text = "Press " + inputKey + " to talk to the trader!";
             FadeOut();
         }
-        
     }
     
     private Coroutine fadeCoroutine = null;

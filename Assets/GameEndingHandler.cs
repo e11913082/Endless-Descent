@@ -9,27 +9,28 @@ using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour
 {
     public string endSentence;
+    public string eventName;
     public TextMeshProUGUI endText;
-    public GameObject gameOverScreen;
+    public GameObject activationScreen;
     private PlayerCharacter player;
     
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("/Main Character").GetComponent<PlayerCharacter>();
-        player.SetGameOverScreen(gameObject.transform.parent.gameObject.gameObject, this);
-        gameOverScreen.SetActive(false);
+        activationScreen.SetActive(false);
     }
 
-    public void OpenGameOverScreen()
+    public void OpenActivationScreen()
     {
-        StartCoroutine(GameOverScreen());
+        StartCoroutine(ActivationScreen());
+        Time.timeScale = 0f;
     }
     
-    private IEnumerator GameOverScreen()
+    private IEnumerator ActivationScreen()
     {
-        yield return new WaitForSeconds(1.5f);
-        gameOverScreen.SetActive(true);
+        yield return new WaitForSecondsRealtime(1.5f);
+        activationScreen.SetActive(true);
+        StartCoroutine(TypeSentence(endSentence));
     }
 
     // Update is called once per frame
@@ -40,7 +41,12 @@ public class GameOver : MonoBehaviour
 
     private void OnEnable()
     {
-        StartCoroutine(TypeSentence(endSentence));
+        EventManager.StartListening(eventName,OpenActivationScreen);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.StopListening(eventName,OpenActivationScreen);
     }
     
     IEnumerator TypeSentence(string sentence)
@@ -49,7 +55,7 @@ public class GameOver : MonoBehaviour
         endText.text = array[0];
         for( int i = 1 ; i < array.Length ; ++ i)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSecondsRealtime(0.1f);
             endText.text += " " + array[i];
         }
     }

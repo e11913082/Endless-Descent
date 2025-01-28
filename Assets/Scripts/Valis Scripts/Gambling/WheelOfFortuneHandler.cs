@@ -70,7 +70,10 @@ public class WheelOfFortuneHandler : MonoBehaviour
 
     public void ResetSpin()
     {
-        Debug.Log("Delete me");
+        spinCount = 0;
+        transform.Rotate(0,0,0);
+        outText.text = "";
+        buttonText.text = "Spin = 10 Oil ("+(maxSpinCount)+" left)";
     }
     
     public void StartSpin()

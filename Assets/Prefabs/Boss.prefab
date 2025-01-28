@@ -22,8 +22,6 @@ GameObject:
   - component: {fileID: 7445903141468337987}
   - component: {fileID: 8108686635482222492}
   - component: {fileID: 9126783904486958396}
-  - component: {fileID: 4112755052662951865}
-  - component: {fileID: 6670824074277398997}
   - component: {fileID: 7804264739737691017}
   - component: {fileID: 2689710000002698}
   - component: {fileID: 5596722964878612626}
@@ -355,36 +353,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d8a40686cc90143bba3edf7a4fcbe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4112755052662951865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173577608035208917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2b809d1a6a4c4a30a05f551742f2d29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chestHintCounter: 0
-  chestHintMaxCounter: 3
-  hintDelay: 1
---- !u!114 &6670824074277398997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173577608035208917}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94d6e5bba83d22b4c9b08682d184731e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
-  traderHintCounter: 0
-  traderHintMaxCounter: 3
 --- !u!82 &7804264739737691017
 AudioSource:
   m_ObjectHideFlags: 0
@@ -737,6 +705,7 @@ MonoBehaviour:
   maxFear: 100
   coins: 30
   equippedItems: []
+  armorController: {fileID: 0}
   lastItem: {fileID: 0}
 --- !u!1 &6946326868374637809
 GameObject:

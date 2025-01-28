@@ -26,7 +26,8 @@ public class CharacterWeaponPickup : MonoBehaviour
     {
         character = GetComponent<PlayerCharacter>();
         inventory = GetComponent<CharacterWeaponInventory>();
-        hintText = GameObject.Find("/HintCanvas").GetComponentInChildren<TextMeshProUGUI>(true);
+        GameObject hintCanvas = GameObject.Find("/HintCanvas");  
+        hintText = hintCanvas.GetComponentInChildren<TextMeshProUGUI>(true);
         panelImage = hintText.gameObject.transform.parent.gameObject.GetComponent<Image>();
         hintText.gameObject.transform.parent.gameObject.SetActive(false);
     }
@@ -44,6 +45,7 @@ public class CharacterWeaponPickup : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Weapon"))
         {   
+            hintActive = false;
             weaponObject = null;
             inPickupRange = false;
         }
@@ -68,15 +70,17 @@ public class CharacterWeaponPickup : MonoBehaviour
                 }
             }
 
-            /*if (weaponHintCounter < weaponHintMaxCounter && !hintActive)
-            {   
+            if (weaponHintCounter < weaponHintMaxCounter && !hintActive)
+            {
                 hintActive = true;
                 if (hintCoroutine != null)
                 {
                     StopCoroutine(hintCoroutine);
                 }
+                GetComponent<CharacterWeaponPickup>().StopAllCoroutines();
+                GetComponent<CharacterGamblingTrader>().StopAllCoroutines();
                 hintCoroutine = StartCoroutine(Hint());
-            }*/
+            }
         }
     }
 
